@@ -1,7 +1,3 @@
-// JBJBJB
-
-//Ali Eskandari
-
 //  LoginScreen.m
 //  iReporter
 //
@@ -21,9 +17,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-	// hey ali
-	// hey all
-	// hey ali
+	
 	UIImage *navigationBarBackground = [UIImage imageNamed:@"menubar_no_title.png"];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackground forBarMetrics:UIBarMetricsDefault];
 	NSDictionary *titleBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor, [UIColor blackColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, [UIFont fontWithName:@"Segoe WP Black" size:18], UITextAttributeFont, nil];
