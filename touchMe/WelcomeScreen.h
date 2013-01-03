@@ -10,9 +10,11 @@
 #import "EditInfoScreen.h"
 
 @interface WelcomeScreen : UIViewController <UIImagePickerControllerDelegate, EditInfoScreenDelegate>
-@property  IBOutlet UIButton* btnChangePhoto;
-@property	IBOutlet UILabel *welcomeLabel;
-@property	IBOutlet UILabel *btnCaption;
+@property  IBOutlet UIButton *btnChangePhoto;
+@property  IBOutlet UILabel *welcomeLabel;
+@property  IBOutlet UILabel *btnCaption;
+@property  IBOutlet UILabel *photoInstructions;
+@property  IBOutlet UILabel *photoRules;
 @property (copy, nonatomic) NSData* userPhoto;
 @property (copy, nonatomic) NSMutableDictionary* savedInfo;
 

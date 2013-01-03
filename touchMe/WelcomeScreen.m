@@ -19,6 +19,8 @@
 
 @synthesize welcomeLabel;
 @synthesize btnCaption;
+@synthesize photoInstructions;
+@synthesize photoRules;
 @synthesize btnChangePhoto;
 @synthesize userPhoto;
 @synthesize savedInfo;
@@ -36,10 +38,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
 	// Do any additional setup after loading the view.
-	welcomeLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:18];
-	btnCaption.font = [UIFont fontWithName:@"Segoe WP Light" size:18];
+	welcomeLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+	photoRules.font = [UIFont fontWithName:@"Segoe WP" size:13];
+	photoInstructions.font = [UIFont fontWithName:@"Segoe WP" size:13];
+	btnCaption.font = [UIFont fontWithName:@"Segoe WP" size:11.5];
+    
+    
+	welcomeLabel.textColor = [UIColor colorWithRed:89.0/255.0 green:89.0/255.0 blue:89.0/255.0 alpha:1.0];
+    photoRules.textColor = [UIColor colorWithRed:89.0/255.0 green:89.0/255.0 blue:89.0/255.0 alpha:1.0];
+    photoInstructions.textColor = [UIColor colorWithRed:89.0/255.0 green:89.0/255.0 blue:89.0/255.0 alpha:1.0];
+    btnCaption.textColor = [UIColor colorWithRed:89.0/255.0 green:89.0/255.0 blue:89.0/255.0 alpha:1.0];
+    
 	savedInfo = nil;
 }
 
@@ -121,11 +132,9 @@
 - (void)viewDidUnload {
 	welcomeLabel = nil;
 	btnCaption = nil;
+    [self setPhotoInstructions:nil];
+    [self setPhotoRules:nil];
 	[super viewDidUnload];
 }
 
 @end
-
-
-
-
