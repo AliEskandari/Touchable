@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		3411D25316964ABC004A4B4F /* click here to continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3411D25116964ABC004A4B4F /* click here to continue.png */; };
 		3411D25416964ABC004A4B4F /* camera button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3411D25216964ABC004A4B4F /* camera button.png */; };
+		3411D26A16964F27004A4B4F /* menuBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3411D26816964F27004A4B4F /* menuBar.png */; };
+		3411D26B16964F27004A4B4F /* menuBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3411D26916964F27004A4B4F /* menuBar@2x.png */; };
 		3487C69B1696462A00242079 /* loginbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6981696462A00242079 /* loginbtn.png */; };
 		3487C69C1696462A00242079 /* registerbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6991696462A00242079 /* registerbtn.png */; };
-		3487C69D1696462A00242079 /* menuBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C69A1696462A00242079 /* menuBar.png */; };
 		4107A6641692A07C00E973A3 /* AutoCompScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4107A6631692A07C00E973A3 /* AutoCompScreen.m */; };
 		412E7E3F1688A2FE00D69F86 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412E7E3E1688A2FE00D69F86 /* menu@2x.png */; };
 		412E7E431688BA8D00D69F86 /* icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 412E7E421688BA8D00D69F86 /* icon-retina.png */; };
@@ -78,9 +79,10 @@
 /* Begin PBXFileReference section */
 		3411D25116964ABC004A4B4F /* click here to continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "click here to continue.png"; sourceTree = "<group>"; };
 		3411D25216964ABC004A4B4F /* camera button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera button.png"; sourceTree = "<group>"; };
+		3411D26816964F27004A4B4F /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuBar.png; path = ../menuBar.png; sourceTree = "<group>"; };
+		3411D26916964F27004A4B4F /* menuBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBar@2x.png"; path = "../menuBar@2x.png"; sourceTree = "<group>"; };
 		3487C6981696462A00242079 /* loginbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbtn.png; sourceTree = "<group>"; };
 		3487C6991696462A00242079 /* registerbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbtn.png; sourceTree = "<group>"; };
-		3487C69A1696462A00242079 /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBar.png; sourceTree = "<group>"; };
 		4107A6621692A07C00E973A3 /* AutoCompScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompScreen.h; sourceTree = "<group>"; };
 		4107A6631692A07C00E973A3 /* AutoCompScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompScreen.m; sourceTree = "<group>"; };
 		412E7E3E1688A2FE00D69F86 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
@@ -211,10 +213,11 @@
 		412E7E3C1688A2B200D69F86 /* App Images */ = {
 			isa = PBXGroup;
 			children = (
-				3487C69A1696462A00242079 /* menuBar.png */,
 				414E7D41168BD01B00EF1A72 /* Buttons */,
 				412E7E461688BFC900D69F86 /* icons */,
 				41DE3B4C16893121008548A4 /* menubar_no_title.png */,
+				3411D26816964F27004A4B4F /* menuBar.png */,
+				3411D26916964F27004A4B4F /* menuBar@2x.png */,
 				412E7E3E1688A2FE00D69F86 /* menu@2x.png */,
 				9C60DA8D14E5478B00442413 /* placeholder.png */,
 			);
@@ -499,9 +502,10 @@
 				41E8141316957AA20009A13C /* Storyboard.storyboard in Resources */,
 				3487C69B1696462A00242079 /* loginbtn.png in Resources */,
 				3487C69C1696462A00242079 /* registerbtn.png in Resources */,
-				3487C69D1696462A00242079 /* menuBar.png in Resources */,
 				3411D25316964ABC004A4B4F /* click here to continue.png in Resources */,
 				3411D25416964ABC004A4B4F /* camera button.png in Resources */,
+				3411D26A16964F27004A4B4F /* menuBar.png in Resources */,
+				3411D26B16964F27004A4B4F /* menuBar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

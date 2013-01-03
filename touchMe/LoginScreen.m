@@ -21,12 +21,11 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-	// hey ali
-	// hey all
-	// hey ali
+    
 	UIImage *navigationBarBackground = [UIImage imageNamed:@"menubar_no_title.png"];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackground forBarMetrics:UIBarMetricsDefault];
 	NSDictionary *titleBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor, [UIColor blackColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, [UIFont fontWithName:@"Segoe WP Black" size:18], UITextAttributeFont, nil];
+    
 	self.navigationController.navigationBar.titleTextAttributes = titleBarAttributes;
     
 	[[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:227.0/255.0 green:227.0/255.0 blue:227.0/255.0 alpha:1.0]];
