@@ -1,0 +1,29 @@
+//
+// Prefix header for all source files of the 'iReporter' target in the 'iReporter' project
+//
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    
+#endif
+
+#ifdef DEBUG
+	#define DLog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
+	#define ALog(...) [[NSAssertionHandler currentHandler] handleFailureInFunction:[NSString stringWithCString:PRETTY_FUNCTION encoding:NSUTF8StringEncoding] file:[NSString stringWithCString:FILE encoding:NSUTF8StringEncoding] lineNumber:LINE description:VA_ARGS__]
+#else
+	#define DLog(...) do { } while (0)
+	#ifndef NS_BLOCK_ASSERTIONS
+		#define NS_BLOCK_ASSERTIONS
+	#endif
+	#define ALog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
+#endif
+
+static inline BOOL IsEmpty(id thing) {return thing == nil || ([thing respondsToSelector:@selector(length)] && [(NSData *)thing length] == 0) || ([thing respondsToSelector:@selector(count)] && [(NSArray *)thing count] == 0); }
