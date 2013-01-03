@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3487C69B1696462A00242079 /* loginbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6981696462A00242079 /* loginbtn.png */; };
+		3487C69C1696462A00242079 /* registerbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6991696462A00242079 /* registerbtn.png */; };
+		3487C69D1696462A00242079 /* menuBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C69A1696462A00242079 /* menuBar.png */; };
 		4107A6641692A07C00E973A3 /* AutoCompScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4107A6631692A07C00E973A3 /* AutoCompScreen.m */; };
 		412E7E3F1688A2FE00D69F86 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412E7E3E1688A2FE00D69F86 /* menu@2x.png */; };
 		412E7E431688BA8D00D69F86 /* icon-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 412E7E421688BA8D00D69F86 /* icon-retina.png */; };
@@ -71,6 +74,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3487C6981696462A00242079 /* loginbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbtn.png; sourceTree = "<group>"; };
+		3487C6991696462A00242079 /* registerbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbtn.png; sourceTree = "<group>"; };
+		3487C69A1696462A00242079 /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBar.png; sourceTree = "<group>"; };
 		4107A6621692A07C00E973A3 /* AutoCompScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompScreen.h; sourceTree = "<group>"; };
 		4107A6631692A07C00E973A3 /* AutoCompScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompScreen.m; sourceTree = "<group>"; };
 		412E7E3E1688A2FE00D69F86 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 		412E7E3C1688A2B200D69F86 /* App Images */ = {
 			isa = PBXGroup;
 			children = (
+				3487C69A1696462A00242079 /* menuBar.png */,
 				414E7D41168BD01B00EF1A72 /* Buttons */,
 				412E7E461688BFC900D69F86 /* icons */,
 				41DE3B4C16893121008548A4 /* menubar_no_title.png */,
@@ -251,6 +258,8 @@
 		414E7D41168BD01B00EF1A72 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				3487C6981696462A00242079 /* loginbtn.png */,
+				3487C6991696462A00242079 /* registerbtn.png */,
 				414E7D5D168C218600EF1A72 /* touch me.png */,
 				414E7D57168BDD0600EF1A72 /* touch me GRAYED.png */,
 				414E7D55168BDBA200EF1A72 /* dont touch me GRAYED.png */,
@@ -482,6 +491,9 @@
 				414E7D58168BDD0600EF1A72 /* touch me GRAYED.png in Resources */,
 				414E7D5E168C218600EF1A72 /* touch me.png in Resources */,
 				41E8141316957AA20009A13C /* Storyboard.storyboard in Resources */,
+				3487C69B1696462A00242079 /* loginbtn.png in Resources */,
+				3487C69C1696462A00242079 /* registerbtn.png in Resources */,
+				3487C69D1696462A00242079 /* menuBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

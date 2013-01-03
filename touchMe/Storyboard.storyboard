@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qVx-xu-zIz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qVx-xu-zIz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -24,7 +24,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="peopleBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="gAz-4D-L8p"/>
                                     <segue destination="LMf-ef-b2E" kind="push" id="vtW-rL-Wxj"/>
                                 </connections>
                             </button>
@@ -112,7 +111,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Touchable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mbn-Rt-Njt">
-                                <rect key="frame" x="202" y="109" width="117" height="21"/>
+                                <rect key="frame" x="202" y="99" width="117" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -151,9 +150,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Menu" id="Unv-2C-v7D"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="peopleBtn" destination="Boa-Xn-kR9" id="2IX-AY-lDz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adB-f5-neh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -210,20 +206,20 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" id="3f0-yL-waM">
                                 <rect key="frame" x="56" y="20" width="208" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="XY8-l9-1wT">
                                 <rect key="frame" x="56" y="59" width="208" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LMh-NU-ZOG">
                                 <rect key="frame" x="80" y="97" width="161" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="15"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Login" image="loginbtn.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -238,7 +234,7 @@
                                 <rect key="frame" x="80" y="141" width="161" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="15"/>
-                                <state key="normal" title="Register">
+                                <state key="normal" title="Register" image="registerbtn.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -274,18 +270,26 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome to touchable. You can touch me and Don't Touch Me. Blah Blah Blah. You can have only One picture that's your TouchPic." lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1dY-NT-7h5">
-                                <rect key="frame" x="20" y="20" width="280" height="95"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1dY-NT-7h5">
+                                <rect key="frame" x="20" y="8" width="280" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="SegoeWP-Light" family="Segoe WP Light" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Welcome to Touchable. This is the most superficial app you will ever use. Please take a minute to set up your account so you can start letting people touch you.</string>
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="14" name="SegoeWP-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="9" lineHeightMultiple="0.5"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ANM-xG-bJP">
-                                <rect key="frame" x="20" y="160" width="100" height="100"/>
+                                <rect key="frame" x="225" y="192" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" image="camera button.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -296,18 +300,18 @@
                                     <action selector="btnChangePhotoTapped:" destination="jbG-qJ-pCn" eventType="touchUpInside" id="8Fq-rb-ol2"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="TouchPic Preview" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g02-J5-qaU">
-                                <rect key="frame" x="128" y="197" width="172" height="23"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="current photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" id="g02-J5-qaU">
+                                <rect key="frame" x="210" y="267" width="105" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="SegoeWP-Black" family="Segoe WP Black" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SegoeWP-Black" family="Segoe WP Black" pointSize="12"/>
+                                <color key="textColor" red="0.11375956632653061" green="0.11375956632653061" blue="0.11375956632653061" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hkj-3v-DNG">
-                                <rect key="frame" x="117" y="353" width="86" height="44"/>
+                                <rect key="frame" x="63" y="322" width="194" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="15"/>
-                                <state key="normal" title="Edit Info">
+                                <state key="normal" title="Edit Info" image="click here to continue.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -315,9 +319,42 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnEditInfoTapped:" destination="jbG-qJ-pCn" eventType="touchUpInside" id="IFg-xO-lq6"/>
+                                    <segue destination="LPG-lc-fFH" kind="push" id="l3n-y2-XnJ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hC6-CZ-Mpx">
+                                <rect key="frame" x="20" y="121" width="280" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">First choose (or take) a profile photo. Make sure it’s a good one, because everyone is going to judge you based on this picture.</string>
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="13" name="ArialMT"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUe-xN-Cq6">
+                                <rect key="frame" x="20" y="186" width="178" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">The photo:
+1. must be of you and only you
+2. must be clear
+3. cannot contain any nudity or be overtly sexual</string>
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="13" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90516651459854014" green="0.90103216240875916" blue="0.9000912408759123" alpha="1" colorSpace="deviceRGB"/>
                     </view>
@@ -326,8 +363,9 @@
                     <connections>
                         <outlet property="btnCaption" destination="g02-J5-qaU" id="8j8-XQ-6dQ"/>
                         <outlet property="btnChangePhoto" destination="ANM-xG-bJP" id="YeB-am-luq"/>
+                        <outlet property="photoInstructions" destination="hC6-CZ-Mpx" id="ywk-wH-vbP"/>
+                        <outlet property="photoRules" destination="dUe-xN-Cq6" id="Fvw-VV-YXi"/>
                         <outlet property="welcomeLabel" destination="1dY-NT-7h5" id="cer-v5-3dS"/>
-                        <segue destination="LPG-lc-fFH" kind="push" identifier="ShowEditInfo" id="Lbk-qT-KnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eO8-Jf-nul" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,14 +459,28 @@
         <scene sceneID="1SS-l8-Bu6">
             <objects>
                 <viewController id="41h-3e-6CZ" customClass="AutoCompScreen" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rJ4-xb-ARw">
+                    <view key="view" contentMode="scaleToFill" id="knj-PP-63X">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </tableView>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rJ4-xb-ARw">
+                                <rect key="frame" x="0.0" y="44" width="320" height="372"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" id="iVQ-ro-PJi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86274516582489014" green="0.86274516582489014" blue="0.86274516582489014" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
                     <navigationItem key="navigationItem" id="dsU-v6-tu8"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="searchBar" destination="iVQ-ro-PJi" id="tjc-Xd-GCn"/>
                         <outlet property="tableView" destination="rJ4-xb-ARw" id="CCJ-Pk-yTN"/>
                     </connections>
                 </viewController>
@@ -460,81 +512,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera button.png" width="151" height="151"/>
+        <image name="click here to continue.png" width="388" height="151"/>
         <image name="leaderboards.png" width="160" height="160"/>
+        <image name="loginbtn.png" width="319" height="72"/>
         <image name="people.png" width="160" height="160"/>
         <image name="profile.png" width="160" height="160"/>
         <image name="randomize.png" width="160" height="160"/>
         <image name="recent.png" width="160" height="160"/>
+        <image name="registerbtn.png" width="319" height="72"/>
         <image name="settings.png" width="160" height="160"/>
         <image name="statistics.png" width="160" height="160"/>
     </resources>
-    <classes>
-        <class className="AboutMeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutMeCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="AutoCompScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoCompScreen.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EditCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EditInfoScreen" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditInfoScreen.h"/>
-        </class>
-        <class className="LoginScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnLoginTapped:"/>
-                <relationship kind="action" name="btnRegisterTapped:"/>
-                <relationship kind="outlet" name="fldPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="fldUsername" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MenuScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="peopleBtnTapped:"/>
-                <relationship kind="outlet" name="peopleBtn" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="PeopleScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleScreen.h"/>
-            <relationships>
-                <relationship kind="outlet" name="btnFilter1" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnMenu" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="listView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ProfileScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
-                <relationship kind="outlet" name="profileView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="WelcomeScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnChangePhotoTapped:"/>
-                <relationship kind="action" name="btnEditInfoTapped:"/>
-                <relationship kind="outlet" name="btnCaption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="btnChangePhoto" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
