@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3411D25316964ABC004A4B4F /* click here to continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3411D25116964ABC004A4B4F /* click here to continue.png */; };
+		3411D25416964ABC004A4B4F /* camera button.png in Resources */ = {isa = PBXBuildFile; fileRef = 3411D25216964ABC004A4B4F /* camera button.png */; };
 		3487C69B1696462A00242079 /* loginbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6981696462A00242079 /* loginbtn.png */; };
 		3487C69C1696462A00242079 /* registerbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6991696462A00242079 /* registerbtn.png */; };
 		3487C69D1696462A00242079 /* menuBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C69A1696462A00242079 /* menuBar.png */; };
@@ -74,6 +76,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3411D25116964ABC004A4B4F /* click here to continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "click here to continue.png"; sourceTree = "<group>"; };
+		3411D25216964ABC004A4B4F /* camera button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera button.png"; sourceTree = "<group>"; };
 		3487C6981696462A00242079 /* loginbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbtn.png; sourceTree = "<group>"; };
 		3487C6991696462A00242079 /* registerbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbtn.png; sourceTree = "<group>"; };
 		3487C69A1696462A00242079 /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBar.png; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 		414E7D41168BD01B00EF1A72 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				3411D25116964ABC004A4B4F /* click here to continue.png */,
+				3411D25216964ABC004A4B4F /* camera button.png */,
 				3487C6981696462A00242079 /* loginbtn.png */,
 				3487C6991696462A00242079 /* registerbtn.png */,
 				414E7D5D168C218600EF1A72 /* touch me.png */,
@@ -494,6 +500,8 @@
 				3487C69B1696462A00242079 /* loginbtn.png in Resources */,
 				3487C69C1696462A00242079 /* registerbtn.png in Resources */,
 				3487C69D1696462A00242079 /* menuBar.png in Resources */,
+				3411D25316964ABC004A4B4F /* click here to continue.png in Resources */,
+				3411D25416964ABC004A4B4F /* camera button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
