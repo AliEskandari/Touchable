@@ -151,13 +151,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Menu" id="Unv-2C-v7D"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
                         <outlet property="mostTouchableLabel" destination="Mbn-Rt-Njt" id="fUi-AH-oXc"/>
                         <outlet property="peopleLabel" destination="fRP-hD-8ju" id="NFh-WP-4pm"/>
                         <outlet property="profileLabel" destination="Dpc-D3-40p" id="XcW-pE-Xzt"/>
                         <outlet property="randomizeLabel" destination="YRq-F9-8MS" id="qah-Ni-VFc"/>
                         <outlet property="recentActivityLabel" destination="iHK-Cy-xgz" id="f1z-ye-U27"/>
                         <outlet property="settingsLabel" destination="DF7-mA-FeG" id="FtR-We-fAr"/>
+                        <outlet property="statisticsLabel" destination="NYj-xb-AUD" id="dfP-Yp-R14"/>
                         <outlet property="statisticsLabel" destination="NYj-xb-AUD" id="dfP-Yp-R14"/>
                     </connections>
                 </viewController>
