@@ -582,6 +582,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
             <relationships>
                 <relationship kind="action" name="btnTouchDontTouchTapped:"/>
+                <relationship kind="outlet" name="profileView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="WelcomeScreen" superclassName="UIViewController">
