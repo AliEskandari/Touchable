@@ -24,9 +24,6 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-		if (![[API sharedInstance] isAuthorized]) {
-		[self performSegueWithIdentifier:@"ShowLogin" sender:nil];
-	}
 	self.navigationItem.hidesBackButton = YES;
 }
 

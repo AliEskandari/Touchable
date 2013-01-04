@@ -70,6 +70,7 @@
 	}
 	
 	NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"login", @"command", fldUsername.text, @"username", hashedPassword, @"password", nil];
+	
 	//make the call to the web API
 	[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {
 		//result returned

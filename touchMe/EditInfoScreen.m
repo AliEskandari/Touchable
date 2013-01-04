@@ -121,19 +121,22 @@
 			switch (indexPath.row) {
 				case 0:
 					editCell.field.text = [enteredInfo objectForKey:@"username"];
-					editCell.textLabel.text = @"Username";
+					editCell.textLabel.text = @"Username*";
+					editCell.field.tag = 1;
 					username = editCell.field;
 					break;
 				case 1:
 					editCell.field.text = [enteredInfo objectForKey:@"password"];
-					editCell.textLabel.text = @"Password";
+					editCell.textLabel.text = @"Password*";
 					password = editCell.field;
+					editCell.field.tag = 2;
 					editCell.field.secureTextEntry = TRUE;
 					break;
 				case 2:
 					editCell.field.text = [enteredInfo objectForKey:@"reEnter"];
-					editCell.textLabel.text = @"Re-Enter";
+					editCell.textLabel.text = @"Re-Enter*";
 					reEnter = editCell.field;
+					editCell.field.tag = 3;
 					editCell.field.secureTextEntry = TRUE;
 					break;
 				default:
@@ -158,13 +161,15 @@
 			switch (indexPath.row) {
 				case 0:
 					editCell.field.text = [enteredInfo objectForKey:@"age"];
-					editCell.textLabel.text = @"Age";
+					editCell.textLabel.text = @"Age*";
+					editCell.field.tag = 4;
 					age = editCell.field;
 					editCell.field.inputView = agePickerView;
 					break;
 				case 1:
 					editCell.field.text = [enteredInfo objectForKey:@"gender"];
-					editCell.textLabel.text = @"Gender";
+					editCell.textLabel.text = @"Sex*";
+					editCell.field.tag = 5;
 					gender = editCell.field;
 					editCell.field.inputView  = genderPickerView;
 					break;
@@ -199,25 +204,25 @@
 				case 0:
 					segueCell.detailTextLabel.text = [enteredInfo objectForKey:@"country"];
 					segueCell.tag = 0;
-					segueCell.textLabel.text = @"Country";
+					segueCell.textLabel.text = @"Country*";
 					country = segueCell.detailTextLabel;
 					break;
 				case 1:
 					segueCell.detailTextLabel.text = [enteredInfo objectForKey:@"state"];
 					segueCell.tag = 1;
-					segueCell.textLabel.text = @"State";
+					segueCell.textLabel.text = @"State*";
 					state = segueCell.detailTextLabel;
 					break;
 				case 2:
 					segueCell.detailTextLabel.text = [enteredInfo objectForKey:@"city"];
 					segueCell.tag = 2;
-					segueCell.textLabel.text = @"City";
+					segueCell.textLabel.text = @"City*";
 					city = segueCell.detailTextLabel;
 					break;
 				case 3:
 					segueCell.detailTextLabel.text = [enteredInfo objectForKey:@"school"];
 					segueCell.tag = 3;
-					segueCell.textLabel.text = @"School";
+					segueCell.textLabel.text = @"School*";
 					school = segueCell.detailTextLabel;
 					break;
 				default:
@@ -298,6 +303,13 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+	EditCell *nextCell = (EditCell*) [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:(textField.tag % 3) inSection:(textField.tag / 3)]];
+	if ([nextCell.reuseIdentifier isEqualToString:@"EditCell"]) {
+		[nextCell.field becomeFirstResponder];
+	} else {
+		AboutMeCell *aboutMeCell = (AboutMeCell*)nextCell;
+		[aboutMeCell.textView becomeFirstResponder];
+	}
     return YES;
 }
 
@@ -345,7 +357,6 @@
     NSUInteger newLength = [textView.text length] + [string length] - range.length;
     return (newLength > 90) ? NO : YES;
 }
-
 
 /*
  // Override to support conditional editing of the table view.
