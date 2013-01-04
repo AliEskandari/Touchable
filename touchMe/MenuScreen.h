@@ -10,6 +10,13 @@
 #import "LoginScreen.h"
 
 @interface MenuScreen : UIViewController
+@property IBOutlet UILabel *peopleLabel;
+@property IBOutlet UILabel *randomizeLabel;
+@property IBOutlet UILabel *mostTouchableLabel;
+@property IBOutlet UILabel *profileLabel;
+@property IBOutlet UILabel *recentActivityLabel;
+@property IBOutlet UILabel *statisticsLabel;
+@property IBOutlet UILabel *settingsLabel;
 @property (strong, nonatomic) IBOutlet UIButton *peopleBtn;
 -(IBAction)peopleBtnTapped:(id)sender;
 

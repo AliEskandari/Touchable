@@ -111,7 +111,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Touchable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mbn-Rt-Njt">
-                                <rect key="frame" x="202" y="99" width="117" height="42"/>
+                                <rect key="frame" x="202" y="108" width="117" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -150,6 +150,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Menu" id="Unv-2C-v7D"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="mostTouchableLabel" destination="Mbn-Rt-Njt" id="fUi-AH-oXc"/>
+                        <outlet property="peopleLabel" destination="fRP-hD-8ju" id="NFh-WP-4pm"/>
+                        <outlet property="profileLabel" destination="Dpc-D3-40p" id="XcW-pE-Xzt"/>
+                        <outlet property="randomizeLabel" destination="YRq-F9-8MS" id="qah-Ni-VFc"/>
+                        <outlet property="recentActivityLabel" destination="iHK-Cy-xgz" id="f1z-ye-U27"/>
+                        <outlet property="settingsLabel" destination="DF7-mA-FeG" id="FtR-We-fAr"/>
+                        <outlet property="statisticsLabel" destination="NYj-xb-AUD" id="dfP-Yp-R14"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adB-f5-neh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -562,7 +571,14 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuScreen.h"/>
             <relationships>
                 <relationship kind="action" name="peopleBtnTapped:"/>
+                <relationship kind="outlet" name="mostTouchableLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="peopleBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="peopleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="recentActivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="settingsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statisticsLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="PeopleScreen" superclassName="UIViewController">
@@ -577,7 +593,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
             <relationships>
                 <relationship kind="action" name="btnTouchDontTouchTapped:"/>
-                <relationship kind="outlet" name="profileView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="WelcomeScreen" superclassName="UIViewController">

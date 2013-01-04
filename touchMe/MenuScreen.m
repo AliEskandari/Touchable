@@ -16,6 +16,14 @@
 
 @implementation MenuScreen
 
+@synthesize peopleLabel;
+@synthesize randomizeLabel;
+@synthesize mostTouchableLabel;
+@synthesize profileLabel;
+@synthesize recentActivityLabel;
+@synthesize statisticsLabel;
+@synthesize settingsLabel;
+
 -(IBAction)peopleBtnTapped:(id)sender{
 	[self performSegueWithIdentifier:@"ShowPeople" sender:nil];
 }
@@ -24,10 +32,16 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-		if (![[API sharedInstance] isAuthorized]) {
-		[self performSegueWithIdentifier:@"ShowLogin" sender:nil];
-	}
 	self.navigationItem.hidesBackButton = YES;
+    
+    
+	peopleLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+    randomizeLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+    mostTouchableLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+    profileLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+    recentActivityLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+    statisticsLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+    settingsLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,6 +53,13 @@
 
 - (void)viewDidUnload {
 	[self setPeopleBtn:nil];
+    [self setPeopleLabel:nil];
+    [self setRandomizeLabel:nil];
+    [self setMostTouchableLabel:nil];
+    [self setProfileLabel:nil];
+    [self setRecentActivityLabel:nil];
+    [self setStatisticsLabel:nil];
+    [self setSettingsLabel:nil];
 	[super viewDidUnload];
 }
 @end
