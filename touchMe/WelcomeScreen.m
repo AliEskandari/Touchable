@@ -111,7 +111,7 @@
 #pragma mark - EditInfoScreenDismissed delegate methods
 -(void)editInfoScreenDismissed:(NSMutableDictionary*)completedInfo{
 	savedInfo = completedInfo;
-	printf("%s",[[savedInfo objectForKey:@"username" ] UTF8String]);
+	//printf("%s",[[savedInfo objectForKey:@"username" ] UTF8String]);
 }
 
 - (void)didReceiveMemoryWarning

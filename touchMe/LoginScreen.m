@@ -1,7 +1,3 @@
-// JBJBJB
-
-//Ali Eskandari
-
 //  LoginScreen.m
 //  iReporter
 //
@@ -21,7 +17,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    
+	
 	UIImage *navigationBarBackground = [UIImage imageNamed:@"menubar_no_title.png"];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackground forBarMetrics:UIBarMetricsDefault];
 	NSDictionary *titleBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor, [UIColor blackColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, [UIFont fontWithName:@"Segoe WP Black" size:18], UITextAttributeFont, nil];
@@ -75,6 +71,7 @@
 	}
 	
 	NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"login", @"command", fldUsername.text, @"username", hashedPassword, @"password", nil];
+	
 	//make the call to the web API
 	[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {
 		//result returned

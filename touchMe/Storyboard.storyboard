@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qVx-xu-zIz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qVx-xu-zIz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -24,6 +24,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="peopleBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="Mzv-qp-bq9"/>
                                     <segue destination="LMf-ef-b2E" kind="push" id="vtW-rL-Wxj"/>
                                 </connections>
                             </button>
@@ -298,7 +299,7 @@
                                 <rect key="frame" x="225" y="192" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="15"/>
-                                <state key="normal" image="camera button.png">
+                                <state key="normal" backgroundImage="camera button.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -320,7 +321,7 @@
                                 <rect key="frame" x="63" y="322" width="194" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="15"/>
-                                <state key="normal" title="Edit Info" image="click here to continue.png">
+                                <state key="normal" backgroundImage="click here to continue.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -328,7 +329,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LPG-lc-fFH" kind="push" id="l3n-y2-XnJ"/>
+                                    <action selector="btnEditInfoTapped:" destination="jbG-qJ-pCn" eventType="touchUpInside" id="fcI-Kp-ztr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hC6-CZ-Mpx">
@@ -375,6 +376,7 @@
                         <outlet property="photoInstructions" destination="hC6-CZ-Mpx" id="ywk-wH-vbP"/>
                         <outlet property="photoRules" destination="dUe-xN-Cq6" id="Fvw-VV-YXi"/>
                         <outlet property="welcomeLabel" destination="1dY-NT-7h5" id="cer-v5-3dS"/>
+                        <segue destination="LPG-lc-fFH" kind="push" identifier="ShowEditInfo" id="HXg-8T-ClI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eO8-Jf-nul" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -409,7 +411,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="textColor" red="1" green="0.32752623175182483" blue="0.097371122262773724" alpha="1" colorSpace="deviceRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -431,7 +433,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         </textView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About Me:                                       (90 char. max)" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gL9-ip-tNt">
                                             <rect key="frame" x="-92" y="16" width="372" height="21"/>
