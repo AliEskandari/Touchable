@@ -17,7 +17,8 @@
 @property IBOutlet UILabel *recentActivityLabel;
 @property IBOutlet UILabel *statisticsLabel;
 @property IBOutlet UILabel *settingsLabel;
-@property (strong, nonatomic) IBOutlet UIButton *peopleBtn;
+
+@property IBOutlet UIButton *peopleBtn;
 -(IBAction)peopleBtnTapped:(id)sender;
 
 @end

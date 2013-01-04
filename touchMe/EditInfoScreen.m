@@ -26,6 +26,7 @@
 @synthesize dataSource;
 @synthesize enteredInfo;
 @synthesize delegate;
+@synthesize btnDone;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,6 +49,8 @@
 	agePickerView = [[MyPickerView alloc] init];
 	agePickerView.delegate = self;
 	agePickerView.source = dataSource.ages;
+	
+	self.navigationItem.rightBarButtonItem = btnDone;
 	
     // Uncomment the following line to preserve selection between presentations.
 	// self.clearsSelectionOnViewWillAppear = NO;
@@ -397,5 +400,13 @@
  }
  */
 
+-(void)btnDoneTapped:(id)sender{
+	
+	
+}
 
+- (void)viewDidUnload {
+	[self setBtnDone:nil];
+	[super viewDidUnload];
+}
 @end

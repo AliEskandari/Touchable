@@ -38,7 +38,7 @@
 	
 	//load the big size photo and add to view
 	NSURL* imageURL = [api urlForImageWithId:IdUser isThumb:NO];
-	proPic = [[UIImageView alloc] initWithFrame:CGRectMake( 10, 10, 300, 300)];
+	proPic = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
 	[proPic setImageWithURL: imageURL];
 
 	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
