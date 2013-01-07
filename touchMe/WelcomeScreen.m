@@ -24,6 +24,8 @@
 @synthesize btnChangePhoto;
 @synthesize userPhoto;
 @synthesize savedInfo;
+@synthesize photoChosen;
+@synthesize doneRegisteringDelegate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,6 +54,7 @@
     btnCaption.textColor = [UIColor colorWithRed:89.0/255.0 green:89.0/255.0 blue:89.0/255.0 alpha:1.0];
     
 	savedInfo = nil;
+	photoChosen = NO;
 }
 
 -(IBAction)btnChangePhotoTapped:(id)sender{
@@ -68,7 +71,9 @@
 }
 
 -(IBAction)btnEditInfoTapped:(id)sender{
-	[self performSegueWithIdentifier:@"ShowEditInfo" sender:nil];
+	if (photoChosen == NO)
+		[[[UIAlertView alloc]initWithTitle:nil message:@"Please choose a photo for your profile" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] show];
+	else [self performSegueWithIdentifier:@"ShowEditInfo" sender:nil];
 }
 
 -(void)uploadPhoto:(UIImage*) photo {
@@ -78,7 +83,6 @@
 		if (![json objectForKey:@"error"]) {
 			//success
 			[[[UIAlertView alloc]initWithTitle:@"Success!" message:@"Your photo is uploaded" delegate:nil cancelButtonTitle:@"Yay!" otherButtonTitles: nil] show];
-			
 		} else {
 			//error, check for expired session and if so - authorize the user
 			NSString* errorMsg = [json objectForKey:@"error"];
@@ -95,12 +99,13 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-	userPhoto = UIImageJPEGRepresentation(image, 70);
 	image = [image thumbnailImage:image.size.width transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
+	userPhoto = UIImageJPEGRepresentation(image, 70);
 	UIGraphicsBeginImageContextWithOptions(btnChangePhoto.bounds.size, btnChangePhoto.opaque, 0.0);
 	[image drawInRect:btnChangePhoto.bounds];
 	UIGraphicsEndImageContext();
 	[btnChangePhoto setBackgroundImage:image forState:UIControlStateNormal];
+	photoChosen = YES;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -114,6 +119,11 @@
 	//printf("%s",[[savedInfo objectForKey:@"username" ] UTF8String]);
 }
 
+-(void) doneRegistering:(NSString *)username password:(NSString *)pass{
+	[self dismissViewControllerAnimated:NO completion:nil];
+	[self.doneRegisteringDelegate doneRegistering:username password:pass];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -124,8 +134,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 	if ([@"ShowEditInfo" compare:segue.identifier] == NSOrderedSame) {
 		EditInfoScreen* editInfoScreen = segue.destinationViewController;
-		editInfoScreen.delegate = self;
+		editInfoScreen.editInfoScreenDismissedDelegate = self;
+		editInfoScreen.doneRegisteringDelegate = self;
 		editInfoScreen.enteredInfo = self.savedInfo;
+		editInfoScreen.userPhoto = userPhoto;
 	}
 }
 

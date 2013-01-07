@@ -25,7 +25,6 @@
                                 </state>
                                 <connections>
                                     <action selector="peopleBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="Mzv-qp-bq9"/>
-                                    <segue destination="LMf-ef-b2E" kind="push" id="vtW-rL-Wxj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ouA-XG-J5N" userLabel="Button - Randomize">
@@ -160,6 +159,7 @@
                         <outlet property="recentActivityLabel" destination="iHK-Cy-xgz" id="f1z-ye-U27"/>
                         <outlet property="settingsLabel" destination="DF7-mA-FeG" id="FtR-We-fAr"/>
                         <outlet property="statisticsLabel" destination="NYj-xb-AUD" id="dfP-Yp-R14"/>
+                        <segue destination="LMf-ef-b2E" kind="push" identifier="ShowPeople" id="Bjg-xZ-l8K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adB-f5-neh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -465,7 +465,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5yi-7k-jIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="Done" id="ZcO-c6-M0j"/>
+                <barButtonItem title="Done" id="ZcO-c6-M0j">
+                    <connections>
+                        <action selector="btnDoneTapped:" destination="LPG-lc-fFH" id="p2F-fv-kea"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="-2641" y="-3022"/>
         </scene>
@@ -538,6 +542,86 @@
         <image name="settings.png" width="160" height="160"/>
         <image name="statistics.png" width="160" height="160"/>
     </resources>
+    <classes>
+        <class className="AboutMeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutMeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="AutoCompScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoCompScreen.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EditCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EditInfoScreen" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditInfoScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnDoneTapped:"/>
+                <relationship kind="outlet" name="btnDone" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="LoginScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnLoginTapped:"/>
+                <relationship kind="action" name="btnRegisterTapped:"/>
+                <relationship kind="outlet" name="fldPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="fldUsername" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MenuScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="peopleBtnTapped:"/>
+                <relationship kind="outlet" name="mostTouchableLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="peopleBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="peopleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="recentActivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="settingsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statisticsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PeopleScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleScreen.h"/>
+            <relationships>
+                <relationship kind="outlet" name="btnFilter1" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="btnMenu" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="listView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="ProfileScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
+                <relationship kind="outlet" name="profileView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="WelcomeScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnChangePhotoTapped:"/>
+                <relationship kind="action" name="btnEditInfoTapped:"/>
+                <relationship kind="outlet" name="btnCaption" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="btnChangePhoto" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="photoInstructions" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoRules" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

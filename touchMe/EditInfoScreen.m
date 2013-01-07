@@ -17,16 +17,19 @@
 @synthesize password;
 @synthesize reEnter;
 @synthesize age;
-@synthesize gender;
+@synthesize sex;
 @synthesize aboutMe;
 @synthesize country;
 @synthesize state;
 @synthesize city;
 @synthesize school;
+
 @synthesize dataSource;
 @synthesize enteredInfo;
-@synthesize delegate;
+@synthesize editInfoScreenDismissedDelegate;
+@synthesize doneRegisteringDelegate;
 @synthesize btnDone;
+@synthesize userPhoto;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,21 +45,20 @@
     [super viewDidLoad];
 	
 	dataSource = [[DataSource alloc] init];
-	genderPickerView = [[MyPickerView alloc] init];
-	genderPickerView.delegate = self;
-	genderPickerView.source = dataSource.genders;
+	sexPickerView = [[MyPickerView alloc] init];
+	sexPickerView.delegate = self;
+	sexPickerView.source = dataSource.sexes;
 	
 	agePickerView = [[MyPickerView alloc] init];
 	agePickerView.delegate = self;
 	agePickerView.source = dataSource.ages;
 	
+	if (!enteredInfo) enteredInfo = [[NSMutableDictionary alloc] init];
+	
 	self.navigationItem.rightBarButtonItem = btnDone;
 	
     // Uncomment the following line to preserve selection between presentations.
 	// self.clearsSelectionOnViewWillAppear = NO;
-	
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,23 +71,22 @@
 	[agePickerView selectRow:19 inComponent:0 animated:NO];
 }
 - (void)viewWillDisappear:(BOOL)animated {
-	enteredInfo = [[NSMutableDictionary alloc] init];
 	if(username.text.length > 0) [enteredInfo setValue:username.text forKey:@"username"];
 	if(password.text.length > 0)[enteredInfo setValue:password.text forKey:@"password"];
 	if(reEnter.text.length > 0)[enteredInfo setValue:reEnter.text forKey:@"reEnter"];
 	if(age.text.length > 0)[enteredInfo setValue:age.text forKey:@"age"];
-	if(gender.text.length > 0)[enteredInfo setValue:gender.text forKey:@"gender"];
+	if(sex.text.length > 0)[enteredInfo setValue:sex.text forKey:@"sex"];
 	if(aboutMe.text.length > 0)[enteredInfo setValue:aboutMe.text forKey:@"aboutMe"];
 	if(country.text.length > 0)[enteredInfo setValue:country.text forKey:@"country"];
 	if(state.text.length > 0)[enteredInfo setValue:state.text forKey:@"state"];
 	if(city.text.length > 0)[enteredInfo setValue:city.text forKey:@"city"];
 	if(school.text.length > 0)[enteredInfo setValue:school.text forKey:@"school"];
 	
-	if([self.delegate respondsToSelector:@selector(editInfoScreenDismissed:)])
+	if([self.editInfoScreenDismissedDelegate respondsToSelector:@selector(editInfoScreenDismissed:)])
 	{
-		[self.delegate editInfoScreenDismissed:enteredInfo];
+		[self.editInfoScreenDismissedDelegate editInfoScreenDismissed:enteredInfo];
 	}
-
+	
 }
 
 #pragma mark - TableView Data Source
@@ -99,16 +100,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    switch (section) {
-		case 2:
-			return 4;
-			break;
-		default:
-			return 3;
-			break;
-	}
+   	return (section != 2) ? 3 : 4;
 }
 
+/* ALLOCATE, LABEL, RETURN TABLE CELLS */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier;
@@ -170,11 +165,11 @@
 					editCell.field.inputView = agePickerView;
 					break;
 				case 1:
-					editCell.field.text = [enteredInfo objectForKey:@"gender"];
+					editCell.field.text = [enteredInfo objectForKey:@"sex"];
 					editCell.textLabel.text = @"Sex*";
 					editCell.field.tag = 5;
-					gender = editCell.field;
-					editCell.field.inputView  = genderPickerView;
+					sex = editCell.field;
+					editCell.field.inputView  = sexPickerView;
 					break;
 				case 2:
 				{
@@ -252,11 +247,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 1 && indexPath.row == 2) {
-		return 120;
-	} return 45;
+	return (indexPath.section == 1 && indexPath.row == 2) ? 120 : 45;
 }
 
+
+/* SET UP CELL FONTS AND SHADOWS */
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	cell.textLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:12];
@@ -296,13 +291,13 @@
 		age.text = [NSString stringWithFormat:@"%d",row + 1];
 		age.enabled = FALSE;
 	} else {
-		gender.text = row? @"Female" : @"Male";
-		gender.enabled = FALSE;
+		sex.text = row? @"Female" : @"Male";
+		sex.enabled = FALSE;
 	}
 }
 #pragma mark - Textfield delegate methods
 
-
+/* IMPLEMENT NEXT ON KEYBOARD FOR NEXT TEXTFIELD */
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -315,6 +310,44 @@
 	}
     return YES;
 }
+
+/* SAVE ENTERED FIELDS INTO INFO DICTIONARY */
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	switch (textField.tag) {
+		case 1:
+			if(username.text.length > 0) [enteredInfo setValue:username.text forKey:@"username"];
+			break;
+		case 2:
+			if(password.text.length > 0)[enteredInfo setValue:password.text forKey:@"password"];
+			break;
+		case 3:
+			if(reEnter.text.length > 0)[enteredInfo setValue:reEnter.text forKey:@"reEnter"];
+			break;
+		case 4:
+			if(age.text.length > 0)[enteredInfo setValue:age.text forKey:@"age"];
+			break;
+		case 5:
+			if(sex.text.length > 0)[enteredInfo setValue:sex.text forKey:@"sex"];
+			break;
+		default:
+			break;
+	}
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	return (textField.text.length > 11) ? NO : YES;
+}
+
+#pragma mark - TextView delegate methods
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)string {
+    NSUInteger newLength = [textView.text length] + [string length] - range.length;
+    return (newLength > 90) ? NO : YES;
+}
+
+#pragma mark - My methods
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(EditCell*)sender{
 	if ([@"ShowAutoComp" compare:segue.identifier] == NSOrderedSame) {
@@ -348,61 +381,69 @@
 	}
 }
 
+/* SAVE AND SET LABELS WITH CHOSEN COUNTRY, STATE, CITY, SCHOOL */
 -(void)autoCompScreenDismissed:(NSString*)string tag:(NSInteger)tag
 {
 	UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:tag inSection:2]];
 	cell.detailTextLabel.text = string;
+	switch (tag) {
+		case 0:
+			if(country.text.length > 0)[enteredInfo setValue:country.text forKey:@"country"];
+			break;
+		case 1:
+			if(state.text.length > 0)[enteredInfo setValue:state.text forKey:@"state"];
+			break;
+		case 2:
+			if(city.text.length > 0)[enteredInfo setValue:city.text forKey:@"city"];
+			break;
+		case 3:
+			if(school.text.length > 0)[enteredInfo setValue:school.text forKey:@"school"];
+			break;
+		default:
+			break;
+	}
 }
 
-#pragma mark - TextView delegate methods
+-(IBAction)btnDoneTapped:(id)sender{
+	UIAlertView* alert = [UIAlertView alloc];
+	if (username.text.length < 4) {
+		[[alert initWithTitle:nil message:@"Username must be at least 4 characters" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
+		// - check username already taken
+	} else if (password.text.length < 4){
+		[[alert initWithTitle:nil message:@"Password must be at least 4 characters" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
+	} else if ([password.text compare:reEnter.text] != 0) {
+		[[alert initWithTitle:nil message:@"Re-entered password does not match Password" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
+	} else if (!([enteredInfo valueForKey:@"age"] && [enteredInfo valueForKey:@"sex"] && [enteredInfo valueForKey:@"country"] && [enteredInfo valueForKey:@"state"] && [enteredInfo valueForKey:@"city"] && [enteredInfo valueForKey:@"school"])){
+		[[alert initWithTitle:nil message:@"All required fields must be completed" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
+	} else {
+		//salt the password
+		NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", password.text, kSalt];
+		//prepare the hashed storage
+		NSString* hashedPassword = nil;
+		unsigned char hashedPasswordData[CC_SHA1_DIGEST_LENGTH];
+		//hash the pass
+		NSData *data = [saltedPassword dataUsingEncoding: NSUTF8StringEncoding];
+		if (CC_SHA1([data bytes], [data length], hashedPasswordData)) {
+			hashedPassword = [[NSString alloc] initWithBytes:hashedPasswordData length:sizeof(hashedPasswordData) encoding:NSASCIIStringEncoding];
+		} else { [UIAlertView error:@"Password can't be sent"]; return; }
+		
+		NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"register", @"command", enteredInfo, @"userInfo", hashedPassword, @"password", userPhoto, @"file", nil];
+		
+		//make the call to the web API
+		[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {
+			//result returned
+			NSDictionary* res = [[json objectForKey:@"result"] objectAtIndex:0];
+			if ([json objectForKey:@"error"]==nil && [[res objectForKey:@"IdUser"] intValue]>0) {
+				[self dismissViewControllerAnimated:NO completion:nil];
+				if([self.doneRegisteringDelegate respondsToSelector:@selector(doneRegistering:password:)])
+					[self.doneRegisteringDelegate doneRegistering:[enteredInfo objectForKey:@"username"] password:[enteredInfo objectForKey:@"password"]];
+			} else {
+				//error
+				[UIAlertView error:[json objectForKey:@"error"]];
+			}
+		}];
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)string {
-    NSUInteger newLength = [textView.text length] + [string length] - range.length;
-    return (newLength > 90) ? NO : YES;
-}
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
--(void)btnDoneTapped:(id)sender{
-	
-	
+	}
 }
 
 - (void)viewDidUnload {

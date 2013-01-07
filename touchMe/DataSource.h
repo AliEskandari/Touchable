@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSMutableArray* states;
 @property (strong, nonatomic) NSMutableArray* ages;
-@property (strong, nonatomic) NSMutableArray* genders;
+@property (strong, nonatomic) NSMutableArray* sexes;
 @property (strong, nonatomic) NSMutableArray* countries;
 @property (strong, nonatomic) NSMutableArray* schools;
 @property (strong, nonatomic) NSMutableArray* cities;

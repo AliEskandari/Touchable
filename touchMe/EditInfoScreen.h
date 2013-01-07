@@ -14,14 +14,23 @@
 #import "AboutMeCell.h"
 #import "SegueCell.h"
 #import <QuartzCore/QuartzCore.h>
+#include <CommonCrypto/CommonDigest.h>
+#include "API.h"
+#include "UIAlertView+error.h"
+
+#define kSalt @"adlfu3489tyh2jnkLIUGI&%EV(&0982cbgrykxjnk8855"
 
 @protocol EditInfoScreenDelegate <NSObject>
 -(void)editInfoScreenDismissed:(NSMutableDictionary*)completedInfo;
 @end
 
+@protocol DoneRegisteringDelegate <NSObject>
+-(void) doneRegistering:(NSString*)username password:(NSString*)pass;
+@end
+
 @interface EditInfoScreen : UITableViewController <UITextViewDelegate, UITextFieldDelegate, MyPickerViewDelegate, AutoCompScreenDelegate>
 {
-	MyPickerView *genderPickerView;
+	MyPickerView *sexPickerView;
 	MyPickerView* agePickerView;
 	NSMutableDictionary* enteredInfo;
 }
@@ -31,15 +40,17 @@
 @property (strong, nonatomic) UITextField *password;
 @property (strong, nonatomic) UITextField *reEnter;
 @property (strong, nonatomic) UITextField *age;
-@property (strong, nonatomic) UITextField *gender;
+@property (strong, nonatomic) UITextField *sex;
 @property (strong, nonatomic) UITextView *aboutMe;
 @property (strong, nonatomic) UILabel *country;
 @property (strong, nonatomic) UILabel *state;
 @property (strong, nonatomic) UILabel *city;
 @property (strong, nonatomic) UILabel *school;
 @property (strong, nonatomic) DataSource* dataSource;
-@property(assign, nonatomic) id<EditInfoScreenDelegate> delegate;
+@property(assign, nonatomic) id<EditInfoScreenDelegate> editInfoScreenDismissedDelegate;
+@property(assign, nonatomic) id<DoneRegisteringDelegate> doneRegisteringDelegate;
 @property (strong, nonatomic) NSMutableDictionary *enteredInfo;
+@property (assign, nonatomic) NSData* userPhoto;
 
 -(void)autoCompScreenDismissed:(NSString*)string tag:(NSInteger)tag;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -52,5 +63,5 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
--(void)btnDoneTapped:(id)sender;
+-(IBAction)btnDoneTapped:(id)sender;
 @end

@@ -92,5 +92,18 @@
 	[self performSegueWithIdentifier:@"ShowWelcome" sender:nil];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+	if ([@"ShowWelcome" compare:segue.identifier] == NSOrderedSame) {
+		WelcomeScreen* welcomeScreen = segue.destinationViewController;
+		welcomeScreen.doneRegisteringDelegate = self;
+	}
+}
+
+
+-(void) doneRegistering:(NSString *)username password:(NSString *)pass{
+	fldUsername.text = username;
+	fldPassword.text = pass;
+	[self btnLoginTapped:nil];
+}
 
 @end

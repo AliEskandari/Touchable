@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditInfoScreen.h"
+#import "WelcomeScreen.h"
 
-@interface LoginScreen : UIViewController
+@interface LoginScreen : UIViewController <DoneRegisteringDelegate>
 {
     //the login form fields
     IBOutlet UITextField* fldUsername;
@@ -18,5 +20,6 @@
 //action for when either button is pressed
 -(IBAction)btnLoginTapped:(id)sender;
 -(IBAction)btnRegisterTapped:(id)sender;
+-(void) doneRegistering:(NSString *)username password:(NSString *)pass;
 
 @end

@@ -13,7 +13,7 @@
 @synthesize ages;
 @synthesize states;
 @synthesize countries;
-@synthesize genders;
+@synthesize sexes;
 @synthesize schools;
 @synthesize cities;
 
@@ -38,7 +38,7 @@
 		
 		countries = [[NSMutableArray alloc] initWithObjects:@"United States", @"Canada",nil];
 		
-		genders = [[NSMutableArray alloc] initWithObjects:@"Male",@"Female",nil];
+		sexes = [[NSMutableArray alloc] initWithObjects:@"Male",@"Female",nil];
 		
 		schools = [[NSMutableArray alloc] initWithObjects:@"University of Maryland, College Park",
 				   @"Salisbury University",@"Montgomery College, Germantown Campus",nil];
