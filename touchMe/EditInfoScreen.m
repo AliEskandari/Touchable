@@ -178,6 +178,7 @@
 					if (aboutMeCell == nil) {
 						aboutMeCell = [[AboutMeCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
 					}
+					aboutMe = aboutMeCell.textView;
 					aboutMeCell.textLabel.text = @"About Me                                        (90 char. max)";
 					aboutMeCell.textView.delegate = self;
 					aboutMeCell.textView.text = [enteredInfo objectForKey:@"aboutMe"];
@@ -240,7 +241,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (indexPath.section == 2) {
-		EditCell* cell = (EditCell*)[tableView cellForRowAtIndexPath:indexPath];
+		SegueCell* cell = (SegueCell*)[tableView cellForRowAtIndexPath:indexPath];
+		[self.aboutMe resignFirstResponder];
 		[self performSegueWithIdentifier:@"ShowAutoComp" sender:cell];
 	}
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -344,12 +346,14 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)string {
     NSUInteger newLength = [textView.text length] + [string length] - range.length;
-    return (newLength > 90) ? NO : YES;
+    if ((newLength > 90)) return NO;
+	[enteredInfo setValue:textView.text forKey:@"aboutMe"];
+	return YES;
 }
 
 #pragma mark - My methods
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(EditCell*)sender{
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(SegueCell*)sender{
 	if ([@"ShowAutoComp" compare:segue.identifier] == NSOrderedSame) {
 		AutoCompScreen* autoCompScreen = segue.destinationViewController;
 		autoCompScreen.title = sender.textLabel.text;

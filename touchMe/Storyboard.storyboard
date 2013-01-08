@@ -111,7 +111,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Touchable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mbn-Rt-Njt">
-                                <rect key="frame" x="202" y="108" width="117" height="21"/>
+                                <rect key="frame" x="202" y="109" width="117" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -542,86 +542,6 @@
         <image name="settings.png" width="160" height="160"/>
         <image name="statistics.png" width="160" height="160"/>
     </resources>
-    <classes>
-        <class className="AboutMeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutMeCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="AutoCompScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoCompScreen.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EditCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="field" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EditInfoScreen" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditInfoScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnDoneTapped:"/>
-                <relationship kind="outlet" name="btnDone" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="LoginScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnLoginTapped:"/>
-                <relationship kind="action" name="btnRegisterTapped:"/>
-                <relationship kind="outlet" name="fldPassword" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="fldUsername" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MenuScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="peopleBtnTapped:"/>
-                <relationship kind="outlet" name="mostTouchableLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="peopleBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="peopleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profileLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="recentActivityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="settingsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statisticsLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PeopleScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleScreen.h"/>
-            <relationships>
-                <relationship kind="outlet" name="btnFilter1" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnMenu" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="listView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ProfileScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
-                <relationship kind="outlet" name="profileView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="WelcomeScreen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeScreen.h"/>
-            <relationships>
-                <relationship kind="action" name="btnChangePhotoTapped:"/>
-                <relationship kind="action" name="btnEditInfoTapped:"/>
-                <relationship kind="outlet" name="btnCaption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="btnChangePhoto" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="photoInstructions" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photoRules" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
