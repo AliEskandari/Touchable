@@ -32,6 +32,13 @@
 	profileView = (UIScrollView *)self.view;
     profileView.contentSize=CGSizeMake(320,960);
 	
+	proPic = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+	likes = [[UISlider alloc] initWithFrame:CGRectMake(5, 275, 290, 10)];
+	touchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	dontTouchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 380, 140, 30)];
+	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 270, 65)];
+
 	API* api = [API sharedInstance];
 	
 	// get the selected photo's profile data
@@ -41,11 +48,12 @@
 		self.title = [profData objectForKey:@"username"];
 		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
 		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
+		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
+		[aboutMeTextLabel sizeToFit];
 	}];
 	
 	// load the big size photo and add to view
 	NSURL* imageURL = [api urlForImageWithId:IdUser isThumb:NO];
-	proPic = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
 	[proPic setImageWithURL: imageURL];
 
 	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -56,7 +64,6 @@
 	[profileView addSubview:proPic];
 	
 	// load slider bar onto profile pic
-	likes = [[UISlider alloc] initWithFrame:CGRectMake(5, 275, 290, 10)];
 	likes.minimumValue = 0;
 	likes.maximumValue = 1;
     UIImage *maxCap = [[UIImage imageNamed:@"orangeMaxCap2.png"] stretchableImageWithLeftCapWidth:2 topCapHeight:0];
@@ -71,7 +78,6 @@
 	[proPic addSubview:likes];
 	
 	// load uibuttons and add under profile pic
-	touchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	touchMe.frame = CGRectMake(10, 320, 145, 45);
 	[touchMe setBackgroundImage:[UIImage imageNamed:@"touch me.png"] forState:UIControlStateNormal];
 	[touchMe setBackgroundImage:[UIImage imageNamed:@"touch me GRAYED.png"] forState:UIControlStateDisabled];
@@ -83,7 +89,6 @@
 	touchMe.tag = 1;
 	[profileView addSubview:touchMe];
 	
-	dontTouchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	dontTouchMe.frame = CGRectMake(165, 320, 145, 45);
 	[dontTouchMe setBackgroundImage:[UIImage imageNamed:@"dont touch me.png"] forState:UIControlStateNormal];
 	[dontTouchMe setBackgroundImage:[UIImage imageNamed:@"dont touch me GRAYED.png"] forState:UIControlStateDisabled];
@@ -95,10 +100,20 @@
 	[profileView addSubview:dontTouchMe];
 	
 	// load aboutMe section
-	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 365, 200, 80)];
+	//aboutMeLabel.layer.borderColor = [UIColor blackColor].CGColor;
+	//aboutMeLabel.layer.borderWidth = 1;
+	aboutMeLabel.backgroundColor = [UIColor clearColor];
 	aboutMeLabel.text = @"AboutMe:";
 	aboutMeLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:30];
 	[profileView addSubview:aboutMeLabel];
+	
+	//aboutMeTextLabel.layer.borderColor = [UIColor blackColor].CGColor;
+	//aboutMeTextLabel.layer.borderWidth = 1;
+	aboutMeTextLabel.numberOfLines = 3;
+	aboutMeTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+	aboutMeTextLabel.backgroundColor = [UIColor clearColor];
+	aboutMeTextLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:15];
+	[profileView addSubview:aboutMeTextLabel];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
