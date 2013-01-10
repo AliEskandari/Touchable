@@ -34,7 +34,7 @@
 														   UITextAttributeTextShadowColor,
 														   [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
 														   UITextAttributeTextShadowOffset,
-														   [UIFont fontWithName:@"Segoe WP" size:0.0],
+														   [UIFont fontWithName:@"Segoe WP Light" size:0.0],
 														   UITextAttributeFont,
 														   nil] forState:UIControlStateNormal];
 

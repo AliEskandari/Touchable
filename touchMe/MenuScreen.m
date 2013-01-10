@@ -35,13 +35,13 @@
 	self.navigationItem.hidesBackButton = YES;
     
     
-	peopleLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
-    randomizeLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
-    mostTouchableLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
-    profileLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
-    recentActivityLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
-    statisticsLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
-    settingsLabel.font = [UIFont fontWithName:@"Segoe WP" size:14];
+	peopleLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    randomizeLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    mostTouchableLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    profileLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    recentActivityLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    statisticsLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    settingsLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
 }
 
 - (void)didReceiveMemoryWarning

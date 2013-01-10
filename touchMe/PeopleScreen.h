@@ -10,8 +10,8 @@
 #import "PhotoView.h"
 
 @interface PeopleScreen : UIViewController <PhotoViewDelegate> {
-    IBOutlet UIBarButtonItem* btnFilter1;
-    IBOutlet UIBarButtonItem* btnMenu;
+    IBOutlet UIBarButtonItem* btnFilter;
     IBOutlet UIScrollView* listView;
 }
+- (IBAction)btnFilterTapped:(id)sender;
 @end

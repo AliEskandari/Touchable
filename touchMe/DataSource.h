@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NSMutableArray* countries;
 @property (strong, nonatomic) NSMutableArray* schools;
 @property (strong, nonatomic) NSMutableArray* cities;
+@property (strong, nonatomic) NSMutableArray* filters;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SegueCell : UITableViewCell
-@property (strong, nonatomic) UILabel* textLabel;
-@property (strong, nonatomic)UILabel* detailTextLabel;
+@property (strong, nonatomic) IBOutlet UILabel* textLabel;
+@property (strong, nonatomic) IBOutlet UILabel* detailTextLabel;
+@property (strong, nonatomic) IBOutlet UILabel* detailLabel;
 @end

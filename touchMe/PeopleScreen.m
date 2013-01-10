@@ -24,8 +24,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    //self.navigationItem.title = @"People List";
-    self.navigationItem.rightBarButtonItem = btnFilter1;
+    self.navigationItem.rightBarButtonItem = btnFilter;
 	//show the photo stream
 	[self refreshStream];
 }
@@ -81,4 +80,7 @@
     }
 }
 
+- (IBAction)btnFilterTapped:(id)sender {
+	[self performSegueWithIdentifier:@"ShowFilter" sender:nil];
+}
 @end

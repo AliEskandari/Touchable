@@ -42,7 +42,6 @@
 	tableView.dataSource = self;
 	tableView.delegate = self;
 	
-	
 	[self.tableView reloadData];
 	self.tableView.scrollEnabled = YES;
 }

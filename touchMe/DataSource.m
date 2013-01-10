@@ -16,6 +16,8 @@
 @synthesize sexes;
 @synthesize schools;
 @synthesize cities;
+@synthesize filters;
+
 
 #pragma mark - init
 //intialize the API class with the deistination host name
@@ -43,6 +45,8 @@
 		schools = [[NSMutableArray alloc] initWithObjects:@"University of Maryland, College Park",
 				   @"Salisbury University",@"Montgomery College, Germantown Campus",nil];
 		cities = [[NSMutableArray alloc] initWithObjects:@"Germantown",nil];
+		
+		filters = [[NSMutableArray alloc] initWithObjects:@"Sex", @"Age", @"Country", @"State", @"City", @"School", nil];
     }
     return self;
 }
