@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoView.h"
+#import "UIAlertView+error.h"
+#import "FilterNavController.h"
+#import "FilterScreen.h"
 
 @interface PeopleScreen : UIViewController <PhotoViewDelegate> {
     IBOutlet UIBarButtonItem* btnFilter;

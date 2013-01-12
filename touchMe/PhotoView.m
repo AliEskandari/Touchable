@@ -1,10 +1,3 @@
-//
-//  PhotoView.m
-//  iReporter
-//
-//  Created by Fahim Farook on 9/6/12.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
-//
 
 #import "PhotoView.h"
 #import "API.h"
@@ -30,7 +23,7 @@
         int row = i/4;
         int col = i % 4;
         self.frame = CGRectMake(1.5*kPadding+col*(kThumbSide+kPadding), 1.5*kPadding+row*(kThumbSide+kPadding), kThumbSide, kThumbSide);
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 		
 		self.IdUser = [data objectForKey:@"IdUser"];
 		

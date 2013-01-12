@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "MyPickerView.h"
 #import "DataSource.h"
 #import "SexCell.h"
 #import "AgeCell.h"
 #import "SegueCell.h"
 #import "AutoCompScreen.h"
-#import <QuartzCore/QuartzCore.h>
+#import "FilterNavController.h"
+#import "API.h"
 
 @interface FilterScreen : UIViewController <MyPickerViewDelegate, AutoCompScreenDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -21,7 +23,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addFilterBtn;
 @property (strong, nonatomic) MyPickerView* filterPicker;
+@property (strong, nonatomic) NSMutableArray* filterList;
 
 - (IBAction)backBtnTapped:(id)sender;
 - (IBAction)addFilterBtnTapped:(id)sender;
+
 @end

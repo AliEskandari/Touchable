@@ -42,6 +42,8 @@
 	tableView.dataSource = self;
 	tableView.delegate = self;
 	
+	[self.navigationController setToolbarHidden:YES animated:YES];
+	
 	[self.tableView reloadData];
 	self.tableView.scrollEnabled = YES;
 }

@@ -18,14 +18,19 @@
 
 @end
 
-@implementation PeopleScreen
+@implementation PeopleScreen {
+	NSMutableArray *filters;
+}
 
 #pragma mark - View lifecycle
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = btnFilter;
-	//show the photo stream
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	[self refreshStream];
 }
 
@@ -36,9 +41,12 @@
 
 -(void)refreshStream {
     //just call the "stream" command from the web API
-    [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"stream", @"command", nil] onCompletion:^(NSDictionary *json) {
+    [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"stream", @"command",[[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
 		//got stream
 		[self showStream:[json objectForKey:@"result"]];
+		filters = [json objectForKey:@"filters"];
+		
+		
 	}];
 }
 
@@ -76,7 +84,11 @@
     if ([@"ShowPhoto" compare: segue.identifier]==NSOrderedSame) {
         ProfileScreen* ProfileScreen = segue.destinationViewController;
 		ProfileScreen.IdUser = sender.IdUser;
-					
+    }
+	
+	if ([@"ShowFilter" compare: segue.identifier]==NSOrderedSame) {
+	FilterNavController *navigationController = segue.destinationViewController;
+		navigationController.filterList = [NSMutableArray arrayWithArray:filters];
     }
 }
 
