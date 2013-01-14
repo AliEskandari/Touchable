@@ -27,5 +27,6 @@
 
 - (IBAction)backBtnTapped:(id)sender;
 - (IBAction)addFilterBtnTapped:(id)sender;
+-(void) updateFilterList;
 
 @end

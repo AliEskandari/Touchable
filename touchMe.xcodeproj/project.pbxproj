@@ -338,6 +338,32 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		41D48A8716A1AD2C0018D4C4 /* Registering */ = {
+			isa = PBXGroup;
+			children = (
+				41A374E6168B911400EB44B2 /* WelcomeScreen.h */,
+				41A374E7168B911400EB44B2 /* WelcomeScreen.m */,
+				41DA1F1F168F6D57003154B2 /* EditInfoScreen.h */,
+				41DA1F20168F6D57003154B2 /* EditInfoScreen.m */,
+			);
+			name = Registering;
+			sourceTree = "<group>";
+		};
+		41D48A8816A1AD450018D4C4 /* People List */ = {
+			isa = PBXGroup;
+			children = (
+				9C60DA8314E5316A00442413 /* PeopleScreen.h */,
+				9C60DA8414E5316A00442413 /* PeopleScreen.m */,
+				9C9C950514E56EA100AA9BC3 /* ProfileScreen.h */,
+				9C9C950614E56EA100AA9BC3 /* ProfileScreen.m */,
+				41D07656169C94660057DA57 /* FilterScreen.h */,
+				41D07657169C94660057DA57 /* FilterScreen.m */,
+				41B9BAEA16A0FF41007B3E6A /* FilterNavController.h */,
+				41B9BAEB16A0FF41007B3E6A /* FilterNavController.m */,
+			);
+			name = "People List";
+			sourceTree = "<group>";
+		};
 		41FC4B3316952825004193C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,24 +442,14 @@
 				9C0C5D5B1503722E000A19FD /* Storyboard.storyboard */,
 				9C21AF7A14E4625700DB003E /* LoginScreen.h */,
 				9C21AF7B14E4625700DB003E /* LoginScreen.m */,
-				41A374E6168B911400EB44B2 /* WelcomeScreen.h */,
-				41A374E7168B911400EB44B2 /* WelcomeScreen.m */,
-				41DA1F1F168F6D57003154B2 /* EditInfoScreen.h */,
-				41DA1F20168F6D57003154B2 /* EditInfoScreen.m */,
 				4192E777168665BE00DE983D /* MenuScreen.h */,
 				4192E778168665BE00DE983D /* MenuScreen.m */,
-				9C60DA8314E5316A00442413 /* PeopleScreen.h */,
-				9C60DA8414E5316A00442413 /* PeopleScreen.m */,
-				9C9C950514E56EA100AA9BC3 /* ProfileScreen.h */,
-				9C9C950614E56EA100AA9BC3 /* ProfileScreen.m */,
-				9C21AF5B14E4581900DB003E /* PhotoScreen.h */,
-				9C21AF5C14E4581900DB003E /* PhotoScreen.m */,
 				4107A6621692A07C00E973A3 /* AutoCompScreen.h */,
 				4107A6631692A07C00E973A3 /* AutoCompScreen.m */,
-				41D07656169C94660057DA57 /* FilterScreen.h */,
-				41D07657169C94660057DA57 /* FilterScreen.m */,
-				41B9BAEA16A0FF41007B3E6A /* FilterNavController.h */,
-				41B9BAEB16A0FF41007B3E6A /* FilterNavController.m */,
+				41D48A8716A1AD2C0018D4C4 /* Registering */,
+				41D48A8816A1AD450018D4C4 /* People List */,
+				9C21AF5B14E4581900DB003E /* PhotoScreen.h */,
+				9C21AF5C14E4581900DB003E /* PhotoScreen.m */,
 			);
 			name = Screens;
 			sourceTree = "<group>";

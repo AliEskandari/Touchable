@@ -62,7 +62,7 @@
 			[formData appendPartWithFileData:uploadFile name:@"file" fileName:@"photo.jpg" mimeType:@"image/jpeg"];
 		}
 	}];
-	printf("%s",[[params objectForKey:@"command"] UTF8String]);
+	printf("%s\n",[[params objectForKey:@"command"] UTF8String]);
     AFJSONRequestOperation* operation = [[AFJSONRequestOperation alloc] initWithRequest: apiRequest];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         //success!

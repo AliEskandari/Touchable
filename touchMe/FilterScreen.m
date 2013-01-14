@@ -37,6 +37,10 @@
 {
     [super viewDidLoad];
 	
+	FilterNavController *filterNav = (FilterNavController*) self.navigationController;
+	filterList = filterNav.filterList;
+	if (filterList == nil) filterList = [[NSMutableArray alloc] init];
+	
 	// Setting up navigation bar
  	UIImage *navigationBarBackground = [UIImage imageNamed:@"menubar_no_title.png"];
 	[self.navigationController.navigationBar setBackgroundImage:navigationBarBackground forBarMetrics:UIBarMetricsDefault];
@@ -56,7 +60,7 @@
 	// setting up filter picker
 	CGRect pickerFrame = CGRectMake(0, 156, 320, 0);
 	filterPicker = [[MyPickerView alloc] initWithFrame:pickerFrame];
-	filterList = [[NSMutableArray alloc] init];
+	
 	filterPicker.hidden = YES;
 	filterPicker.source = dataSource.filters;
 	filterPicker.delegate = self;
@@ -80,30 +84,10 @@
 
 - (void) viewWillDisappear:(BOOL)animated {
 	
-	for (NSInteger sect = 0; sect < [filterList count]; sect ++) {
-		UITableViewCell* cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:sect]];
-		if ([cell isMemberOfClass:[SexCell class]])
-		{
-			SexCell *sexCell = (SexCell*) cell;
-			NSDictionary* sexDict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInteger:sexCell.segment.selectedSegmentIndex],[NSNumber numberWithInteger:cell.tag], nil];
-			filterList[sect] = sexDict;
-		}
-		else if ([cell isMemberOfClass:[AgeCell class]])
-		{
-			AgeCell *ageCell = (AgeCell*) cell;
-			NSDictionary* ageDict = [[NSDictionary alloc] initWithObjectsAndKeys:ageCell.age1TextField.text, [NSNumber numberWithInteger:cell.tag], ageCell.age2TextField.text, [NSNumber numberWithInteger:-1], nil];
-			filterList[sect] = ageDict;
-		}
-		else if ([cell isMemberOfClass:[SegueCell class]])
-		{
-			SegueCell *segueCell = (SegueCell*) cell;
-			NSDictionary* segueDict = [[NSDictionary alloc] initWithObjectsAndKeys:segueCell.detailLabel.text,[NSNumber numberWithInteger:cell.tag], nil];
-			filterList[sect] = segueDict;
-		}
-	}
+	[self updateFilterList];
 	
 	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"setFilters", @"command", filterList, @"filterList", [[API sharedInstance].user objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
-			[super viewWillDisappear:animated];
+		[super viewWillDisappear:animated];
 	}];
 }
 
@@ -130,30 +114,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSMutableDictionary *cellDict = [filterList objectAtIndex:indexPath.section];
+	NSDictionary *cellDict = filterList[indexPath.section];
 	NSInteger cellId = [[[cellDict allKeys] objectAtIndex:0] integerValue];
 	
 	static NSString *CellIdentifier;
 	UITableViewCell *cell;
+	
 	switch (cellId) {
-		case 0:
+		case 1:
 		{
 			CellIdentifier = @"SexCell";
 			cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 			if (cell == nil) cell = [[SexCell alloc] init];
 		}
 			break;
-		case 1:
+			
+		case 2:
 		{
 			CellIdentifier = @"AgeCell";
 			cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 			if (cell == nil) cell = [[AgeCell alloc] init];
+			
 		}
 			break;
-		case 2: 
-		case 3: 
-		case 4: 
-		case 5: 
+		case 3:
+		case 4:
+		case 5:
+		case 6:
 		{
 			CellIdentifier = @"SegueCell";
 			cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -184,37 +171,58 @@
 	switch (cellId) {
 		case 1:
 		{
-			AgeCell* ageCell = (AgeCell*) cell;
-			ageCell.toLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:14];
+			SexCell* sexCell = (SexCell*) cell;
+			NSString *sexString = [cellDict valueForKey:@"1"];
+			sexCell.segment.selectedSegmentIndex = ([sexString isEqualToString:@"male"]) ? 0 : 1;
 		}
 			break;
 		case 2:
 		{
-			SegueCell* countryCell = (SegueCell*) cell;
-			countryCell.textLabel.text = @"Country";
-			countryCell.detailLabel.font = [UIFont fontWithName:@"Segoe WP" size:18];
+			AgeCell* ageCell = (AgeCell*) cell;
+			ageCell.toLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:14];
+			
+			if ([[cellDict objectForKey:@"2"] respondsToSelector:@selector(objectAtIndexedSubscript:)]) {
+				NSDictionary *agePair = [NSDictionary dictionaryWithObject:@"" forKey:@""];
+				filterList[indexPath.section] = [NSDictionary dictionaryWithObject:agePair forKey:@"2"];
+			}
+			
+			NSDictionary* agePair  = [filterList[indexPath.section] objectForKey:@"2"];
+			ageCell.age1TextField.text = [[agePair allKeys] objectAtIndex:0];
+			ageCell.age2TextField.text = [[agePair allValues] objectAtIndex:0];
+			
 		}
 			break;
 		case 3:
 		{
+			SegueCell* countryCell = (SegueCell*) cell;
+			countryCell.textLabel.text = @"Country";
+			countryCell.detailLabel.font = [UIFont fontWithName:@"Segoe WP" size:18];
+			countryCell.detailLabel.text = [cellDict valueForKey:@"3"];
+		}
+			break;
+		case 4:
+		{
 			SegueCell* stateCell = (SegueCell*) cell;
 			stateCell.textLabel.text = @"State";
 			stateCell.detailLabel.font = [UIFont fontWithName:@"Segoe WP" size:18];
+			stateCell.detailLabel.text = [cellDict valueForKey:@"4"];
 		}
 			break;
 			
-		case 4:
+		case 5:
 		{
 			SegueCell* cityCell = (SegueCell*) cell;
 			cityCell.textLabel.text = @"City";
 			cityCell.detailLabel.font = [UIFont fontWithName:@"Segoe WP" size:18];
+			cityCell.detailLabel.text = [cellDict valueForKey:@"5"];
 		}
 			break;
-		case 5:
+		case 6:
 		{
 			SegueCell* schoolCell = (SegueCell*) cell;
 			schoolCell.textLabel.text = @"School";
 			schoolCell.detailLabel.font = [UIFont fontWithName:@"Segoe WP" size:18];
+			schoolCell.detailLabel.text = [cellDict valueForKey:@"6"];
 		}
 			break;
 			
@@ -261,13 +269,14 @@
 	NSDictionary *cellDict = [filterList objectAtIndex:indexPath.section];
 	NSInteger cellId = [[[cellDict allKeys] objectAtIndex:0] integerValue];
 	
-	if (cellId >= 2 && cellId <= 5) {
+	if (cellId >= 3 && cellId <= 6) {
 		[self performSegueWithIdentifier:@"ShowAutoComp" sender:[NSNumber numberWithInteger:indexPath.section]];
 	}
 	[aTableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - UIPickerView delegate
+
 -(NSString*)pickerView:(MyPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
 	return [pickerView.source objectAtIndex:row];
@@ -275,16 +284,45 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	[filterList insertObject:[NSDictionary dictionaryWithObject:@"" forKey:[NSNumber numberWithInteger:row]] atIndex:0];
-	pickerView.hidden = YES;
-	[tableView beginUpdates];
-	[tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
-	[tableView endUpdates];
+	if (row) {
+		[filterList insertObject:[NSDictionary dictionaryWithObject:(row == 2) ? [NSDictionary dictionaryWithObject:@"" forKey:@""]: @"" forKey:[NSString stringWithFormat:@"%d",row]] atIndex:0];
+		pickerView.hidden = YES;
+		[tableView beginUpdates];
+		[tableView insertSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
+		[tableView endUpdates];
+	}
 }
 
 
 
 #pragma mark - My methods
+
+- (void)updateFilterList {
+	
+	for (NSInteger sect = 0; sect < [filterList count]; sect ++) {
+		
+		UITableViewCell* cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:sect]];
+		if ([cell isMemberOfClass:[SexCell class]])
+		{
+			SexCell *sexCell = (SexCell*) cell;
+			NSDictionary* sexDict = [[NSDictionary alloc] initWithObjectsAndKeys:(sexCell.segment.selectedSegmentIndex) ? @"female" : @"male",[NSString stringWithFormat:@"%d", cell.tag], nil];
+			filterList[sect] = sexDict;
+		}
+		else if ([cell isMemberOfClass:[AgeCell class]])
+		{
+			AgeCell *ageCell = (AgeCell*) cell;
+			NSDictionary* ageDict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSDictionary dictionaryWithObject:ageCell.age2TextField.text forKey:ageCell.age1TextField.text], [NSString stringWithFormat:@"%d", cell.tag], nil];
+			filterList[sect] = ageDict;
+		}
+		else if ([cell isMemberOfClass:[SegueCell class]])
+		{
+			SegueCell *segueCell = (SegueCell*) cell;
+			NSDictionary* segueDict = [[NSDictionary alloc] initWithObjectsAndKeys:segueCell.detailLabel.text,[NSString stringWithFormat:@"%d", cell.tag], nil];
+			filterList[sect] = segueDict;
+		}
+	}
+	
+}
 
 - (IBAction)backBtnTapped:(id)sender {
 	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -295,6 +333,9 @@
 }
 
 - (IBAction) EditTable:(id)sender{
+	
+	[self updateFilterList];
+	
 	if (self.editing)
 	{
 		[super setEditing:NO animated:NO];
@@ -323,22 +364,22 @@
 	if ([@"ShowAutoComp" compare:segue.identifier] == NSOrderedSame) {
 		AutoCompScreen* autoCompScreen = segue.destinationViewController;
 		switch (cellId) {
-			case 2:
+			case 3:
 				autoCompScreen.title = @"Country";
 				autoCompScreen.tag = [sender integerValue];
 				autoCompScreen.listContent = dataSource.countries;
 				break;
-			case 3:
+			case 4:
 				autoCompScreen.title = @"State";
 				autoCompScreen.tag = [sender integerValue];
 				autoCompScreen.listContent = dataSource.states;
 				break;
-			case 4:
+			case 5:
 				autoCompScreen.title = @"City";
 				autoCompScreen.tag = [sender integerValue];
 				autoCompScreen.listContent = dataSource.cities;
 				break;
-			case 5:
+			case 6:
 				autoCompScreen.title = @"School";
 				autoCompScreen.tag = [sender integerValue];
 				autoCompScreen.listContent = dataSource.schools;

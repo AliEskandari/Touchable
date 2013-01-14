@@ -46,7 +46,7 @@
 				   @"Salisbury University",@"Montgomery College, Germantown Campus",nil];
 		cities = [[NSMutableArray alloc] initWithObjects:@"Germantown",nil];
 		
-		filters = [[NSMutableArray alloc] initWithObjects:@"Sex", @"Age", @"Country", @"State", @"City", @"School", nil];
+		filters = [[NSMutableArray alloc] initWithObjects:@"",@"Sex", @"Age", @"Country", @"State", @"City", @"School", nil];
     }
     return self;
 }
