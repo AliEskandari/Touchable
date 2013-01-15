@@ -29,6 +29,7 @@
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
+	
 	profileView = (UIScrollView *)self.view;
     profileView.contentSize=CGSizeMake(320,960);
 	

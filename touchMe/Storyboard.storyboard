@@ -38,6 +38,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="randomizeBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="IPu-SV-iPp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vCW-X2-cAQ" userLabel="Button - Most Touchable">
                                 <rect key="frame" x="220" y="20" width="80" height="80"/>
@@ -50,6 +53,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="mostTouchableTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="Seh-2C-ZXy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ne0-ea-zx7" userLabel="Button - Profile">
                                 <rect key="frame" x="20" y="140" width="80" height="80"/>
@@ -62,6 +68,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="profileBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="cB6-l9-d7M"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vYz-aw-XJZ" userLabel="Button - Recent Activity">
                                 <rect key="frame" x="120" y="140" width="80" height="80"/>
@@ -95,6 +104,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="settingsBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="Oqn-Wg-HTN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="people" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRP-hD-8ju">
                                 <rect key="frame" x="34" y="109" width="53" height="21"/>
@@ -155,16 +167,20 @@
                         <outlet property="peopleBtn" destination="Boa-Xn-kR9" id="Zem-Wj-dHx"/>
                         <outlet property="peopleLabel" destination="fRP-hD-8ju" id="NFh-WP-4pm"/>
                         <outlet property="profileLabel" destination="Dpc-D3-40p" id="XcW-pE-Xzt"/>
+                        <outlet property="randomizeBtn" destination="ouA-XG-J5N" id="qjN-Nk-xfZ"/>
                         <outlet property="randomizeLabel" destination="YRq-F9-8MS" id="qah-Ni-VFc"/>
                         <outlet property="recentActivityLabel" destination="iHK-Cy-xgz" id="f1z-ye-U27"/>
                         <outlet property="settingsLabel" destination="DF7-mA-FeG" id="FtR-We-fAr"/>
                         <outlet property="statisticsLabel" destination="NYj-xb-AUD" id="dfP-Yp-R14"/>
                         <segue destination="LMf-ef-b2E" kind="push" identifier="ShowPeople" id="Bjg-xZ-l8K"/>
+                        <segue destination="zTd-qG-o5z" kind="push" identifier="ShowRandomize" id="DaU-dp-lBj"/>
+                        <segue destination="NT7-f9-s7m" kind="push" identifier="ShowMostTouchable" id="xPG-A9-143"/>
+                        <segue destination="LbA-iv-5eH" kind="push" identifier="ShowMyProfile" id="sqv-PL-hE2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adB-f5-neh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1844" y="-1030"/>
+            <point key="canvasLocation" x="-3252" y="-862"/>
         </scene>
         <!--Filter Screen - Filter-->
         <scene sceneID="qvu-sR-UP8">
@@ -335,7 +351,206 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rk6-sq-dwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="-1919"/>
+            <point key="canvasLocation" x="-1084" y="-2609"/>
+        </scene>
+        <!--Most Touchable Screen - Most Touchable-->
+        <scene sceneID="BzR-iw-Uwa">
+            <objects>
+                <viewController id="NT7-f9-s7m" customClass="MostTouchableScreen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S7g-eN-68t">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="IE6-8z-T1S">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="60" id="PyJ-fe-PLj" customClass="ProfileCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eb6-QF-HN5">
+                                                    <rect key="frame" x="20" y="19" width="30" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.80784320831298828" green="0.80784320831298828" blue="0.80784320831298828" alpha="1" colorSpace="deviceRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="96x-wj-7Mn">
+                                                    <rect key="frame" x="60" y="5" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2eZ-S3-64G">
+                                                    <rect key="frame" x="139" y="5" width="96" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="# touch me's" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kwR-Lg-wm6">
+                                                    <rect key="frame" x="139" y="34" width="96" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.32752623180000001" blue="0.097371122259999998" alpha="1" colorSpace="deviceRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.80784320831298828" green="0.80784320831298828" blue="0.80784320831298828" alpha="1" colorSpace="deviceRGB"/>
+                                        <connections>
+                                            <outlet property="numRankLabel" destination="Eb6-QF-HN5" id="oX3-PG-UHY"/>
+                                            <outlet property="numTouchMeLabel" destination="kwR-Lg-wm6" id="bTK-9N-ShO"/>
+                                            <outlet property="thumbView" destination="96x-wj-7Mn" id="KyS-3A-CKG"/>
+                                            <outlet property="usernameLabel" destination="2eZ-S3-64G" id="jmg-wp-HpZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <tabBar contentMode="scaleToFill" id="FFS-kE-xbD">
+                                <rect key="frame" x="0.0" y="367" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="All" id="LMO-XB-5F8"/>
+                                    <tabBarItem title="Male" id="qUL-og-WeW"/>
+                                    <tabBarItem title="Female" id="smv-Ty-qQ3"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Most Touchable" id="wP0-tI-fjR"/>
+                    <connections>
+                        <outlet property="tabBar" destination="FFS-kE-xbD" id="FyB-tz-EXO"/>
+                        <outlet property="tableView" destination="IE6-8z-T1S" id="gZv-qG-vge"/>
+                        <segue destination="LbA-iv-5eH" kind="push" identifier="ShowProfile" id="nDL-ut-4gO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aDa-ll-Pjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1891" y="1019"/>
+        </scene>
+        <!--Randomize Screen - Randomize-->
+        <scene sceneID="nFr-Wi-i9n">
+            <objects>
+                <viewController id="zTd-qG-o5z" customClass="RandomizeScreen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hfO-vg-0YV">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This is randomize." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sDz-Mr-xmO">
+                                <rect key="frame" x="20" y="20" width="280" height="191"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qna-aT-tYa">
+                                <rect key="frame" x="96" y="219" width="129" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Change Filters">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="filtersBtnTapped:" destination="zTd-qG-o5z" eventType="touchUpInside" id="UJv-5D-jXu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R1a-I4-eOL">
+                                <rect key="frame" x="106" y="353" width="110" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Randomize!">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="randomizeBtnTapped:" destination="zTd-qG-o5z" eventType="touchUpInside" id="6iz-MQ-FlT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Randomize" id="nRI-jM-baq"/>
+                    <connections>
+                        <outlet property="changeFiltersBtn" destination="Qna-aT-tYa" id="Ofb-qN-dEj"/>
+                        <outlet property="randomizeBtn" destination="R1a-I4-eOL" id="1e6-ny-XLh"/>
+                        <outlet property="randomizeLabel" destination="sDz-Mr-xmO" id="O2g-kc-a1O"/>
+                        <segue destination="oBo-gN-atw" kind="push" identifier="ShowRandomProfile" id="Ivr-TB-AeL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="06J-pz-Wih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1891" y="107"/>
+        </scene>
+        <!--Random Profile Screen-->
+        <scene sceneID="NrG-eU-yD8">
+            <objects>
+                <viewController id="oBo-gN-atw" customClass="RandomProfileScreen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oq4-kb-UtZ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Jbf-6s-XTi">
+                                <rect key="frame" x="10" y="10" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Ny-QY-7kI">
+                                <rect key="frame" x="10" y="320" width="145" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <size key="titleShadowOffset" width="5" height="5"/>
+                                <state key="normal" backgroundImage="touch me.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnTouchDontTouchTapped:" destination="oBo-gN-atw" eventType="touchUpInside" id="qMa-Dx-NVf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="asm-Z7-8YC">
+                                <rect key="frame" x="165" y="320" width="145" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="dont touch me.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnTouchDontTouchTapped:" destination="oBo-gN-atw" eventType="touchUpInside" id="LSs-lT-aL9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N16-PW-xgv"/>
+                    <connections>
+                        <outlet property="dontBtn" destination="asm-Z7-8YC" id="hQL-LJ-G8O"/>
+                        <outlet property="proPicView" destination="Jbf-6s-XTi" id="lDv-o2-COR"/>
+                        <outlet property="touchMeBtn" destination="7Ny-QY-7kI" id="PZo-8O-Mmf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SuZ-fc-sIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1084" y="107"/>
         </scene>
         <!--People Screen - People List-->
         <scene sceneID="R7p-aP-rWf">
@@ -361,7 +576,7 @@
                     </connections>
                 </barButtonItem>
             </objects>
-            <point key="canvasLocation" x="-483" y="-1030"/>
+            <point key="canvasLocation" x="-1891" y="-862"/>
         </scene>
         <!--Profile Screen-->
         <scene sceneID="2GX-G2-zqW">
@@ -380,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h1-Ot-n9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="-1030"/>
+            <point key="canvasLocation" x="-1084" y="-862"/>
         </scene>
         <!--Login Screen - Login-->
         <scene sceneID="fBJ-kQ-iIn">
@@ -447,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvp-V0-APV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2641" y="-1030"/>
+            <point key="canvasLocation" x="-4049" y="-862"/>
         </scene>
         <!--Welcome Screen - Welcome!-->
         <scene sceneID="HtB-YA-I9N">
@@ -558,7 +773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eO8-Jf-nul" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2641" y="-2035"/>
+            <point key="canvasLocation" x="-4049" y="-1867"/>
         </scene>
         <!--Edit Info Screen - Edit Info-->
         <scene sceneID="1Ky-Pg-9Jo">
@@ -647,7 +862,7 @@
                     </connections>
                 </barButtonItem>
             </objects>
-            <point key="canvasLocation" x="-2641" y="-3022"/>
+            <point key="canvasLocation" x="-4049" y="-2854"/>
         </scene>
         <!--Auto Comp Screen-->
         <scene sceneID="1SS-l8-Bu6">
@@ -681,7 +896,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxX-Uf-UAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2082" y="-3022"/>
+            <point key="canvasLocation" x="-3490" y="-2854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m0L-uG-mke">
@@ -703,7 +918,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="So2-hc-tgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3212" y="-1030"/>
+            <point key="canvasLocation" x="-4620" y="-862"/>
         </scene>
         <!--Filter Nav Controller-->
         <scene sceneID="PTd-94-ba4">
@@ -727,12 +942,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cm3-4b-hN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-483" y="-1919"/>
+            <point key="canvasLocation" x="-1084" y="-1742"/>
         </scene>
     </scenes>
     <resources>
         <image name="camera button.png" width="151" height="151"/>
         <image name="click here to continue.png" width="388" height="151"/>
+        <image name="dont touch me.png" width="290" height="89"/>
         <image name="leaderboards.png" width="160" height="160"/>
         <image name="loginbtn.png" width="319" height="72"/>
         <image name="people.png" width="160" height="160"/>
@@ -742,6 +958,7 @@
         <image name="registerbtn.png" width="319" height="72"/>
         <image name="settings.png" width="160" height="160"/>
         <image name="statistics.png" width="160" height="160"/>
+        <image name="touch me.png" width="290" height="90"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -749,6 +966,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="sqv-PL-hE2"/>
         <segue reference="ME9-Ih-bZj"/>
     </inferredMetricsTieBreakers>
 </document>

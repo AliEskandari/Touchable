@@ -28,6 +28,21 @@
 	[self performSegueWithIdentifier:@"ShowPeople" sender:nil];
 }
 
+- (IBAction)randomizeBtnTapped:(id)sender {
+	[self performSegueWithIdentifier:@"ShowRandomize" sender:nil];
+}
+
+- (IBAction)mostTouchableTapped:(id)sender {
+	[self performSegueWithIdentifier:@"ShowMostTouchable" sender:nil];
+}
+
+- (IBAction)profileBtnTapped:(id)sender {
+	[self performSegueWithIdentifier:@"ShowMyProfile" sender:[[[API sharedInstance] user] objectForKey:@"IdUser"]];
+}
+
+- (IBAction)settingsBtnTapped:(id)sender {
+	[self performSegueWithIdentifier:@"ShowSettings" sender:nil];
+}
 
 - (void)viewDidLoad
 {
@@ -60,6 +75,18 @@
     [self setRecentActivityLabel:nil];
     [self setStatisticsLabel:nil];
     [self setSettingsLabel:nil];
+	[self setRandomizeBtn:nil];
 	[super viewDidUnload];
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
+    if ([@"ShowMyProfile" compare: segue.identifier]==NSOrderedSame) {
+        ProfileScreen* ProfileScreen = segue.destinationViewController;
+		ProfileScreen.IdUser = sender;
+    }
+}
+
+
+
 @end

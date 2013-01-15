@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginScreen.h"
+#import "ProfileScreen.h"
+#import "API.h"
 
 @interface MenuScreen : UIViewController
 @property IBOutlet UILabel *peopleLabel;
@@ -19,6 +21,12 @@
 @property IBOutlet UILabel *settingsLabel;
 
 @property IBOutlet UIButton *peopleBtn;
+@property (strong, nonatomic) IBOutlet UIButton *randomizeBtn;
 -(IBAction)peopleBtnTapped:(id)sender;
+- (IBAction)randomizeBtnTapped:(id)sender;
+- (IBAction)mostTouchableTapped:(id)sender;
+- (IBAction)profileBtnTapped:(id)sender;
+- (IBAction)settingsBtnTapped:(id)sender;
+
 
 @end

@@ -14,6 +14,7 @@
 		3487C69B1696462A00242079 /* loginbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6981696462A00242079 /* loginbtn.png */; };
 		3487C69C1696462A00242079 /* registerbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6991696462A00242079 /* registerbtn.png */; };
 		4107A6641692A07C00E973A3 /* AutoCompScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4107A6631692A07C00E973A3 /* AutoCompScreen.m */; };
+		4127EAAF16A61A6A00624B6F /* SettingsScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4127EAAE16A61A6A00624B6F /* SettingsScreen.m */; };
 		412819C3169BBBB9006B795C /* thumb4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412819C2169BBBB9006B795C /* thumb4@2x.png */; };
 		412819C6169BBE82006B795C /* thumb4.png in Resources */ = {isa = PBXBuildFile; fileRef = 412819C5169BBE82006B795C /* thumb4.png */; };
 		412819CB169BBFF5006B795C /* blueMinCap2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412819C7169BBFF5006B795C /* blueMinCap2@2x.png */; };
@@ -45,6 +46,10 @@
 		41A374EC168BAF1100EB44B2 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374EB168BAF1100EB44B2 /* statistics.png */; };
 		41A374F0168BB1ED00EB44B2 /* recent.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374EF168BB1ED00EB44B2 /* recent.png */; };
 		41B9BAEC16A0FF41007B3E6A /* FilterNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B9BAEB16A0FF41007B3E6A /* FilterNavController.m */; };
+		41C60FAC16A4895100541C3D /* RandomizeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C60FAB16A4895100541C3D /* RandomizeScreen.m */; };
+		41C60FB016A4897700541C3D /* RandomProfileScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C60FAF16A4897700541C3D /* RandomProfileScreen.m */; };
+		41C60FB816A4D6A700541C3D /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C60FB716A4D6A700541C3D /* ProfileCell.m */; };
+		41C60FBC16A4D7D600541C3D /* MostTouchableScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C60FBB16A4D7D600541C3D /* MostTouchableScreen.m */; };
 		41C7185F169CFDA1001A5C49 /* AgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C7185E169CFDA1001A5C49 /* AgeCell.m */; };
 		41D07658169C94660057DA57 /* FilterScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D07657169C94660057DA57 /* FilterScreen.m */; };
 		41D0765B169CB03B0057DA57 /* SexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D0765A169CB03B0057DA57 /* SexCell.m */; };
@@ -94,6 +99,8 @@
 		3487C6991696462A00242079 /* registerbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbtn.png; sourceTree = "<group>"; };
 		4107A6621692A07C00E973A3 /* AutoCompScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompScreen.h; sourceTree = "<group>"; };
 		4107A6631692A07C00E973A3 /* AutoCompScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompScreen.m; sourceTree = "<group>"; };
+		4127EAAD16A61A6A00624B6F /* SettingsScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsScreen.h; sourceTree = "<group>"; };
+		4127EAAE16A61A6A00624B6F /* SettingsScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsScreen.m; sourceTree = "<group>"; };
 		412819C2169BBBB9006B795C /* thumb4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb4@2x.png"; sourceTree = "<group>"; };
 		412819C5169BBE82006B795C /* thumb4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb4.png; sourceTree = "<group>"; };
 		412819C7169BBFF5006B795C /* blueMinCap2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueMinCap2@2x.png"; sourceTree = "<group>"; };
@@ -133,6 +140,14 @@
 		41A374EF168BB1ED00EB44B2 /* recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recent.png; sourceTree = "<group>"; };
 		41B9BAEA16A0FF41007B3E6A /* FilterNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterNavController.h; sourceTree = "<group>"; };
 		41B9BAEB16A0FF41007B3E6A /* FilterNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterNavController.m; sourceTree = "<group>"; };
+		41C60FAA16A4895100541C3D /* RandomizeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomizeScreen.h; sourceTree = "<group>"; };
+		41C60FAB16A4895100541C3D /* RandomizeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomizeScreen.m; sourceTree = "<group>"; };
+		41C60FAE16A4897700541C3D /* RandomProfileScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomProfileScreen.h; sourceTree = "<group>"; };
+		41C60FAF16A4897700541C3D /* RandomProfileScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomProfileScreen.m; sourceTree = "<group>"; };
+		41C60FB616A4D6A700541C3D /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		41C60FB716A4D6A700541C3D /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		41C60FBA16A4D7D600541C3D /* MostTouchableScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostTouchableScreen.h; sourceTree = "<group>"; };
+		41C60FBB16A4D7D600541C3D /* MostTouchableScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostTouchableScreen.m; sourceTree = "<group>"; };
 		41C7185D169CFDA1001A5C49 /* AgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeCell.h; sourceTree = "<group>"; };
 		41C7185E169CFDA1001A5C49 /* AgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeCell.m; sourceTree = "<group>"; };
 		41D07656169C94660057DA57 /* FilterScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterScreen.h; sourceTree = "<group>"; };
@@ -232,6 +247,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		4127EAB116A61A6D00624B6F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4127EAAD16A61A6A00624B6F /* SettingsScreen.h */,
+				4127EAAE16A61A6A00624B6F /* SettingsScreen.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		412E7E3C1688A2B200D69F86 /* App Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +334,8 @@
 				41D0765A169CB03B0057DA57 /* SexCell.m */,
 				41C7185D169CFDA1001A5C49 /* AgeCell.h */,
 				41C7185E169CFDA1001A5C49 /* AgeCell.m */,
+				41C60FB616A4D6A700541C3D /* ProfileCell.h */,
+				41C60FB716A4D6A700541C3D /* ProfileCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -336,6 +362,26 @@
 				412E7E3E1688A2FE00D69F86 /* menu@2x.png */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		41C60FB116A4897B00541C3D /* Randomize */ = {
+			isa = PBXGroup;
+			children = (
+				41C60FAA16A4895100541C3D /* RandomizeScreen.h */,
+				41C60FAB16A4895100541C3D /* RandomizeScreen.m */,
+				41C60FAE16A4897700541C3D /* RandomProfileScreen.h */,
+				41C60FAF16A4897700541C3D /* RandomProfileScreen.m */,
+			);
+			name = Randomize;
+			sourceTree = "<group>";
+		};
+		41C60FBD16A4D7E000541C3D /* Most Touchable */ = {
+			isa = PBXGroup;
+			children = (
+				41C60FBA16A4D7D600541C3D /* MostTouchableScreen.h */,
+				41C60FBB16A4D7D600541C3D /* MostTouchableScreen.m */,
+			);
+			name = "Most Touchable";
 			sourceTree = "<group>";
 		};
 		41D48A8716A1AD2C0018D4C4 /* Registering */ = {
@@ -448,8 +494,11 @@
 				4107A6631692A07C00E973A3 /* AutoCompScreen.m */,
 				41D48A8716A1AD2C0018D4C4 /* Registering */,
 				41D48A8816A1AD450018D4C4 /* People List */,
+				41C60FB116A4897B00541C3D /* Randomize */,
+				41C60FBD16A4D7E000541C3D /* Most Touchable */,
 				9C21AF5B14E4581900DB003E /* PhotoScreen.h */,
 				9C21AF5C14E4581900DB003E /* PhotoScreen.m */,
+				4127EAB116A61A6D00624B6F /* Settings */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -625,6 +674,11 @@
 				41D0765B169CB03B0057DA57 /* SexCell.m in Sources */,
 				41C7185F169CFDA1001A5C49 /* AgeCell.m in Sources */,
 				41B9BAEC16A0FF41007B3E6A /* FilterNavController.m in Sources */,
+				41C60FAC16A4895100541C3D /* RandomizeScreen.m in Sources */,
+				41C60FB016A4897700541C3D /* RandomProfileScreen.m in Sources */,
+				41C60FB816A4D6A700541C3D /* ProfileCell.m in Sources */,
+				41C60FBC16A4D7D600541C3D /* MostTouchableScreen.m in Sources */,
+				4127EAAF16A61A6A00624B6F /* SettingsScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
