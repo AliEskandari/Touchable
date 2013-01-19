@@ -1187,6 +1187,7 @@
         <class className="FilterScreen" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterScreen.h"/>
             <relationships>
+                <relationship kind="action" name="EditTable:"/>
                 <relationship kind="action" name="addFilterBtnTapped:"/>
                 <relationship kind="action" name="backBtnTapped:"/>
                 <relationship kind="outlet" name="addFilterBtn" candidateClass="UIBarButtonItem"/>
@@ -1257,7 +1258,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
             <relationships>
                 <relationship kind="action" name="btnTouchDontTouchTapped:"/>
-                <relationship kind="outlet" name="profileView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="RandomProfileScreen" superclassName="UIViewController">
