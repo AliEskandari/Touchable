@@ -16,8 +16,16 @@
 	UIButton* touchMe;
 	UIButton* dontTouchMe;
 	UIImageView* proPic;
-	UITextField* aboutMe;
 	UISlider *likes;
+    UILabel *ageLabel;
+    UILabel *sexLabel;
+    UILabel *schoolLabel;
+    UILabel *locationLabel;
+    UILabel *profileAge;
+    UILabel *profileSex;
+    UILabel *profileSchool;
+    UILabel *profileLocation;
+    UIView *line;
 	float touchCnt;
 	float dontCnt;
 }
@@ -81,9 +89,9 @@
 	[touchMe setBackgroundImage:[UIImage imageNamed:@"touch me.png"] forState:UIControlStateNormal];
 	[touchMe setBackgroundImage:[UIImage imageNamed:@"touch me GRAYED.png"] forState:UIControlStateDisabled];
 	touchMe.layer.shadowColor = [UIColor blackColor].CGColor;
-	touchMe.layer.shadowOpacity = 0.5;
+	touchMe.layer.shadowOpacity = 0.3;
 	touchMe.layer.shadowRadius = 5;
-	touchMe.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+	touchMe.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
 	[touchMe addTarget:self action:@selector(btnTouchDontTouchTapped:) forControlEvents:UIControlEventTouchUpInside];
 	touchMe.tag = 1;
 	[profileView addSubview:touchMe];
@@ -92,17 +100,17 @@
 	[dontTouchMe setBackgroundImage:[UIImage imageNamed:@"dont touch me.png"] forState:UIControlStateNormal];
 	[dontTouchMe setBackgroundImage:[UIImage imageNamed:@"dont touch me GRAYED.png"] forState:UIControlStateDisabled];
 	dontTouchMe.layer.shadowColor = [UIColor blackColor].CGColor;
-	dontTouchMe.layer.shadowOpacity = 0.5;
+	dontTouchMe.layer.shadowOpacity = 0.3;
 	dontTouchMe.layer.shadowRadius = 5;
-	dontTouchMe.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+	dontTouchMe.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
 	[dontTouchMe addTarget:self action:@selector(btnTouchDontTouchTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[profileView addSubview:dontTouchMe];
 	
-	// load aboutMe section
+	//load aboutMe section
 	//aboutMeLabel.layer.borderColor = [UIColor blackColor].CGColor;
 	//aboutMeLabel.layer.borderWidth = 1;
 	aboutMeLabel.backgroundColor = [UIColor clearColor];
-	aboutMeLabel.text = @"AboutMe:";
+	aboutMeLabel.text = @"AboutMe";
 	aboutMeLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:30];
 	[profileView addSubview:aboutMeLabel];
 	
@@ -113,6 +121,9 @@
 	aboutMeTextLabel.backgroundColor = [UIColor clearColor];
 	aboutMeTextLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:15];
 	[profileView addSubview:aboutMeTextLabel];
+    
+    //Add additional information
+    
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
