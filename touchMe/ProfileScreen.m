@@ -45,13 +45,78 @@
 	likes = [[UISlider alloc] initWithFrame:CGRectMake(5, 275, 290, 10)];
 	touchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	dontTouchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 380, 140, 30)];
-	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 270, 65)];
-		
-	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
-	proPic.layer.shadowOpacity = 0.5;
-	proPic.layer.shadowRadius = 5;
-	proPic.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 380, 140, 30)];
+	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 240, 65)];
+    
+    //initialize age sex school and location
+    
+    ageLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 505, 140, 30)];
+    sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 530, 140, 30)];
+    schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 555, 140, 30)];
+    locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 580, 140, 30)];
+
+	[profileView addSubview:ageLabel];
+	[profileView addSubview:sexLabel];
+	[profileView addSubview:schoolLabel];
+	[profileView addSubview:locationLabel];
+    
+    ageLabel.text = @"age";
+    sexLabel.text = @"sex";
+    schoolLabel.text = @"school";
+    locationLabel.text = @"location";
+    
+    ageLabel.textColor =
+    sexLabel.textColor = 
+    schoolLabel.textColor =
+    locationLabel.textColor = [UIColor colorWithRed:255.0/255.0 green:84.0/255.0 blue:25.0/255.0 alpha:1.0];
+    
+    ageLabel.font =
+    sexLabel.font =
+    schoolLabel.font =
+	locationLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:18];
+    
+    ageLabel.backgroundColor =
+    sexLabel.backgroundColor =
+    schoolLabel.backgroundColor =
+    locationLabel.backgroundColor = [UIColor clearColor];
+    
+    profileAge = [[UILabel alloc] initWithFrame:CGRectMake(52, 505, 140, 30)];
+    profileSex = [[UILabel alloc] initWithFrame:CGRectMake(52, 530, 140, 30)];
+    profileSchool = [[UILabel alloc] initWithFrame:CGRectMake(78, 557, 240, 30)];
+    profileLocation = [[UILabel alloc] initWithFrame:CGRectMake(92, 582, 226, 30)];
+    
+	[profileView addSubview:profileAge];
+	[profileView addSubview:profileSex];
+	[profileView addSubview:profileSchool];
+	[profileView addSubview:profileLocation];
+    
+    profileAge.text = @"age";
+    profileSex.text = @"sex";
+    profileSchool.text = @"school";
+    profileLocation.text = @"location";
+    
+    profileAge.textColor =
+    profileSex.textColor =
+    profileSchool.textColor =
+    profileLocation.textColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:43.0/255.0 alpha:1.0];
+    
+    profileAge.font =
+    profileSex.font = [UIFont fontWithName:@"Segoe WP" size:18];
+    profileSchool.font =
+	profileLocation.font = [UIFont fontWithName:@"Segoe WP" size:13];
+    
+    profileAge.backgroundColor =
+    profileSex.backgroundColor =
+    profileSchool.backgroundColor =
+    profileLocation.backgroundColor = [UIColor clearColor];
+    
+	line = [[UILabel alloc] initWithFrame:CGRectMake(20, 620, 280, 1)];
+    
+    line.backgroundColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:43.0/255.0 alpha:1.0];
+    
+	[profileView addSubview:line];
+    
+    API* api = [API sharedInstance];
 	
 	[profileView addSubview:proPic];
 	
@@ -69,6 +134,13 @@
 	}];
 	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:imageOperation];
+	
+	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
+	proPic.layer.shadowOpacity = 0.3;
+	proPic.layer.shadowRadius = 5;
+	proPic.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
+	
+	[profileView addSubview:proPic];
 	
 	// load slider bar onto profile pic
 	likes.minimumValue = 0;
@@ -141,11 +213,17 @@
 		profData = [[json objectForKey:@"result"] objectAtIndex:0];
 		self.title = [profData objectForKey:@"username"];
 		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
+        profileAge.text = [NSString stringWithFormat:@"%d",[[profData objectForKey:@"age"] intValue]];
+        profileSex.text = [profData objectForKey:@"sex"];
+        profileSchool.text = [profData objectForKey:@"school"];
+        profileLocation.text = [NSString stringWithFormat:@"%@, %@, %@",
+                                [profData objectForKey:@"city"],
+                                [profData objectForKey:@"state"],
+                                [profData objectForKey:@"country"]];
 		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
 		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
 		[aboutMeTextLabel sizeToFit];
 	}];
-	
 	float denominator, ratio = .5;
 	if ((denominator = (touchCnt + dontCnt)) != 0) ratio = touchCnt/denominator;
 	[likes setValue:ratio animated:YES];
