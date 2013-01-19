@@ -27,6 +27,7 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = btnFilter;
+	listView.canCancelContentTouches = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -45,8 +46,6 @@
 		//got stream
 		[self showStream:[json objectForKey:@"result"]];
 		filters = [json objectForKey:@"filters"];
-		
-		
 	}];
 }
 
@@ -56,15 +55,15 @@
         [view removeFromSuperview];
     }
     // 2 add new photo views
-    for (int i=0;i<[stream count];i++) {
+    for (int i = 0; i < [stream count]; i++) {
         NSDictionary* photo = [stream objectAtIndex:i];
         PhotoView* photoView = [[PhotoView alloc] initWithIndex:i andData:photo];
         photoView.delegate = self;
         [listView addSubview: photoView];
     }    
     // 3 update scroll list's height
-    int listHeight = ([stream count]/3 + 1)*(kThumbSide+kPadding);
-    [listView setContentSize:CGSizeMake(320, listHeight)];
+    int listHeight = ([stream count]/4 + 1)*(kThumbSide+kPadding);
+	[listView setContentSize:CGSizeMake(320, listHeight)];
     [listView scrollRectToVisible:CGRectMake(0, 0, 10, 10) animated:YES];
 }
 

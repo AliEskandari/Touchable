@@ -39,19 +39,13 @@
 	dontTouchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 380, 140, 30)];
 	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 270, 65)];
+		
+	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
+	proPic.layer.shadowOpacity = 0.5;
+	proPic.layer.shadowRadius = 5;
+	proPic.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
 	
-	API* api = [API sharedInstance];
-	
-	// get the selected photo's profile data
-	[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"getProfile", @"command", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json) {
-		// show username in title
-		profData = [[json objectForKey:@"result"] objectAtIndex:0];
-		self.title = [profData objectForKey:@"username"];
-		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
-		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
-		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
-		[aboutMeTextLabel sizeToFit];
-	}];
+	[profileView addSubview:proPic];
 	
 	// load the big size photo and add to view
 	
@@ -67,13 +61,6 @@
 	}];
 	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:imageOperation];
-	
-	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
-	proPic.layer.shadowOpacity = 0.5;
-	proPic.layer.shadowRadius = 5;
-	proPic.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
-	
-	[profileView addSubview:proPic];
 	
 	// load slider bar onto profile pic
 	likes.minimumValue = 0;
@@ -135,6 +122,19 @@
 
 -(void)viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
+	API* api = [API sharedInstance];
+	
+	// get the selected photo's profile data
+	[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"getProfile", @"command", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json) {
+		// show username in title
+		profData = [[json objectForKey:@"result"] objectAtIndex:0];
+		self.title = [profData objectForKey:@"username"];
+		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
+		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
+		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
+		[aboutMeTextLabel sizeToFit];
+	}];
+	
 	float denominator, ratio = .5;
 	if ((denominator = (touchCnt + dontCnt)) != 0) ratio = touchCnt/denominator;
 	[likes setValue:ratio animated:YES];
@@ -157,7 +157,7 @@
 	if (!touchMe.enabled || !dontTouchMe.enabled){
 		NSString *update_field = (!touchMe.enabled) ? @"touch_cnt": @"dont_cnt";
 		API* api = [API sharedInstance];
-		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"update", @"command",update_field, @"field", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json){}];
+		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command",update_field, @"field", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json){}];
 		[super viewWillDisappear:animated];
 	}
 }

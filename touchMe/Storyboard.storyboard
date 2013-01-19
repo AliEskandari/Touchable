@@ -365,7 +365,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="IE6-8z-T1S">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="60" id="PyJ-fe-PLj" customClass="ProfileCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
@@ -378,7 +379,7 @@
                                                     <rect key="frame" x="20" y="19" width="30" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.80784320831298828" green="0.80784320831298828" blue="0.80784320831298828" alpha="1" colorSpace="deviceRGB"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="96x-wj-7Mn">
@@ -415,12 +416,12 @@
                             <tabBar contentMode="scaleToFill" id="FFS-kE-xbD">
                                 <rect key="frame" x="0.0" y="367" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem title="All" id="LMO-XB-5F8"/>
                                     <tabBarItem title="Male" id="qUL-og-WeW"/>
                                     <tabBarItem title="Female" id="smv-Ty-qQ3"/>
                                 </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -705,7 +706,7 @@
                                     <action selector="btnTouchDontTouchTapped:" destination="oBo-gN-atw" eventType="touchUpInside" id="qMa-Dx-NVf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="asm-Z7-8YC">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="asm-Z7-8YC">
                                 <rect key="frame" x="165" y="320" width="145" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -721,12 +722,12 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="N16-PW-xgv"/>
                     <connections>
                         <outlet property="dontBtn" destination="asm-Z7-8YC" id="hQL-LJ-G8O"/>
-                        <outlet property="proPicView" destination="Jbf-6s-XTi" id="lDv-o2-COR"/>
+                        <outlet property="proPic" destination="Jbf-6s-XTi" id="PiX-xx-3Wt"/>
                         <outlet property="touchMeBtn" destination="7Ny-QY-7kI" id="PZo-8O-Mmf"/>
                     </connections>
                 </viewController>
@@ -738,7 +739,7 @@
         <scene sceneID="R7p-aP-rWf">
             <objects>
                 <viewController id="LMf-ef-b2E" customClass="PeopleScreen" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="oWv-cr-Nzf">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="oWv-cr-Nzf">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -764,7 +765,7 @@
         <scene sceneID="2GX-G2-zqW">
             <objects>
                 <viewController id="LbA-iv-5eH" customClass="ProfileScreen" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wrC-LB-z1v">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="wrC-LB-z1v">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.89019614458084106" green="0.89019614458084106" blue="0.89019614458084106" alpha="1" colorSpace="deviceRGB"/>
@@ -1142,6 +1143,178 @@
         <image name="statistics.png" width="160" height="160"/>
         <image name="touch me.png" width="290" height="90"/>
     </resources>
+    <classes>
+        <class className="AboutMeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutMeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="AgeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AgeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="age1TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="age2TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AutoCompScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoCompScreen.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EditCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EditInfoScreen" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditInfoScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnDoneTapped:"/>
+                <relationship kind="outlet" name="btnDone" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="FilterNavController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterNavController.h"/>
+        </class>
+        <class className="FilterScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="addFilterBtnTapped:"/>
+                <relationship kind="action" name="backBtnTapped:"/>
+                <relationship kind="outlet" name="addFilterBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="backBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="InfoSettingsScreen" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoSettingsScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnDoneTapped:"/>
+                <relationship kind="outlet" name="btnDone" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="LoginScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnLoginTapped:"/>
+                <relationship kind="action" name="btnRegisterTapped:"/>
+                <relationship kind="outlet" name="fldPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="fldUsername" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MenuScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="mostTouchableTapped:"/>
+                <relationship kind="action" name="peopleBtnTapped:"/>
+                <relationship kind="action" name="profileBtnTapped:"/>
+                <relationship kind="action" name="randomizeBtnTapped:"/>
+                <relationship kind="action" name="settingsBtnTapped:"/>
+                <relationship kind="outlet" name="mostTouchableLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="peopleBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="peopleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="randomizeBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="recentActivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="settingsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statisticsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MostTouchableScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MostTouchableScreen.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PeopleScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnFilterTapped:"/>
+                <relationship kind="outlet" name="btnFilter" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="listView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="ProfileCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="numRankLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numTouchMeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thumbView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ProfileScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
+            </relationships>
+        </class>
+        <class className="RandomProfileScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomProfileScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
+                <relationship kind="outlet" name="dontBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="proPic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="touchMeBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RandomizeScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomizeScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="filtersBtnTapped:"/>
+                <relationship kind="action" name="randomizeBtnTapped:"/>
+                <relationship kind="outlet" name="changeFiltersBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="randomizeBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SegueCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SegueCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SettingsScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnChangePhotoTapped:"/>
+                <relationship kind="action" name="btnEditInfoTapped:"/>
+                <relationship kind="outlet" name="photoImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="SexCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SexCell.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentValueChanged:"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="WelcomeScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnChangePhotoTapped:"/>
+                <relationship kind="action" name="btnEditInfoTapped:"/>
+                <relationship kind="outlet" name="btnCaption" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="btnChangePhoto" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="photoInstructions" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoRules" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

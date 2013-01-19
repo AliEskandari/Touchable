@@ -19,7 +19,7 @@
     self = [super init];
     if (self !=nil) {
         //initialize
-       // self.tag = [[data objectForKey:@"IdPhoto"] intValue];
+		
         int row = i/4;
         int col = i % 4;
         self.frame = CGRectMake(1.5*kPadding+col*(kThumbSide+kPadding), 1.5*kPadding+row*(kThumbSide+kPadding), kThumbSide, kThumbSide);

@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "API.h"
+#import "UIAlertView+error.h"
 
 @interface RandomProfileScreen : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *proPicView;
+@property (strong, nonatomic) IBOutlet UIImageView *proPic;
 @property (strong, nonatomic) IBOutlet UIButton *touchMeBtn;
 @property (strong, nonatomic) IBOutlet UIButton *dontBtn;
 
 - (IBAction)btnTouchDontTouchTapped:(id)sender;
-
+- (void) showRandomProfile;
 
 @end
