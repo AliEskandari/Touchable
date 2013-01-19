@@ -45,6 +45,7 @@
 		41A374EA168BAC5100EB44B2 /* randomize.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374E9168BAC5100EB44B2 /* randomize.png */; };
 		41A374EC168BAF1100EB44B2 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374EB168BAF1100EB44B2 /* statistics.png */; };
 		41A374F0168BB1ED00EB44B2 /* recent.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374EF168BB1ED00EB44B2 /* recent.png */; };
+		41B293D316AA1D9100066EC0 /* InfoSettingsScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B293D216AA1D9100066EC0 /* InfoSettingsScreen.m */; };
 		41B9BAEC16A0FF41007B3E6A /* FilterNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B9BAEB16A0FF41007B3E6A /* FilterNavController.m */; };
 		41C60FAC16A4895100541C3D /* RandomizeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C60FAB16A4895100541C3D /* RandomizeScreen.m */; };
 		41C60FB016A4897700541C3D /* RandomProfileScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C60FAF16A4897700541C3D /* RandomProfileScreen.m */; };
@@ -138,6 +139,8 @@
 		41A374E9168BAC5100EB44B2 /* randomize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = randomize.png; sourceTree = "<group>"; };
 		41A374EB168BAF1100EB44B2 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statistics.png; sourceTree = "<group>"; };
 		41A374EF168BB1ED00EB44B2 /* recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recent.png; sourceTree = "<group>"; };
+		41B293D116AA1D9100066EC0 /* InfoSettingsScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoSettingsScreen.h; sourceTree = "<group>"; };
+		41B293D216AA1D9100066EC0 /* InfoSettingsScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoSettingsScreen.m; sourceTree = "<group>"; };
 		41B9BAEA16A0FF41007B3E6A /* FilterNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterNavController.h; sourceTree = "<group>"; };
 		41B9BAEB16A0FF41007B3E6A /* FilterNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterNavController.m; sourceTree = "<group>"; };
 		41C60FAA16A4895100541C3D /* RandomizeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomizeScreen.h; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 			children = (
 				4127EAB216A61CA500624B6F /* SettingsScreen.h */,
 				4127EAB316A61CA500624B6F /* SettingsScreen.m */,
+				41B293D116AA1D9100066EC0 /* InfoSettingsScreen.h */,
+				41B293D216AA1D9100066EC0 /* InfoSettingsScreen.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -679,6 +684,7 @@
 				41C60FB816A4D6A700541C3D /* ProfileCell.m in Sources */,
 				41C60FBC16A4D7D600541C3D /* MostTouchableScreen.m in Sources */,
 				4127EAB416A61CA500624B6F /* SettingsScreen.m in Sources */,
+				41B293D316AA1D9100066EC0 /* InfoSettingsScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

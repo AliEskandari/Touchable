@@ -137,9 +137,20 @@
 	}];
 	
 	// load the big size photo and add to view
-	NSURL* imageURL = [api urlForImageWithId:IdUser isThumb:NO];
-	[proPic setImageWithURL: imageURL];
-
+	
+	/*
+	 NSURL* imageURL = [api urlForImageWithId:IdUser isThumb:NO];
+	 [proPic setImageWithURL: imageURL];
+	 */
+	
+	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:IdUser isThumb:NO];
+	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
+		//add it to the view
+		[proPic setImage:image];
+	}];
+	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
+	[queue addOperation:imageOperation];
+	
 	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
 	proPic.layer.shadowOpacity = 0.3;
 	proPic.layer.shadowRadius = 5;

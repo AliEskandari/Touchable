@@ -32,8 +32,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	photoChosen = NO;
+	
 	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[[[API sharedInstance] user] objectForKey:@"IdUser"] isThumb:NO];
-	[photoImageView setImageWithURL: imageURL];
+	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
+		//add it to the view
+		[photoImageView setImage:image];
+	}];
+	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
+	[queue addOperation:imageOperation];
+
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+	if (photoChosen) {
+		//upload the image and the title to the web service
+		[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"uploadPhoto", @"command", UIImageJPEGRepresentation(photoImageView.image,70), @"file", nil] onCompletion:^(NSDictionary *json) {
+			//completion
+			if (![json objectForKey:@"error"]) {
+				//success
+				[[[UIAlertView alloc]initWithTitle:nil message:@"Photo Updated" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+			} else {
+				//error
+				NSString* errorMsg = [json objectForKey:@"error"];
+				[UIAlertView error:errorMsg];
+			}
+		}];
+	}
+	[super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +82,15 @@
 }
 
 - (IBAction)btnEditInfoTapped:(id)sender {
-	[self performSegueWithIdentifier:@"ShowEditInfo" sender:nil];
+	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"getProfile", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser" ], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
+		if (![json objectForKey:@"error"]){
+			NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:[json objectForKey:@"result"][0]];
+			[self performSegueWithIdentifier:@"ShowEditInfo" sender:result];
+		} else {
+			[UIAlertView error:@"Database connection failed"];
+		}
+	}];
+	
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -79,10 +113,10 @@
 	[super viewDidUnload];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSMutableDictionary *)sender {
     if ([@"ShowEditInfo" compare: segue.identifier]==NSOrderedSame) {
-        EditInfoScreen* editInfoScreen = segue.destinationViewController;
-		
+        InfoSettingsScreen* infoSettingsScreen = segue.destinationViewController;
+		infoSettingsScreen.enteredInfo = sender;
     }
 }
 
