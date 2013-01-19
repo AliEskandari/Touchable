@@ -16,8 +16,16 @@
 	UIButton* touchMe;
 	UIButton* dontTouchMe;
 	UIImageView* proPic;
-	UITextField* aboutMe;
 	UISlider *likes;
+    UILabel *ageLabel;
+    UILabel *sexLabel;
+    UILabel *schoolLabel;
+    UILabel *locationLabel;
+    UILabel *profileAge;
+    UILabel *profileSex;
+    UILabel *profileSchool;
+    UILabel *profileLocation;
+    UIView *line;
 	float touchCnt;
 	float dontCnt;
 }
@@ -37,10 +45,78 @@
 	likes = [[UISlider alloc] initWithFrame:CGRectMake(5, 275, 290, 10)];
 	touchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	dontTouchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 380, 140, 30)];
-	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 270, 65)];
+	aboutMeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 380, 140, 30)];
+	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 240, 65)];
+    
+    //initialize age sex school and location
+    
+    ageLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 505, 140, 30)];
+    sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 530, 140, 30)];
+    schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 555, 140, 30)];
+    locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 580, 140, 30)];
 
-	API* api = [API sharedInstance];
+	[profileView addSubview:ageLabel];
+	[profileView addSubview:sexLabel];
+	[profileView addSubview:schoolLabel];
+	[profileView addSubview:locationLabel];
+    
+    ageLabel.text = @"age";
+    sexLabel.text = @"sex";
+    schoolLabel.text = @"school";
+    locationLabel.text = @"location";
+    
+    ageLabel.textColor =
+    sexLabel.textColor = 
+    schoolLabel.textColor =
+    locationLabel.textColor = [UIColor colorWithRed:255.0/255.0 green:84.0/255.0 blue:25.0/255.0 alpha:1.0];
+    
+    ageLabel.font =
+    sexLabel.font =
+    schoolLabel.font =
+	locationLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:18];
+    
+    ageLabel.backgroundColor =
+    sexLabel.backgroundColor =
+    schoolLabel.backgroundColor =
+    locationLabel.backgroundColor = [UIColor clearColor];
+    
+    profileAge = [[UILabel alloc] initWithFrame:CGRectMake(52, 505, 140, 30)];
+    profileSex = [[UILabel alloc] initWithFrame:CGRectMake(52, 530, 140, 30)];
+    profileSchool = [[UILabel alloc] initWithFrame:CGRectMake(78, 557, 240, 30)];
+    profileLocation = [[UILabel alloc] initWithFrame:CGRectMake(92, 582, 226, 30)];
+    
+	[profileView addSubview:profileAge];
+	[profileView addSubview:profileSex];
+	[profileView addSubview:profileSchool];
+	[profileView addSubview:profileLocation];
+    
+    profileAge.text = @"age";
+    profileSex.text = @"sex";
+    profileSchool.text = @"school";
+    profileLocation.text = @"location";
+    
+    profileAge.textColor =
+    profileSex.textColor =
+    profileSchool.textColor =
+    profileLocation.textColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:43.0/255.0 alpha:1.0];
+    
+    profileAge.font =
+    profileSex.font = [UIFont fontWithName:@"Segoe WP" size:18];
+    profileSchool.font =
+	profileLocation.font = [UIFont fontWithName:@"Segoe WP" size:13];
+    
+    profileAge.backgroundColor =
+    profileSex.backgroundColor =
+    profileSchool.backgroundColor =
+    profileLocation.backgroundColor = [UIColor clearColor];
+    
+	line = [[UILabel alloc] initWithFrame:CGRectMake(20, 620, 280, 1)];
+    
+    line.backgroundColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:43.0/255.0 alpha:1.0];
+    
+	[profileView addSubview:line];
+    
+    API* api = [API sharedInstance];
 	
 	// get the selected photo's profile data
 	[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"getProfile", @"command", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json) {
@@ -48,6 +124,13 @@
 		profData = [[json objectForKey:@"result"] objectAtIndex:0];
 		self.title = [profData objectForKey:@"username"];
 		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
+        profileAge.text = [NSString stringWithFormat:@"%d",[[profData objectForKey:@"age"] intValue]];
+        profileSex.text = [profData objectForKey:@"sex"];
+        profileSchool.text = [profData objectForKey:@"school"];
+        profileLocation.text = [NSString stringWithFormat:@"%@, %@, %@",
+                                [profData objectForKey:@"city"],
+                                [profData objectForKey:@"state"],
+                                [profData objectForKey:@"country"]];
 		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
 		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
 		[aboutMeTextLabel sizeToFit];
@@ -58,9 +141,9 @@
 	[proPic setImageWithURL: imageURL];
 
 	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
-	proPic.layer.shadowOpacity = 0.5;
+	proPic.layer.shadowOpacity = 0.3;
 	proPic.layer.shadowRadius = 5;
-	proPic.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+	proPic.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
 	
 	[profileView addSubview:proPic];
 	
@@ -83,9 +166,9 @@
 	[touchMe setBackgroundImage:[UIImage imageNamed:@"touch me.png"] forState:UIControlStateNormal];
 	[touchMe setBackgroundImage:[UIImage imageNamed:@"touch me GRAYED.png"] forState:UIControlStateDisabled];
 	touchMe.layer.shadowColor = [UIColor blackColor].CGColor;
-	touchMe.layer.shadowOpacity = 0.5;
+	touchMe.layer.shadowOpacity = 0.3;
 	touchMe.layer.shadowRadius = 5;
-	touchMe.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+	touchMe.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
 	[touchMe addTarget:self action:@selector(btnTouchDontTouchTapped:) forControlEvents:UIControlEventTouchUpInside];
 	touchMe.tag = 1;
 	[profileView addSubview:touchMe];
@@ -94,17 +177,17 @@
 	[dontTouchMe setBackgroundImage:[UIImage imageNamed:@"dont touch me.png"] forState:UIControlStateNormal];
 	[dontTouchMe setBackgroundImage:[UIImage imageNamed:@"dont touch me GRAYED.png"] forState:UIControlStateDisabled];
 	dontTouchMe.layer.shadowColor = [UIColor blackColor].CGColor;
-	dontTouchMe.layer.shadowOpacity = 0.5;
+	dontTouchMe.layer.shadowOpacity = 0.3;
 	dontTouchMe.layer.shadowRadius = 5;
-	dontTouchMe.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+	dontTouchMe.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
 	[dontTouchMe addTarget:self action:@selector(btnTouchDontTouchTapped:) forControlEvents:UIControlEventTouchUpInside];
 	[profileView addSubview:dontTouchMe];
 	
-	// load aboutMe section
+	//load aboutMe section
 	//aboutMeLabel.layer.borderColor = [UIColor blackColor].CGColor;
 	//aboutMeLabel.layer.borderWidth = 1;
 	aboutMeLabel.backgroundColor = [UIColor clearColor];
-	aboutMeLabel.text = @"AboutMe:";
+	aboutMeLabel.text = @"AboutMe";
 	aboutMeLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:30];
 	[profileView addSubview:aboutMeLabel];
 	
@@ -115,6 +198,9 @@
 	aboutMeTextLabel.backgroundColor = [UIColor clearColor];
 	aboutMeTextLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:15];
 	[profileView addSubview:aboutMeTextLabel];
+    
+    //Add additional information
+    
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
