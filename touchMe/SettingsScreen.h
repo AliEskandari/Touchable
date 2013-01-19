@@ -10,12 +10,12 @@
 #import "UIImage+Resize.h"
 #import <QuartzCore/QuartzCore.h>
 #import "API.h"
-#import "EditInfoScreen.h"
+#import "InfoSettingsScreen.h"
 
 @interface SettingsScreen : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *photoImageView;
-- (IBAction)btnChangePhotoTapped:(id)sender;
-- (IBAction)btnEditInfoTapped:(id)sender;
 @property NSData* userPhoto;
 
+- (IBAction)btnChangePhotoTapped:(id)sender;
+- (IBAction)btnEditInfoTapped:(id)sender;
 @end

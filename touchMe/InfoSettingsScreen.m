@@ -1,4 +1,10 @@
 //
+//  InfoSettingsScreen.m
+//  touchMe
+//
+//  Created by Ali Eskandari on 1/18/13.
+//  Copyright (c) 2013 Marin Todorov. All rights reserved.
+////
 //  EditInfoScreen.m
 //  touchMe
 //
@@ -6,16 +12,14 @@
 //  Copyright (c) 2012 Marin Todorov. All rights reserved.
 //
 
-#import "EditInfoScreen.h"
+#import "InfoSettingsScreen.h"
 
-@interface EditInfoScreen ()
+@interface InfoSettingsScreen ()
 @end
 
-@implementation EditInfoScreen
+@implementation InfoSettingsScreen
 
 @synthesize username;
-@synthesize password;
-@synthesize reEnter;
 @synthesize age;
 @synthesize sex;
 @synthesize aboutMe;
@@ -26,10 +30,7 @@
 
 @synthesize dataSource;
 @synthesize enteredInfo;
-@synthesize editInfoScreenDismissedDelegate;
-@synthesize doneRegisteringDelegate;
 @synthesize btnDone;
-@synthesize userPhoto;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -53,8 +54,6 @@
 	agePickerView.delegate = self;
 	agePickerView.source = dataSource.ages;
 	
-	if (!enteredInfo) enteredInfo = [[NSMutableDictionary alloc] init];
-	
 	self.navigationItem.rightBarButtonItem = btnDone;
 	
     // Uncomment the following line to preserve selection between presentations.
@@ -70,25 +69,6 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[agePickerView selectRow:19 inComponent:0 animated:NO];
 }
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	if(username.text.length > 0) [enteredInfo setValue:username.text forKey:@"username"];
-	if(password.text.length > 0)[enteredInfo setValue:password.text forKey:@"password"];
-	if(reEnter.text.length > 0)[enteredInfo setValue:reEnter.text forKey:@"reEnter"];
-	if(age.text.length > 0)[enteredInfo setValue:age.text forKey:@"age"];
-	if(sex.text.length > 0)[enteredInfo setValue:sex.text forKey:@"sex"];
-	if(aboutMe.text.length > 0)[enteredInfo setValue:aboutMe.text forKey:@"aboutMe"];
-	if(country.text.length > 0)[enteredInfo setValue:country.text forKey:@"country"];
-	if(state.text.length > 0)[enteredInfo setValue:state.text forKey:@"state"];
-	if(city.text.length > 0)[enteredInfo setValue:city.text forKey:@"city"];
-	if(school.text.length > 0)[enteredInfo setValue:school.text forKey:@"school"];
-	
-	if([self.editInfoScreenDismissedDelegate respondsToSelector:@selector(editInfoScreenDismissed:)])
-	{
-		[self.editInfoScreenDismissedDelegate editInfoScreenDismissed:enteredInfo];
-	}
-	
-}
 
 #pragma mark - TableView Data Source
 
@@ -101,7 +81,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-   	return (section != 2) ? 3 : 4;
+   	switch (section) {
+		case 0:
+			return 1;
+			break;
+		case 1:
+			return 3;
+			break;
+		case 2:
+			return 4;
+			break;
+		default:
+			return 0;
+			break;
+	}
 }
 
 /* ALLOCATE, LABEL, RETURN TABLE CELLS */
@@ -117,31 +110,11 @@
 			if (editCell == nil) {
 				editCell = [[EditCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
 			}
-			switch (indexPath.row) {
-				case 0:
-					editCell.field.text = [enteredInfo objectForKey:@"username"];
-					editCell.textLabel.text = @"Username*";
-					editCell.field.tag = 1;
-					username = editCell.field;
-					break;
-				case 1:
-					editCell.field.text = [enteredInfo objectForKey:@"password"];
-					editCell.textLabel.text = @"Password*";
-					password = editCell.field;
-					editCell.field.tag = 2;
-					editCell.field.secureTextEntry = TRUE;
-					break;
-				case 2:
-					editCell.field.text = [enteredInfo objectForKey:@"reEnter"];
-					editCell.textLabel.text = @"Re-Enter*";
-					reEnter = editCell.field;
-					editCell.field.tag = 3;
-					editCell.field.secureTextEntry = TRUE;
-					break;
-				default:
-					break;
-					
-			}
+			editCell.field.text = [enteredInfo objectForKey:@"username"];
+			editCell.textLabel.text = @"Username*";
+			editCell.field.tag = 1;
+			username = editCell.field;
+			
 			editCell.field.delegate = self;
 			return editCell;
 			
@@ -294,7 +267,7 @@
 		age.text = [NSString stringWithFormat:@"%d",row + 1];
 		age.enabled = FALSE;
 	} else {
-		sex.text = row? @"Female" : @"Male";
+		sex.text = row ? @"Female" : @"Male";
 		sex.enabled = FALSE;
 	}
 }
@@ -304,13 +277,6 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-	EditCell *nextCell = (EditCell*) [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:(textField.tag % 3) inSection:(textField.tag / 3)]];
-	if ([nextCell.reuseIdentifier isEqualToString:@"EditCell"]) {
-		[nextCell.field becomeFirstResponder];
-	} else {
-		AboutMeCell *aboutMeCell = (AboutMeCell*)nextCell;
-		[aboutMeCell.textView becomeFirstResponder];
-	}
     return YES;
 }
 
@@ -320,12 +286,6 @@
 	switch (textField.tag) {
 		case 1:
 			if(username.text.length > 0) [enteredInfo setValue:username.text forKey:@"username"];
-			break;
-		case 2:
-			if(password.text.length > 0)[enteredInfo setValue:password.text forKey:@"password"];
-			break;
-		case 3:
-			if(reEnter.text.length > 0)[enteredInfo setValue:reEnter.text forKey:@"reEnter"];
 			break;
 		case 4:
 			if(age.text.length > 0)[enteredInfo setValue:age.text forKey:@"age"];
@@ -410,49 +370,42 @@
 }
 
 -(IBAction)btnDoneTapped:(id)sender{
+	
+	if(username.text.length > 0) [enteredInfo setValue:username.text forKey:@"username"];
+	if(age.text.length > 0)[enteredInfo setValue:age.text forKey:@"age"];
+	if(sex.text.length > 0)[enteredInfo setValue:sex.text forKey:@"sex"];
+	if(aboutMe.text.length > 0)[enteredInfo setValue:aboutMe.text forKey:@"aboutMe"];
+	if(country.text.length > 0)[enteredInfo setValue:country.text forKey:@"country"];
+	if(state.text.length > 0)[enteredInfo setValue:state.text forKey:@"state"];
+	if(city.text.length > 0)[enteredInfo setValue:city.text forKey:@"city"];
+	if(school.text.length > 0)[enteredInfo setValue:school.text forKey:@"school"];
+	
 	UIAlertView* alert = [UIAlertView alloc];
 	if (username.text.length < 4) {
 		[[alert initWithTitle:nil message:@"Username must be at least 4 characters" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
-		// - check username already taken
-	} else if (password.text.length < 4){
-		[[alert initWithTitle:nil message:@"Password must be at least 4 characters" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
-	} else if ([password.text compare:reEnter.text] != 0) {
-		[[alert initWithTitle:nil message:@"Re-entered password does not match Password" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
 	} else if (!([enteredInfo valueForKey:@"age"] && [enteredInfo valueForKey:@"sex"] && [enteredInfo valueForKey:@"country"] && [enteredInfo valueForKey:@"state"] && [enteredInfo valueForKey:@"city"] && [enteredInfo valueForKey:@"school"])){
 		[[alert initWithTitle:nil message:@"All required fields must be completed" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
 	} else {
-		//salt the password
-		NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", password.text, kSalt];
-		//prepare the hashed storage
-		NSString* hashedPassword = nil;
-		unsigned char hashedPasswordData[CC_SHA1_DIGEST_LENGTH];
-		//hash the pass
-		NSData *data = [saltedPassword dataUsingEncoding: NSUTF8StringEncoding];
-		if (CC_SHA1([data bytes], [data length], hashedPasswordData)) {
-			hashedPassword = [[NSString alloc] initWithBytes:hashedPasswordData length:sizeof(hashedPasswordData) encoding:NSASCIIStringEncoding];
-		} else { [UIAlertView error:@"Password can't be sent"]; return; }
 		
-		NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"register", @"command", enteredInfo, @"userInfo", hashedPassword, @"password", userPhoto, @"file", nil];
+		NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"updateUserInfo", @"command",[[[API sharedInstance]  user] objectForKey:@"IdUser" ], @"IdUser", enteredInfo, @"userInfo", nil];
 		
 		//make the call to the web API
 		[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {
 			//result returned
-			NSDictionary* res = [[json objectForKey:@"result"] objectAtIndex:0];
-			if ([json objectForKey:@"error"]==nil && [[res objectForKey:@"IdUser"] intValue]>0) {
-				[self dismissViewControllerAnimated:NO completion:nil];
-				if([self.doneRegisteringDelegate respondsToSelector:@selector(doneRegistering:password:)])
-					[self.doneRegisteringDelegate doneRegistering:[enteredInfo objectForKey:@"username"] password:[enteredInfo objectForKey:@"password"]];
+			if (![json objectForKey:@"error"]) {
+				[self.navigationController popViewControllerAnimated:YES];
+				[[[UIAlertView alloc] initWithTitle:nil message:@"Profile Updated" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
 			} else {
 				//error
 				[UIAlertView error:[json objectForKey:@"error"]];
 			}
 		}];
-
+		
 	}
+	
 }
 
 - (void)viewDidUnload {
-	[self setBtnDone:nil];
 	[super viewDidUnload];
 }
 @end
