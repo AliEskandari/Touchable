@@ -421,18 +421,20 @@
 	} else if (!([enteredInfo valueForKey:@"age"] && [enteredInfo valueForKey:@"sex"] && [enteredInfo valueForKey:@"country"] && [enteredInfo valueForKey:@"state"] && [enteredInfo valueForKey:@"city"] && [enteredInfo valueForKey:@"school"])){
 		[[alert initWithTitle:nil message:@"All required fields must be completed" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil] show];
 	} else {
+		
 		//salt the password
-		NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", password.text, kSalt];
+		/* NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", password.text, kSalt]; 
 		//prepare the hashed storage
 		NSString* hashedPassword = nil;
 		unsigned char hashedPasswordData[CC_SHA1_DIGEST_LENGTH];
 		//hash the pass
-		NSData *data = [saltedPassword dataUsingEncoding: NSUTF8StringEncoding];
+		NSData *data = [password.text dataUsingEncoding: NSUTF8StringEncoding];
 		if (CC_SHA1([data bytes], [data length], hashedPasswordData)) {
 			hashedPassword = [[NSString alloc] initWithBytes:hashedPasswordData length:sizeof(hashedPasswordData) encoding:NSASCIIStringEncoding];
 		} else { [UIAlertView error:@"Password can't be sent"]; return; }
+		*/
 		
-		NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"register", @"command", enteredInfo, @"userInfo", hashedPassword, @"password", userPhoto, @"file", nil];
+		NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"register", @"command", enteredInfo, @"userInfo", password.text, @"password", userPhoto, @"file", nil];
 		
 		//make the call to the web API
 		[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {

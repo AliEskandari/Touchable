@@ -16,7 +16,6 @@
 
 @implementation SettingsScreen
 
-@synthesize userPhoto;
 @synthesize photoImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,7 +46,7 @@
 -(void) viewWillDisappear:(BOOL)animated {
 	if (photoChosen) {
 		//upload the image and the title to the web service
-		[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"uploadPhoto", @"command", UIImageJPEGRepresentation(photoImageView.image,70), @"file", nil] onCompletion:^(NSDictionary *json) {
+		[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"uploadPhoto", @"command", UIImageJPEGRepresentation(photoImageView.image, 1.0), @"file", nil] onCompletion:^(NSDictionary *json) {
 			//completion
 			if (![json objectForKey:@"error"]) {
 				//success
@@ -96,7 +95,7 @@
 {
 	UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 	image = [image thumbnailImage:image.size.width transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
-	userPhoto = UIImageJPEGRepresentation(image, 0);
+	if (image.size.width > 640) image = [image resizedImage:CGSizeMake(640, 640) interpolationQuality:kCGInterpolationHigh];
 	UIGraphicsBeginImageContextWithOptions(photoImageView.bounds.size, photoImageView.opaque, 0.0);
 	[image drawInRect:photoImageView.bounds];
 	UIGraphicsEndImageContext();

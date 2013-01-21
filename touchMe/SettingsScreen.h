@@ -14,7 +14,6 @@
 
 @interface SettingsScreen : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *photoImageView;
-@property NSData* userPhoto;
 
 - (IBAction)btnChangePhotoTapped:(id)sender;
 - (IBAction)btnEditInfoTapped:(id)sender;

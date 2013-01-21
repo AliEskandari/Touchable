@@ -78,7 +78,7 @@
 
 -(void)uploadPhoto:(UIImage*) photo {
     //upload the image and the title to the web service
-    [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"upload", @"command", UIImageJPEGRepresentation(photo,70), @"file", nil] onCompletion:^(NSDictionary *json) {
+    [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"upload", @"command", UIImageJPEGRepresentation(photo,1.0), @"file", nil] onCompletion:^(NSDictionary *json) {
 		//completion
 		if (![json objectForKey:@"error"]) {
 			//success
@@ -100,7 +100,8 @@
 {
 	UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 	image = [image thumbnailImage:image.size.width transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
-	userPhoto = UIImageJPEGRepresentation(image, 0);
+	if (image.size.width > 640) image = [image resizedImage:CGSizeMake(640, 640) interpolationQuality:kCGInterpolationHigh];
+	userPhoto = UIImageJPEGRepresentation(image, 1.0);
 	UIGraphicsBeginImageContextWithOptions(btnChangePhoto.bounds.size, btnChangePhoto.opaque, 0.0);
 	[image drawInRect:btnChangePhoto.bounds];
 	UIGraphicsEndImageContext();

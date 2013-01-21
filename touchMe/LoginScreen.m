@@ -51,20 +51,20 @@
 		return;
 	}
 	//salt the password
-	NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", fldPassword.text, kSalt];
+	/* NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", fldPassword.text, kSalt];
 	//prepare the hashed storage
 	NSString* hashedPassword = nil;
 	unsigned char hashedPasswordData[CC_SHA1_DIGEST_LENGTH];
 	//hash the pass
-	NSData *data = [saltedPassword dataUsingEncoding: NSUTF8StringEncoding];
+	NSData *data = [fldPassword.text dataUsingEncoding: NSUTF8StringEncoding];
 	if (CC_SHA1([data bytes], [data length], hashedPasswordData)) {
 		hashedPassword = [[NSString alloc] initWithBytes:hashedPasswordData length:sizeof(hashedPasswordData) encoding:NSASCIIStringEncoding];
 	} else {
 		[UIAlertView error:@"Password can't be sent"];
 		return;
 	}
-	
-	NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"login", @"command", fldUsername.text, @"username", hashedPassword, @"password", nil];
+	*/
+	NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:@"login", @"command", fldUsername.text, @"username", fldPassword.text, @"password", nil];
 	
 	//make the call to the web API
 	[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {
