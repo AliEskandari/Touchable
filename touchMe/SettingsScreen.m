@@ -96,7 +96,7 @@
 {
 	UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 	image = [image thumbnailImage:image.size.width transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
-	userPhoto = UIImageJPEGRepresentation(image, 70);
+	userPhoto = UIImageJPEGRepresentation(image, 0);
 	UIGraphicsBeginImageContextWithOptions(photoImageView.bounds.size, photoImageView.opaque, 0.0);
 	[image drawInRect:photoImageView.bounds];
 	UIGraphicsEndImageContext();

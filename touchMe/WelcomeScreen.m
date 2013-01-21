@@ -100,7 +100,7 @@
 {
 	UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 	image = [image thumbnailImage:image.size.width transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
-	userPhoto = UIImageJPEGRepresentation(image, 70);
+	userPhoto = UIImageJPEGRepresentation(image, 0);
 	UIGraphicsBeginImageContextWithOptions(btnChangePhoto.bounds.size, btnChangePhoto.opaque, 0.0);
 	[image drawInRect:btnChangePhoto.bounds];
 	UIGraphicsEndImageContext();
