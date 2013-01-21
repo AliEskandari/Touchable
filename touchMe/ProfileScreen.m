@@ -28,6 +28,7 @@
     UIView *line;
 	float touchCnt;
 	float dontCnt;
+	float denominator, ratio;
 }
 
 @synthesize IdUser;
@@ -115,18 +116,8 @@
     line.backgroundColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:43.0/255.0 alpha:1.0];
     
 	[profileView addSubview:line];
-    
-    API* api = [API sharedInstance];
-	
-	[profileView addSubview:proPic];
 	
 	// load the big size photo and add to view
-	
-	/*
-	 NSURL* imageURL = [api urlForImageWithId:IdUser isThumb:NO];
-	 [proPic setImageWithURL: imageURL];
-	 */
-	
 	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:IdUser isThumb:NO];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 		//add it to the view
@@ -179,23 +170,16 @@
 	[profileView addSubview:dontTouchMe];
 	
 	//load aboutMe section
-	//aboutMeLabel.layer.borderColor = [UIColor blackColor].CGColor;
-	//aboutMeLabel.layer.borderWidth = 1;
 	aboutMeLabel.backgroundColor = [UIColor clearColor];
 	aboutMeLabel.text = @"AboutMe";
 	aboutMeLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:30];
 	[profileView addSubview:aboutMeLabel];
 	
-	//aboutMeTextLabel.layer.borderColor = [UIColor blackColor].CGColor;
-	//aboutMeTextLabel.layer.borderWidth = 1;
 	aboutMeTextLabel.numberOfLines = 3;
 	aboutMeTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 	aboutMeTextLabel.backgroundColor = [UIColor clearColor];
 	aboutMeTextLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:15];
 	[profileView addSubview:aboutMeTextLabel];
-    
-    //Add additional information
-    
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -213,6 +197,7 @@
 		profData = [[json objectForKey:@"result"] objectAtIndex:0];
 		self.title = [profData objectForKey:@"username"];
 		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
+		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
         profileAge.text = [NSString stringWithFormat:@"%d",[[profData objectForKey:@"age"] intValue]];
         profileSex.text = [profData objectForKey:@"sex"];
         profileSchool.text = [profData objectForKey:@"school"];
@@ -220,13 +205,13 @@
                                 [profData objectForKey:@"city"],
                                 [profData objectForKey:@"state"],
                                 [profData objectForKey:@"country"]];
-		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
 		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
 		[aboutMeTextLabel sizeToFit];
+		
+		ratio = .5;
+		if ((denominator = (touchCnt + dontCnt)) != 0) ratio = touchCnt/denominator;
+		[likes setValue:ratio animated:YES];
 	}];
-	float denominator, ratio = .5;
-	if ((denominator = (touchCnt + dontCnt)) != 0) ratio = touchCnt/denominator;
-	[likes setValue:ratio animated:YES];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -236,9 +221,13 @@
 	if (sender.tag) {
 		sender.enabled = FALSE;
 		dontTouchMe.enabled = TRUE;
+		[likes setValue:((touchCnt + 1) /(touchCnt + 1 + dontCnt)) animated:YES];
+
 	} else {
 		sender.enabled = FALSE;
 		touchMe.enabled = TRUE;
+		[likes setValue:(touchCnt/(touchCnt + 1 + dontCnt)) animated:YES];
+
 	}
 }
 
