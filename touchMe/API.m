@@ -9,7 +9,7 @@
 #import "API.h"
 
 //the web location of the service
-#define kAPIHost @"http://localhost:8888/"
+#define kAPIHost @"http://touchableapp.com/"
 #define kAPIPath @""
 
 @implementation API
