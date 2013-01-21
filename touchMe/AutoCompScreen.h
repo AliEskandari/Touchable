@@ -2,7 +2,7 @@
 //  AutoCompScreen.h
 //  touchMe
 //
-//  Created by Ali Eskandari on 12/31/12.
+//  Created by Ali Eskandari and jb on 12/31/12.
 //  Copyright (c) 2012 Marin Todorov. All rights reserved.
 //
 
