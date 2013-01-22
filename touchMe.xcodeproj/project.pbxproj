@@ -41,6 +41,7 @@
 		41924762168CB15F0085ED5C /* SegoeWP-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4192475F168CB12B0085ED5C /* SegoeWP-Light.ttf */; };
 		41924763168CB15F0085ED5C /* SegoeWP-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41924760168CB12B0085ED5C /* SegoeWP-Black.ttf */; };
 		4192E779168665BE00DE983D /* MenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4192E778168665BE00DE983D /* MenuScreen.m */; };
+		41A2BFCF16ADFBE3008A39EC /* RecentActivityScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A2BFCE16ADFBE3008A39EC /* RecentActivityScreen.m */; };
 		41A374E8168B911400EB44B2 /* WelcomeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A374E7168B911400EB44B2 /* WelcomeScreen.m */; };
 		41A374EA168BAC5100EB44B2 /* randomize.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374E9168BAC5100EB44B2 /* randomize.png */; };
 		41A374EC168BAF1100EB44B2 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A374EB168BAF1100EB44B2 /* statistics.png */; };
@@ -134,6 +135,8 @@
 		41924760168CB12B0085ED5C /* SegoeWP-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SegoeWP-Black.ttf"; sourceTree = "<group>"; };
 		4192E777168665BE00DE983D /* MenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScreen.h; sourceTree = "<group>"; };
 		4192E778168665BE00DE983D /* MenuScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScreen.m; sourceTree = "<group>"; };
+		41A2BFCD16ADFBE3008A39EC /* RecentActivityScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentActivityScreen.h; sourceTree = "<group>"; };
+		41A2BFCE16ADFBE3008A39EC /* RecentActivityScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentActivityScreen.m; sourceTree = "<group>"; };
 		41A374E6168B911400EB44B2 /* WelcomeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeScreen.h; sourceTree = "<group>"; };
 		41A374E7168B911400EB44B2 /* WelcomeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeScreen.m; sourceTree = "<group>"; };
 		41A374E9168BAC5100EB44B2 /* randomize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = randomize.png; sourceTree = "<group>"; };
@@ -345,6 +348,15 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		41A2BFD116ADFBE8008A39EC /* Recent Activity */ = {
+			isa = PBXGroup;
+			children = (
+				41A2BFCD16ADFBE3008A39EC /* RecentActivityScreen.h */,
+				41A2BFCE16ADFBE3008A39EC /* RecentActivityScreen.m */,
+			);
+			name = "Recent Activity";
+			sourceTree = "<group>";
+		};
 		41C19F61169B93CA00A4E7A5 /* Profile Slider Bar */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +408,8 @@
 				41A374E7168B911400EB44B2 /* WelcomeScreen.m */,
 				41DA1F1F168F6D57003154B2 /* EditInfoScreen.h */,
 				41DA1F20168F6D57003154B2 /* EditInfoScreen.m */,
+				4107A6621692A07C00E973A3 /* AutoCompScreen.h */,
+				4107A6631692A07C00E973A3 /* AutoCompScreen.m */,
 			);
 			name = Registering;
 			sourceTree = "<group>";
@@ -495,13 +509,12 @@
 				9C21AF7B14E4625700DB003E /* LoginScreen.m */,
 				4192E777168665BE00DE983D /* MenuScreen.h */,
 				4192E778168665BE00DE983D /* MenuScreen.m */,
-				4107A6621692A07C00E973A3 /* AutoCompScreen.h */,
-				4107A6631692A07C00E973A3 /* AutoCompScreen.m */,
 				41D48A8716A1AD2C0018D4C4 /* Registering */,
 				41D48A8816A1AD450018D4C4 /* People List */,
 				41C60FB116A4897B00541C3D /* Randomize */,
 				41C60FBD16A4D7E000541C3D /* Most Touchable */,
 				4127EAB116A61A6D00624B6F /* Settings */,
+				41A2BFD116ADFBE8008A39EC /* Recent Activity */,
 				9C21AF5B14E4581900DB003E /* PhotoScreen.h */,
 				9C21AF5C14E4581900DB003E /* PhotoScreen.m */,
 			);
@@ -685,6 +698,7 @@
 				41C60FBC16A4D7D600541C3D /* MostTouchableScreen.m in Sources */,
 				4127EAB416A61CA500624B6F /* SettingsScreen.m in Sources */,
 				41B293D316AA1D9100066EC0 /* InfoSettingsScreen.m in Sources */,
+				41A2BFCF16ADFBE3008A39EC /* RecentActivityScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

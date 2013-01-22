@@ -19,6 +19,7 @@
 @property IBOutlet UILabel *recentActivityLabel;
 @property IBOutlet UILabel *statisticsLabel;
 @property IBOutlet UILabel *settingsLabel;
+@property NSString* username;
 
 @property IBOutlet UIButton *peopleBtn;
 @property (strong, nonatomic) IBOutlet UIButton *randomizeBtn;
@@ -27,6 +28,8 @@
 - (IBAction)mostTouchableTapped:(id)sender;
 - (IBAction)profileBtnTapped:(id)sender;
 - (IBAction)settingsBtnTapped:(id)sender;
+- (IBAction)recentActivityBtnTapped:(id)sender;
+- (IBAction)statisticsBtnTapped:(id)sender;
 
 
 @end

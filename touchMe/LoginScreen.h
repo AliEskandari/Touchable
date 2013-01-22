@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "EditInfoScreen.h"
 #import "WelcomeScreen.h"
+#import "MenuScreen.h"
 
 @interface LoginScreen : UIViewController <DoneRegisteringDelegate>
 {
