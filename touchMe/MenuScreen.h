@@ -19,7 +19,6 @@
 @property IBOutlet UILabel *recentActivityLabel;
 @property IBOutlet UILabel *statisticsLabel;
 @property IBOutlet UILabel *settingsLabel;
-@property NSString* username;
 
 @property IBOutlet UIButton *peopleBtn;
 @property (strong, nonatomic) IBOutlet UIButton *randomizeBtn;

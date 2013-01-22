@@ -92,10 +92,6 @@
 		WelcomeScreen* welcomeScreen = segue.destinationViewController;
 		welcomeScreen.doneRegisteringDelegate = self;
 	}
-	if ([@"LoggedIn" compare:segue.identifier] == NSOrderedSame) {
-		MenuScreen *menuScreen = segue.destinationViewController;
-		menuScreen.username = sender;
-	}
 }
 
 
