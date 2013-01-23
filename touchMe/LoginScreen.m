@@ -50,6 +50,9 @@
 		[UIAlertView error:@"Enter username and password over 4 chars each."];
 		return;
 	}
+	
+	// ****DO NOT DELETE COMMENTED OUT BELOW*****
+	
 	//salt the password
 	/* NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", fldPassword.text, kSalt];
 	//prepare the hashed storage
@@ -72,9 +75,7 @@
 		NSDictionary* res = [[json objectForKey:@"result"] objectAtIndex:0];
 		if ([json objectForKey:@"error"]==nil && [[res objectForKey:@"IdUser"] intValue]>0) {
 			[[API sharedInstance] setUser: res];
-			[self performSegueWithIdentifier:@"LoggedIn" sender:nil];
-			//show message to the user
-			[[[UIAlertView alloc] initWithTitle:@"Logged in" message:[NSString stringWithFormat:@"Welcome %@",[res objectForKey:@"username"]] delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil] show];
+			[self performSegueWithIdentifier:@"LoggedIn" sender:[res objectForKey:@"username"]];
 		} else {
 			//error
 			[UIAlertView error:[json objectForKey:@"error"]];
@@ -86,7 +87,7 @@
 	[self performSegueWithIdentifier:@"ShowWelcome" sender:nil];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSString*)sender{
 	if ([@"ShowWelcome" compare:segue.identifier] == NSOrderedSame) {
 		WelcomeScreen* welcomeScreen = segue.destinationViewController;
 		welcomeScreen.doneRegisteringDelegate = self;

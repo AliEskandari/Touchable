@@ -49,6 +49,13 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)recentActivityBtnTapped:(id)sender {
+	[self performSegueWithIdentifier:@"ShowRecentActivity" sender:nil];
+}
+
+- (IBAction)statisticsBtnTapped:(id)sender {
+}
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];

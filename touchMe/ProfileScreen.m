@@ -55,7 +55,7 @@
     sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 530, 140, 30)];
     schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 555, 140, 30)];
     locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 580, 140, 30)];
-
+	
 	[profileView addSubview:ageLabel];
 	[profileView addSubview:sexLabel];
 	[profileView addSubview:schoolLabel];
@@ -67,7 +67,7 @@
     locationLabel.text = @"location";
     
     ageLabel.textColor =
-    sexLabel.textColor = 
+    sexLabel.textColor =
     schoolLabel.textColor =
     locationLabel.textColor = [UIColor colorWithRed:255.0/255.0 green:84.0/255.0 blue:25.0/255.0 alpha:1.0];
     
@@ -218,16 +218,13 @@
 }
 
 -(IBAction)btnTouchDontTouchTapped:(UIButton *)sender{
+	sender.enabled = FALSE;
 	if (sender.tag) {
-		sender.enabled = FALSE;
 		dontTouchMe.enabled = TRUE;
 		[likes setValue:((touchCnt + 1) /(touchCnt + 1 + dontCnt)) animated:YES];
-
 	} else {
-		sender.enabled = FALSE;
 		touchMe.enabled = TRUE;
 		[likes setValue:(touchCnt/(touchCnt + 1 + dontCnt)) animated:YES];
-
 	}
 }
 
@@ -235,10 +232,10 @@
 	if (!touchMe.enabled || !dontTouchMe.enabled){
 		NSString *update_field = (!touchMe.enabled) ? @"touch_cnt": @"dont_cnt";
 		API* api = [API sharedInstance];
-		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command",update_field, @"field", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json){}];
-		[super viewWillDisappear:animated];
+		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", update_field, @"field", IdUser, @"SubjectId", [[api user] objectForKey:@"IdUser"], @"JudgeId", nil] onCompletion:^(NSDictionary *json){
+			[super viewWillDisappear:animated];
+		}];
 	}
 }
-
 
 @end

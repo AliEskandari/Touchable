@@ -29,6 +29,8 @@
 - (IBAction)mostTouchableTapped:(id)sender;
 - (IBAction)profileBtnTapped:(id)sender;
 - (IBAction)settingsBtnTapped:(id)sender;
+- (IBAction)recentActivityBtnTapped:(id)sender;
+- (IBAction)statisticsBtnTapped:(id)sender;
 
 
 @end

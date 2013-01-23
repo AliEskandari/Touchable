@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *thumbView;
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *numTouchMeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *timeStampLabel;
 
 @end
