@@ -19,6 +19,8 @@
 @property IBOutlet UILabel *recentActivityLabel;
 @property IBOutlet UILabel *statisticsLabel;
 @property IBOutlet UILabel *settingsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *logInLabel;
+@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 
 @property IBOutlet UIButton *peopleBtn;
 @property (strong, nonatomic) IBOutlet UIButton *randomizeBtn;
