@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterScreen.h"
 
 @interface FilterNavController : UINavigationController
 
 @property NSMutableArray* filterList;
+@property id filterScreenDismissedDelegate;
 
 @end

@@ -20,7 +20,8 @@
 //3 define the thumb view interface
 @interface PhotoView : UIButton
 @property (assign, nonatomic) id<PhotoViewDelegate> delegate;
-@property (strong, nonatomic) NSNumber *IdUser;
+@property (strong, nonatomic) NSNumber *ProfileId;
+@property NSNumber* interactionType;
 
 -(id)initWithIndex:(int)i andData:(NSDictionary*)data;
 

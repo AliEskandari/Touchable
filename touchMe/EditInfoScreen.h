@@ -52,16 +52,16 @@
 @property (strong, nonatomic) NSMutableDictionary *enteredInfo;
 @property (assign, nonatomic) NSData* userPhoto;
 
--(void)autoCompScreenDismissed:(NSString*)string tag:(NSInteger)tag;
+- (void)autoCompScreenDismissed:(NSString*)string tag:(NSInteger)tag;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
--(BOOL)textFieldShouldReturn:(UITextField *)textField;
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
--(IBAction)btnDoneTapped:(id)sender;
+- (IBAction)btnDoneTapped:(id)sender;
 @end

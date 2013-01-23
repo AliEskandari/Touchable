@@ -20,6 +20,7 @@
 @synthesize tableView;
 @synthesize filterPicker;
 @synthesize filterList;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +40,7 @@
 	
 	FilterNavController *filterNav = (FilterNavController*) self.navigationController;
 	filterList = filterNav.filterList;
+	delegate = filterNav.filterScreenDismissedDelegate;
 	if (filterList == nil) filterList = [[NSMutableArray alloc] init];
 	
 	// Setting up navigation bar
@@ -87,6 +89,9 @@
 	[self updateFilterList];
 	
 	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"setFilters", @"command", filterList, @"filterList", [[API sharedInstance].user objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
+		if ([delegate respondsToSelector:@selector(filterScreenDismissed)]) {
+			[delegate filterScreenDismissed];
+		}
 		[super viewWillDisappear:animated];
 	}];
 }
@@ -233,22 +238,10 @@
 	
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 50;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)aTableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -260,7 +253,6 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
-
 
 #pragma mark - Table view delegate
 
@@ -292,8 +284,6 @@
 		[tableView endUpdates];
 	}
 }
-
-
 
 #pragma mark - My methods
 

@@ -31,13 +31,22 @@
 	float denominator, ratio;
 }
 
-@synthesize IdUser;
+@synthesize ProfileId;
+@synthesize interactionType;
 @synthesize profData;
 @synthesize aboutMeLabel;
 @synthesize aboutMeTextLabel;
+@synthesize photoView;
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
+	
+	if (photoView) {
+		ProfileId = photoView.ProfileId;
+		interactionType = photoView.interactionType;
+	}
+	
+	if ([interactionType isEqual:(id)[NSNull null]]) interactionType = 0;
 	
 	profileView = (UIScrollView *)self.view;
     profileView.contentSize=CGSizeMake(320,960);
@@ -50,7 +59,6 @@
 	aboutMeTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 415, 240, 65)];
     
     //initialize age sex school and location
-    
     ageLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 505, 140, 30)];
     sexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 530, 140, 30)];
     schoolLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 555, 140, 30)];
@@ -112,13 +120,23 @@
     profileLocation.backgroundColor = [UIColor clearColor];
     
 	line = [[UILabel alloc] initWithFrame:CGRectMake(20, 620, 280, 1)];
-    
     line.backgroundColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:43.0/255.0 alpha:1.0];
-    
 	[profileView addSubview:line];
 	
+	if (interactionType) {
+		switch ([interactionType integerValue]) {
+			case 1:
+				touchMe.enabled = NO;
+				break;
+			case 2:
+				dontTouchMe.enabled = NO;
+			default:
+				break;
+		}
+	}
+	
 	// load the big size photo and add to view
-	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:IdUser isThumb:NO];
+	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:ProfileId isThumb:NO];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 		//add it to the view
 		[proPic setImage:image];
@@ -192,12 +210,17 @@
 	API* api = [API sharedInstance];
 	
 	// get the selected photo's profile data
-	[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"getProfile", @"command", IdUser, @"IdUser", nil] onCompletion:^(NSDictionary *json) {
+	[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"getProfile", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", ProfileId, @"ProfileId", nil] onCompletion:^(NSDictionary *json) {
 		// show username in title
 		profData = [[json objectForKey:@"result"] objectAtIndex:0];
 		self.title = [profData objectForKey:@"username"];
+		
 		touchCnt = [[profData objectForKey:@"touch_cnt"] floatValue];
 		dontCnt = [[profData objectForKey:@"dont_cnt"] floatValue];
+		ratio = .5;
+		if ((denominator = (touchCnt + dontCnt)) != 0) ratio = touchCnt/denominator;
+		[likes setValue:ratio animated:YES];
+		
         profileAge.text = [NSString stringWithFormat:@"%d",[[profData objectForKey:@"age"] intValue]];
         profileSex.text = [profData objectForKey:@"sex"];
         profileSchool.text = [profData objectForKey:@"school"];
@@ -208,11 +231,9 @@
 		if ((aboutMeTextLabel.text = [profData objectForKey:@"aboutMe"]).length == 0) aboutMeTextLabel.text = @"This person has not entered an About Me.";
 		[aboutMeTextLabel sizeToFit];
 		
-		ratio = .5;
-		if ((denominator = (touchCnt + dontCnt)) != 0) ratio = touchCnt/denominator;
-		[likes setValue:ratio animated:YES];
 	}];
 }
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
@@ -230,9 +251,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
 	if (!touchMe.enabled || !dontTouchMe.enabled){
-		NSString *update_field = (!touchMe.enabled) ? @"touch_cnt": @"dont_cnt";
+		NSInteger updateType = (!touchMe.enabled) ? 1 : 2; // 1 = "touch me" : 2 = "dont touch me"
 		API* api = [API sharedInstance];
-		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", update_field, @"field", IdUser, @"SubjectId", [[api user] objectForKey:@"IdUser"], @"JudgeId", nil] onCompletion:^(NSDictionary *json){
+		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", [NSNumber numberWithInteger:updateType], @"interactionType", ProfileId, @"subjectId", [[api user] objectForKey:@"IdUser"], @"judgeId", nil] onCompletion:^(NSDictionary *json){
+			interactionType = [NSNumber numberWithInteger:updateType];
 			[super viewWillDisappear:animated];
 		}];
 	}

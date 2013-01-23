@@ -33,7 +33,7 @@
 	self.tableView.delegate = self;
 	
 	// Pull profile data of recent interactions
-	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"recentActivity", @"command", nil] onCompletion:^(NSDictionary *json) {
+	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"recentActivity", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
 		if (![json objectForKey:@"error"]) {
 			displayArray = [json objectForKey:@"result"];
 			[self.tableView reloadData];
@@ -41,6 +41,10 @@
 			[UIAlertView error:@"Database connection failed"];
 		}
 	}];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,10 +83,10 @@
 	
 	cell.backgroundColor = [UIColor colorWithRed:(227.0/255.0) green:(227.0/255.0) blue:(227.0/255.0) alpha:1];
 	
-	ProfileCell *profileCell = (ProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
+	ProfileCell *profileCell = (ProfileCell*) cell;
 	
-	NSInteger IdUser = [[displayArray[indexPath.row] objectForKey:@"SubjectId"] integerValue];
-	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:IdUser] isThumb:YES];
+	NSInteger ProfileId = [[displayArray[indexPath.row] objectForKey:@"subjectId"] integerValue];
+	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:ProfileId] isThumb:YES];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 		[profileCell.thumbView setImage:image];
 		profileCell.thumbView.contentMode = UIViewContentModeScaleAspectFit;
@@ -90,7 +94,7 @@
 	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:imageOperation];
 	
-	profileCell.usernameLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:12];
+	profileCell.usernameLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:14];
 	profileCell.timeStampLabel.font = [UIFont fontWithName:@"Segoe WP Black" size:16];
 	
 	profileCell.usernameLabel.text = [displayArray[indexPath.row] objectForKey:@"username"];
@@ -101,13 +105,14 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[aTableView deselectRowAtIndexPath:indexPath animated:NO];
-	[self performSegueWithIdentifier:@"ShowProfile" sender:[displayArray[indexPath.row] objectForKey:@"IdUser"]];
+	[self performSegueWithIdentifier:@"ShowProfile" sender:displayArray[indexPath.row]];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)sender {
     if ([@"ShowProfile" compare: segue.identifier]==NSOrderedSame) {
         ProfileScreen* ProfileScreen = segue.destinationViewController;
-		ProfileScreen.IdUser = sender;
+		ProfileScreen.ProfileId = [sender objectForKey:@"subjectId"];
+		ProfileScreen.interactionType = [sender objectForKey:@"type"];
     }
 }
 

@@ -12,10 +12,10 @@
 #import "FilterNavController.h"
 #import "FilterScreen.h"
 
-@interface PeopleScreen : UIViewController <PhotoViewDelegate, UIScrollViewDelegate> {
+@interface PeopleScreen : UIViewController <PhotoViewDelegate, UIScrollViewDelegate, FilterScreenDismissedDelegate> {
     IBOutlet UIBarButtonItem* btnFilter;
     IBOutlet UIScrollView* listView;
 }
 - (IBAction)btnFilterTapped:(id)sender;
-
+- (void)filterScreenDismissed;
 @end

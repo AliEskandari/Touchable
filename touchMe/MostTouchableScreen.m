@@ -76,8 +76,8 @@
 		profileCell = [[ProfileCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
 	}
 	
-	NSInteger IdUser = [[displayArray[indexPath.row] objectForKey:@"IdUser"] integerValue];
-	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:IdUser] isThumb:YES];
+	NSInteger ProfileId = [[displayArray[indexPath.row] objectForKey:@"IdUser"] integerValue];
+	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:ProfileId] isThumb:YES];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 		[profileCell.thumbView setImage:image];
 		profileCell.thumbView.contentMode = UIViewContentModeScaleAspectFit;
@@ -129,7 +129,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     if ([@"ShowProfile" compare: segue.identifier]==NSOrderedSame) {
         ProfileScreen* ProfileScreen = segue.destinationViewController;
-		ProfileScreen.IdUser = sender;
+		ProfileScreen.ProfileId = sender;
     }
 }
 

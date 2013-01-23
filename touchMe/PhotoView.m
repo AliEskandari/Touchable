@@ -5,7 +5,8 @@
 @implementation PhotoView
 
 @synthesize delegate;
-@synthesize IdUser;
+@synthesize ProfileId;
+@synthesize interactionType;
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -25,7 +26,8 @@
         self.frame = CGRectMake(1.5*kPadding+col*(kThumbSide+kPadding), 1.5*kPadding+row*(kThumbSide+kPadding), kThumbSide, kThumbSide);
         self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 		
-		self.IdUser = [data objectForKey:@"IdUser"];
+		self.ProfileId = [data objectForKey:@"IdUser"];
+		self.interactionType = [data objectForKey:@"type"];
 		
         //add the photo caption
     /*    
@@ -43,7 +45,7 @@
 		
 		//load the image
 		API* api = [API sharedInstance];
-		NSURL* imageURL = [api urlForImageWithId:[NSNumber numberWithInt: [IdUser intValue]] isThumb:YES];
+		NSURL* imageURL = [api urlForImageWithId:[NSNumber numberWithInt: [ProfileId intValue]] isThumb:YES];
 		AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 			//create an image view, add it to the view
 			UIImageView* thumbView = [[UIImageView alloc] initWithImage: image];

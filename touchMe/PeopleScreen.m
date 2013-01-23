@@ -20,6 +20,7 @@
 
 @implementation PeopleScreen {
 	NSMutableArray *filters;
+	NSMutableArray* streamData;
 }
 
 #pragma mark - View lifecycle
@@ -27,11 +28,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = btnFilter;
-	listView.canCancelContentTouches = YES;
-}
-
--(void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
 	[self refreshStream];
 }
 
@@ -44,6 +40,7 @@
     //just call the "stream" command from the web API
     [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"stream", @"command",[[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
 		//got stream
+		streamData = [NSMutableArray arrayWithArray:[json objectForKey:@"result"]];
 		[self showStream:[json objectForKey:@"result"]];
 		filters = [json objectForKey:@"filters"];
 	}];
@@ -76,22 +73,28 @@
 	 it was initialized in PhotoView.m.
 	*/
 	
-    [self performSegueWithIdentifier:@"ShowPhoto" sender:sender];
+    [self performSegueWithIdentifier:@"ShowProfile" sender:sender];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(PhotoView *)sender {
-    if ([@"ShowPhoto" compare: segue.identifier]==NSOrderedSame) {
-        ProfileScreen* ProfileScreen = segue.destinationViewController;
-		ProfileScreen.IdUser = sender.IdUser;
-    }
+    if ([@"ShowProfile" compare: segue.identifier]==NSOrderedSame) {
+        ProfileScreen* profileScreen = segue.destinationViewController;
+		profileScreen.photoView = sender;
+}
 	
 	if ([@"ShowFilter" compare: segue.identifier]==NSOrderedSame) {
 	FilterNavController *navigationController = segue.destinationViewController;
 		navigationController.filterList = [NSMutableArray arrayWithArray:filters];
+		navigationController.filterScreenDismissedDelegate = self;
     }
 }
 
-- (IBAction)btnFilterTapped:(id)sender {
+-(IBAction)btnFilterTapped:(id)sender {
 	[self performSegueWithIdentifier:@"ShowFilter" sender:nil];
 }
+
+-(void)filterScreenDismissed {
+	[self refreshStream];
+}
+
 @end

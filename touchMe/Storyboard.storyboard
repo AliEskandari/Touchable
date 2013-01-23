@@ -448,7 +448,7 @@
         <scene sceneID="8nR-go-vIt">
             <objects>
                 <tableViewController id="zir-vY-8Fp" customClass="RecentActivityScreen" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Flm-JS-yT2">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Flm-JS-yT2">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -472,7 +472,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="suq-Nj-tiP">
-                                            <rect key="frame" x="78" y="34" width="33" height="21"/>
+                                            <rect key="frame" x="78" y="34" width="202" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="1" green="0.32752623180000001" blue="0.097371122259999998" alpha="1" colorSpace="deviceRGB"/>
@@ -483,7 +483,6 @@
                                 </view>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
-                                    <outlet property="numTouchMeLabel" destination="suq-Nj-tiP" id="fMz-VB-ISd"/>
                                     <outlet property="thumbView" destination="B98-yH-wTC" id="xb4-97-IEe"/>
                                     <outlet property="timeStampLabel" destination="suq-Nj-tiP" id="aWT-kk-YVs"/>
                                     <outlet property="usernameLabel" destination="SG8-q5-WJh" id="hXd-ok-UEY"/>
@@ -815,7 +814,7 @@
                     <connections>
                         <outlet property="btnFilter" destination="Snj-CF-hWB" id="UuH-Ns-0Vj"/>
                         <outlet property="listView" destination="oWv-cr-Nzf" id="kBI-h3-Xhc"/>
-                        <segue destination="LbA-iv-5eH" kind="push" identifier="ShowPhoto" id="xhj-Zp-1ey"/>
+                        <segue destination="LbA-iv-5eH" kind="push" identifier="ShowProfile" id="xhj-Zp-1ey"/>
                         <segue destination="8ZB-fl-cqW" kind="modal" identifier="ShowFilter" modalTransitionStyle="flipHorizontal" id="Seo-Qn-YPV"/>
                     </connections>
                 </viewController>
@@ -1217,6 +1216,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="1e4-3A-aq1"/>
-        <segue reference="b8W-SM-mgB"/>
+        <segue reference="xhj-Zp-1ey"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 #import "RandomProfileScreen.h"
 
 @interface RandomProfileScreen () {
-	NSInteger IdUser;
+	NSInteger ProfileId;
 }
 
 @end
@@ -49,7 +49,7 @@
 - (IBAction)btnTouchDontTouchTapped:(UIButton*)sender {
 		NSString *update_field = (!sender.tag) ? @"touch_cnt": @"dont_cnt";
 		API* api = [API sharedInstance];
-		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", update_field, @"field", [NSNumber numberWithInteger:IdUser], @"IdUser", nil] onCompletion:^(NSDictionary *json){
+		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", update_field, @"field", [NSNumber numberWithInteger:ProfileId], @"IdUser", nil] onCompletion:^(NSDictionary *json){
 			[self showRandomProfile];
 		}];
 }
@@ -59,10 +59,10 @@
 	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"random", @"command", nil] onCompletion:^(NSDictionary *json) {
 		if (![json objectForKey:@"error"]) {
 			NSDictionary *result= [json objectForKey:@"result"][0];
-			IdUser = [[result objectForKey:@"IdUser"] integerValue];
+			ProfileId = [[result objectForKey:@"IdUser"] integerValue];
 			self.title = [result objectForKey:@"username"];
 			
-			NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:IdUser] isThumb:NO];
+			NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:ProfileId] isThumb:NO];
 			AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 				//add it to the view
 				[proPic setImage:image];
