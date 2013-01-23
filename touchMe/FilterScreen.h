@@ -17,6 +17,10 @@
 #import "FilterNavController.h"
 #import "API.h"
 
+@protocol FilterScreenDismissedDelegate <NSObject>
+-(void) filterScreenDismissed;
+@end
+
 @interface FilterScreen : UIViewController <MyPickerViewDelegate, AutoCompScreenDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backBtn;
@@ -24,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addFilterBtn;
 @property (strong, nonatomic) MyPickerView* filterPicker;
 @property (strong, nonatomic) NSMutableArray* filterList;
+@property (assign, nonatomic) id<FilterScreenDismissedDelegate> delegate;
 
 - (IBAction)backBtnTapped:(id)sender;
 - (IBAction)addFilterBtnTapped:(id)sender;

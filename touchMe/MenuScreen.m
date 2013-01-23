@@ -61,7 +61,6 @@
 	[super viewDidLoad];
 	self.navigationItem.hidesBackButton = YES;
     
-    
 	peopleLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
     randomizeLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
     mostTouchableLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
@@ -100,7 +99,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     if ([@"ShowMyProfile" compare: segue.identifier]==NSOrderedSame) {
         ProfileScreen* ProfileScreen = segue.destinationViewController;
-		ProfileScreen.IdUser = sender;
+		ProfileScreen.ProfileId = sender;
     }
 }
 
