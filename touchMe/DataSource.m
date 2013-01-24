@@ -38,7 +38,14 @@
 				  @"New Mexico",@"New York",@"North Carolina",@"North Dakota",@"Ohio",@"Oklahoma",@"Oregon",@"Pennsylvania",@"Rhode Island",@"South Carolina",
 				  @"South Dakota",@"Tennessee",@"Texas",@"Utah",@"Vermont",@"Virginia",@"Washington",@"West Virginia",@"Wisconsin",@"Wyoming",nil];
 		
-		countries = [[NSMutableArray alloc] initWithObjects:@"United States", @"Canada",nil];
+		countries = [NSMutableArray arrayWithCapacity: [[NSLocale ISOCountryCodes] count]];
+        
+        for (NSString *countryCode in [NSLocale ISOCountryCodes])
+        {
+            NSString *identifier = [NSLocale localeIdentifierFromComponents: [NSDictionary dictionaryWithObject: countryCode forKey: NSLocaleCountryCode]];
+            NSString *country = [[NSLocale currentLocale] displayNameForKey: NSLocaleIdentifier value: identifier];
+            [countries addObject: country];
+        }
 		
 		sexes = [[NSMutableArray alloc] initWithObjects:@"Male",@"Female",nil];
 		
