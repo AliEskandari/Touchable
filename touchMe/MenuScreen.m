@@ -23,6 +23,8 @@
 @synthesize recentActivityLabel;
 @synthesize statisticsLabel;
 @synthesize settingsLabel;
+@synthesize logInLabel;
+@synthesize logOutButton;
 
 -(IBAction)peopleBtnTapped:(id)sender{
 	[self performSegueWithIdentifier:@"ShowPeople" sender:nil];
@@ -42,6 +44,9 @@
 
 - (IBAction)settingsBtnTapped:(id)sender {
 	[self performSegueWithIdentifier:@"ShowSettings" sender:nil];
+}
+- (IBAction)logOutButtonTapped:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)recentActivityBtnTapped:(id)sender {
@@ -63,6 +68,9 @@
     recentActivityLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
     statisticsLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
     settingsLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:14];
+    logInLabel.font = [UIFont fontWithName:@"Segoe WP Light" size:12];
+    
+    logInLabel.text = [NSString stringWithFormat:@"Logged in as %@",[[[API sharedInstance] user] objectForKey:@"username"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +90,8 @@
     [self setStatisticsLabel:nil];
     [self setSettingsLabel:nil];
 	[self setRandomizeBtn:nil];
+    [self setLogInLabel:nil];
+    [self setLogOutButton:nil];
 	[super viewDidUnload];
 }
 
