@@ -12,6 +12,7 @@
 #import "API.h"
 
 @interface MenuScreen : UIViewController
+
 @property IBOutlet UILabel *peopleLabel;
 @property IBOutlet UILabel *randomizeLabel;
 @property IBOutlet UILabel *mostTouchableLabel;
@@ -19,18 +20,16 @@
 @property IBOutlet UILabel *recentActivityLabel;
 @property IBOutlet UILabel *statisticsLabel;
 @property IBOutlet UILabel *settingsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *logInLabel;
-@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
+@property IBOutlet UIButton *logoutBtn;
 
-@property IBOutlet UIButton *peopleBtn;
-@property (strong, nonatomic) IBOutlet UIButton *randomizeBtn;
--(IBAction)peopleBtnTapped:(id)sender;
+
+- (IBAction)peopleBtnTapped:(id)sender;
 - (IBAction)randomizeBtnTapped:(id)sender;
 - (IBAction)mostTouchableTapped:(id)sender;
 - (IBAction)profileBtnTapped:(id)sender;
 - (IBAction)settingsBtnTapped:(id)sender;
 - (IBAction)recentActivityBtnTapped:(id)sender;
 - (IBAction)statisticsBtnTapped:(id)sender;
-
+- (IBAction)logoutBtnTapped:(id)sender;
 
 @end

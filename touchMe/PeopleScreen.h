@@ -19,5 +19,5 @@
 }
 - (IBAction)btnFilterTapped:(id)sender;
 - (void)filterScreenDismissed;
-- (void) didInteractionType:(NSInteger)type atIndex:(NSInteger)index;
+- (void) didInteractionType:(NSNumber*)type atIndex:(NSInteger)index;
 @end

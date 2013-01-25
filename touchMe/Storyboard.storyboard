@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qVx-xu-zIz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qVx-xu-zIz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -163,39 +163,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x8y-y0-tnP">
-                                <rect key="frame" x="0.0" y="395" width="319" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="AtR-NU-Vmk">
+                                <rect key="frame" x="80" y="390" width="180" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YA2-Ih-x8X">
-                                <rect key="frame" x="82" y="387" width="175" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title=" ">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AtR-NU-Vmk">
-                                <rect key="frame" x="73" y="386" width="175" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title=" ">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logOutButtonTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="nUN-ni-hCK"/>
-                                    <segue destination="Tap-8t-COH" kind="push" identifier="Logout" id="Ko2-Iu-6YM"/>
+                                    <action selector="logoutBtnTapped:" destination="WRK-9F-vgS" eventType="touchUpInside" id="5fV-Wr-dtr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -204,13 +184,10 @@
                     <navigationItem key="navigationItem" title="Menu" id="Unv-2C-v7D"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="logInLabel" destination="x8y-y0-tnP" id="9sY-bp-EWg"/>
-                        <outlet property="logOutButton" destination="AtR-NU-Vmk" id="c3Z-Xy-8gc"/>
+                        <outlet property="logoutBtn" destination="AtR-NU-Vmk" id="Cks-aC-pf8"/>
                         <outlet property="mostTouchableLabel" destination="Mbn-Rt-Njt" id="fUi-AH-oXc"/>
-                        <outlet property="peopleBtn" destination="Boa-Xn-kR9" id="Zem-Wj-dHx"/>
                         <outlet property="peopleLabel" destination="fRP-hD-8ju" id="NFh-WP-4pm"/>
                         <outlet property="profileLabel" destination="Dpc-D3-40p" id="XcW-pE-Xzt"/>
-                        <outlet property="randomizeBtn" destination="ouA-XG-J5N" id="qjN-Nk-xfZ"/>
                         <outlet property="randomizeLabel" destination="YRq-F9-8MS" id="qah-Ni-VFc"/>
                         <outlet property="recentActivityLabel" destination="iHK-Cy-xgz" id="f1z-ye-U27"/>
                         <outlet property="settingsLabel" destination="DF7-mA-FeG" id="FtR-We-fAr"/>
@@ -426,6 +403,10 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="96x-wj-7Mn">
+                                                    <rect key="frame" x="60" y="5" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2eZ-S3-64G">
                                                     <rect key="frame" x="140" y="5" width="96" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1247,13 +1228,194 @@
         <image name="statistics.png" width="160" height="160"/>
         <image name="touch me.png" width="290" height="90"/>
     </resources>
+    <classes>
+        <class className="AboutMeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutMeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="AgeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AgeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="age1TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="age2TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AutoCompScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoCompScreen.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EditCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EditInfoScreen" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditInfoScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnDoneTapped:"/>
+                <relationship kind="outlet" name="btnDone" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="FilterNavController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterNavController.h"/>
+        </class>
+        <class className="FilterScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="addFilterBtnTapped:"/>
+                <relationship kind="action" name="backBtnTapped:"/>
+                <relationship kind="outlet" name="addFilterBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="backBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="InfoSettingsScreen" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoSettingsScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnDoneTapped:"/>
+                <relationship kind="outlet" name="btnDone" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="LoginScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnLoginTapped:"/>
+                <relationship kind="action" name="btnRegisterTapped:"/>
+                <relationship kind="outlet" name="fldPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="fldUsername" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MenuScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="logoutBtnTapped:"/>
+                <relationship kind="action" name="mostTouchableTapped:"/>
+                <relationship kind="action" name="peopleBtnTapped:"/>
+                <relationship kind="action" name="profileBtnTapped:"/>
+                <relationship kind="action" name="randomizeBtnTapped:"/>
+                <relationship kind="action" name="recentActivityBtnTapped:"/>
+                <relationship kind="action" name="settingsBtnTapped:"/>
+                <relationship kind="action" name="statisticsBtnTapped:"/>
+                <relationship kind="outlet" name="logoutBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mostTouchableLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="peopleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="recentActivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="settingsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statisticsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MostTouchableScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MostTouchableScreen.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PeopleScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnFilterTapped:"/>
+                <relationship kind="outlet" name="btnFilter" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="listView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="ProPicView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProPicView.h"/>
+        </class>
+        <class className="ProfileCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="numRankLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numTouchMeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="proPicView" candidateClass="ProPicView"/>
+                <relationship kind="outlet" name="timeStampLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ProfileScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
+            </relationships>
+        </class>
+        <class className="RandomProfileScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomProfileScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnTouchDontTouchTapped:"/>
+                <relationship kind="outlet" name="dontBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="proPic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="touchMeBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RandomizeScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomizeScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="filtersBtnTapped:"/>
+                <relationship kind="action" name="randomizeBtnTapped:"/>
+                <relationship kind="outlet" name="changeFiltersBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="randomizeBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="randomizeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RecentActivityScreen" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentActivityScreen.h"/>
+        </class>
+        <class className="SegueCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SegueCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SettingsScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnChangePhotoTapped:"/>
+                <relationship kind="action" name="btnEditInfoTapped:"/>
+                <relationship kind="outlet" name="photoImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="SexCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SexCell.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentValueChanged:"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="WelcomeScreen" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeScreen.h"/>
+            <relationships>
+                <relationship kind="action" name="btnChangePhotoTapped:"/>
+                <relationship kind="action" name="btnEditInfoTapped:"/>
+                <relationship kind="outlet" name="btnCaption" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="btnChangePhoto" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="photoInstructions" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoRules" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ME9-Ih-bZj"/>
-        <segue reference="nDL-ut-4gO"/>
+        <segue reference="sqv-PL-hE2"/>
+        <segue reference="1e4-3A-aq1"/>
     </inferredMetricsTieBreakers>
 </document>
