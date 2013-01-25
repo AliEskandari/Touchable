@@ -11,11 +11,13 @@
 #import "UIAlertView+error.h"
 #import "FilterNavController.h"
 #import "FilterScreen.h"
+#import "ProfileScreen.h"
 
-@interface PeopleScreen : UIViewController <PhotoViewDelegate, UIScrollViewDelegate, FilterScreenDismissedDelegate> {
+@interface PeopleScreen : UIViewController <PhotoViewDelegate, UIScrollViewDelegate, FilterScreenDismissedDelegate, InteractionDelegate> {
     IBOutlet UIBarButtonItem* btnFilter;
     IBOutlet UIScrollView* listView;
 }
 - (IBAction)btnFilterTapped:(id)sender;
 - (void)filterScreenDismissed;
+- (void) didInteractionType:(NSInteger)type atIndex:(NSInteger)index;
 @end

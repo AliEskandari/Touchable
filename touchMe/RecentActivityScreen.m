@@ -9,7 +9,7 @@
 #import "RecentActivityScreen.h"
 
 @interface RecentActivityScreen () {
-	NSArray *displayArray;
+	NSMutableArray *displayArray;
 }
 
 @end
@@ -35,7 +35,7 @@
 	// Pull profile data of recent interactions
 	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"recentActivity", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
 		if (![json objectForKey:@"error"]) {
-			displayArray = [json objectForKey:@"result"];
+			displayArray = [NSMutableArray arrayWithArray:[json objectForKey:@"result"]];
 			[self.tableView reloadData];
 		} else {
 			[UIAlertView error:@"Database connection failed"];
@@ -88,8 +88,9 @@
 	NSInteger ProfileId = [[displayArray[indexPath.row] objectForKey:@"subjectId"] integerValue];
 	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:ProfileId] isThumb:YES];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
-		[profileCell.thumbView setImage:image];
-		profileCell.thumbView.contentMode = UIViewContentModeScaleAspectFit;
+		[profileCell.proPicView setImage:image];
+		[profileCell.proPicView setProPicFilterType:[displayArray[indexPath.row] objectForKey:@"type"]];
+		profileCell.proPicView.contentMode = UIViewContentModeScaleAspectFit;
 	}];
 	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:imageOperation];
@@ -105,15 +106,31 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[aTableView deselectRowAtIndexPath:indexPath animated:NO];
-	[self performSegueWithIdentifier:@"ShowProfile" sender:displayArray[indexPath.row]];
+	[self performSegueWithIdentifier:@"ShowProfile" sender:[NSNumber numberWithInteger:indexPath.row]];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)sender {
+#pragma mark My methods -
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     if ([@"ShowProfile" compare: segue.identifier]==NSOrderedSame) {
-        ProfileScreen* ProfileScreen = segue.destinationViewController;
-		ProfileScreen.ProfileId = [sender objectForKey:@"subjectId"];
-		ProfileScreen.interactionType = [sender objectForKey:@"type"];
+        ProfileScreen* profileScreen = segue.destinationViewController;
+		NSDictionary* cellData = displayArray[[sender integerValue]];
+		profileScreen.ProfileId = [cellData objectForKey:@"subjectId"];
+		profileScreen.interactionType = [cellData objectForKey:@"type"];
+		profileScreen.index = [sender integerValue];
+		profileScreen.interactionDelegate = self;
     }
+}
+
+- (void)didInteractionType:(NSInteger)type atIndex:(NSInteger)index {
+	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"recentActivity", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
+		if (![json objectForKey:@"error"]) {
+			displayArray = [NSMutableArray arrayWithArray:[json objectForKey:@"result"]];
+			[self.tableView reloadData];
+		} else {
+			[UIAlertView error:@"Database connection failed"];
+		}
+	}];
 }
 
 @end

@@ -2,11 +2,14 @@
 #import "PhotoView.h"
 #import "API.h"
 
-@implementation PhotoView
+@implementation PhotoView {
+}
 
 @synthesize delegate;
 @synthesize ProfileId;
 @synthesize interactionType;
+@synthesize index;
+@synthesize proPicView;
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -21,6 +24,7 @@
     if (self !=nil) {
         //initialize
 		
+		index = i;
         int row = i/4;
         int col = i % 4;
         self.frame = CGRectMake(1.5*kPadding+col*(kThumbSide+kPadding), 1.5*kPadding+row*(kThumbSide+kPadding), kThumbSide, kThumbSide);
@@ -30,15 +34,15 @@
 		self.interactionType = [data objectForKey:@"type"];
 		
         //add the photo caption
-    /*    
-		UILabel* caption = [[UILabel alloc] initWithFrame:CGRectMake(0, kThumbSide-16, kThumbSide, 16)];
-        caption.backgroundColor = [UIColor blackColor];
-        caption.textColor = [UIColor whiteColor];
-        caption.textAlignment = UITextAlignmentCenter;
-        caption.font = [UIFont systemFontOfSize:12];
-        caption.text = [NSString stringWithFormat:@"@%@",[data objectForKey:@"username"]];
-        [self addSubview: caption];
-	 */
+		/*
+		 UILabel* caption = [[UILabel alloc] initWithFrame:CGRectMake(0, kThumbSide-16, kThumbSide, 16)];
+		 caption.backgroundColor = [UIColor blackColor];
+		 caption.textColor = [UIColor whiteColor];
+		 caption.textAlignment = UITextAlignmentCenter;
+		 caption.font = [UIFont systemFontOfSize:12];
+		 caption.text = [NSString stringWithFormat:@"@%@",[data objectForKey:@"username"]];
+		 [self addSubview: caption];
+		 */
 		
 		//add touch event
 		[self addTarget:delegate action:@selector(didSelectPhoto:) forControlEvents:UIControlEventTouchUpInside];
@@ -48,10 +52,9 @@
 		NSURL* imageURL = [api urlForImageWithId:[NSNumber numberWithInt: [ProfileId intValue]] isThumb:YES];
 		AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 			//create an image view, add it to the view
-			UIImageView* thumbView = [[UIImageView alloc] initWithImage: image];
-            thumbView.frame = CGRectMake(0,0,kThumbSide,kThumbSide);
-            thumbView.contentMode = UIViewContentModeScaleAspectFit;
-			[self addSubview: thumbView];
+			proPicView = [[ProPicView alloc]initWithFrame:CGRectMake(0,0,kThumbSide,kThumbSide) Image:image filterType:interactionType];
+            proPicView.contentMode = UIViewContentModeScaleAspectFit;
+			[self addSubview: proPicView];
 		}];
 		NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 		[queue addOperation:imageOperation];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProPicView.h"
 
 //1 layout config
 #define kThumbSide 80
@@ -22,6 +23,8 @@
 @property (assign, nonatomic) id<PhotoViewDelegate> delegate;
 @property (strong, nonatomic) NSNumber *ProfileId;
 @property NSNumber* interactionType;
+@property NSInteger index;
+@property ProPicView* proPicView;
 
 -(id)initWithIndex:(int)i andData:(NSDictionary*)data;
 

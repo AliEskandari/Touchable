@@ -11,8 +11,9 @@
 #import "API.h"
 #import "UIAlertView+error.h"
 #import "ProfileScreen.h"
+#import "ProPicView.h"
 
-@interface MostTouchableScreen : UIViewController <UITableViewDataSource, UITableViewDelegate, UITabBarDelegate>
+@interface MostTouchableScreen : UIViewController <UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, InteractionDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITabBar *tabBar;
 @property NSDictionary *source;
@@ -21,5 +22,5 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item;
-
+- (void)didInteractionType:(NSInteger)type atIndex:(NSInteger)index;
 @end

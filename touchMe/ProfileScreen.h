@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PhotoView.h"
+#import "ProPicView.h"
+
+@protocol InteractionDelegate <NSObject>
+- (void)didInteractionType:(NSNumber*)type atIndex:(NSInteger)index;
+@end
 
 @interface ProfileScreen : UIViewController
 
 //action for when either button is pressed
 -(IBAction)btnTouchDontTouchTapped:(id)sender;
-@property (retain, nonatomic) NSNumber* ProfileId;
-@property (strong, nonatomic) __block NSMutableDictionary *profData;
-@property (strong, nonatomic) UILabel *aboutMeLabel, *aboutMeTextLabel;
-@property (retain, nonatomic) PhotoView *photoView;
-@property (retain, nonatomic) NSNumber* interactionType;
+@property (retain, nonatomic) NSNumber* ProfileId, *interactionType;
+@property NSInteger index;
+@property (strong, nonatomic) id<InteractionDelegate> interactionDelegate;
 
 @end

@@ -37,10 +37,10 @@
 	tableView.delegate = self;
 	
 	// Pull profile data of top 50 users
-	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"mostTouchable", @"command", nil] onCompletion:^(NSDictionary *json) {
+	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"mostTouchable", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
 		source = json;
 		if (![[json objectForKey:@"All"] objectForKey:@"error"]) {
-			displayArray = [[source objectForKey:@"All"] objectForKey:@"result"];
+			displayArray = [NSMutableArray arrayWithArray:[[source objectForKey:@"All"] objectForKey:@"result"]];
 			[tableView reloadData];
 		} else {
 			[UIAlertView error:@"Database connection failed"];
@@ -68,19 +68,36 @@
 	return [displayArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 	static NSString *CellIdentifier = @"ProfileCell";
 	ProfileCell* profileCell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (profileCell == nil) {
 		profileCell = [[ProfileCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
 	}
 	
+
+	return profileCell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UIView *selectionColor = [[UIView alloc] init];
+	selectionColor.backgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(51.0/255.0) blue:(21.0/255.0) alpha:1];
+	cell.selectedBackgroundView = selectionColor;
+	
+	cell.backgroundColor = [UIColor colorWithRed:(227.0/255.0) green:(227.0/255.0) blue:(227.0/255.0) alpha:1];
+	
+	ProfileCell *profileCell = (ProfileCell*) cell;
+	
+	[(UIImageView*)[profileCell.contentView viewWithTag:1] setImage:[UIImage imageNamed:@"touch filter.png"]];
+		
 	NSInteger ProfileId = [[displayArray[indexPath.row] objectForKey:@"IdUser"] integerValue];
 	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:[NSNumber numberWithInteger:ProfileId] isThumb:YES];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
-		[profileCell.thumbView setImage:image];
-		profileCell.thumbView.contentMode = UIViewContentModeScaleAspectFit;
+		[profileCell.proPicView setImage:image];
+		profileCell.proPicView.contentMode = UIViewContentModeScaleAspectFit;
+		[profileCell.proPicView setProPicFilterType:[displayArray[indexPath.row] objectForKey:@"type"]];
 	}];
 	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:imageOperation];
@@ -92,26 +109,13 @@
 	profileCell.numRankLabel.text =[NSString stringWithFormat:@"%d", indexPath.row + 1];
 	profileCell.usernameLabel.text = [displayArray[indexPath.row] objectForKey:@"username"];
 	profileCell.numTouchMeLabel.text = [displayArray[indexPath.row] objectForKey:@"touch_cnt"];
-	
-	return profileCell;
-	
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	UIView *selectionColor = [[UIView alloc] init];
-	selectionColor.backgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(51.0/255.0) blue:(21.0/255.0) alpha:1];
-	cell.selectedBackgroundView = selectionColor;
-	
-	cell.backgroundColor = [UIColor colorWithRed:(227.0/255.0) green:(227.0/255.0) blue:(227.0/255.0) alpha:1];
-	
 }
 
 #pragma mark Table View Delegate methods -
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[aTableView deselectRowAtIndexPath:indexPath animated:NO];
-	[self performSegueWithIdentifier:@"ShowProfile" sender:[displayArray[indexPath.row] objectForKey:@"IdUser"]];
+	[self performSegueWithIdentifier:@"ShowProfile" sender:[NSNumber numberWithInteger:indexPath.row]];
 }
 
 
@@ -119,18 +123,36 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
 	if (![[source objectForKey:item.title] objectForKey:@"error"]) {
-		displayArray = [[source objectForKey:item.title] objectForKey:@"result"];
+		displayArray = [NSMutableArray arrayWithArray:[[source objectForKey:item.title] objectForKey:@"result"]];
 		[tableView reloadData];
 	} else {
 		[UIAlertView error:@"Database connection failed"];
 	}
 }
 
+#pragma mark My methods -
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     if ([@"ShowProfile" compare: segue.identifier]==NSOrderedSame) {
-        ProfileScreen* ProfileScreen = segue.destinationViewController;
-		ProfileScreen.ProfileId = sender;
+        ProfileScreen* profileScreen = segue.destinationViewController;
+		NSDictionary* cellData = displayArray[[sender integerValue]];
+		profileScreen.ProfileId = [cellData objectForKey:@"IdUser"];
+		profileScreen.interactionType = [cellData objectForKey:@"type"];
+		profileScreen.index = [sender integerValue];
+		profileScreen.interactionDelegate = self;
     }
+}
+
+-(void)didInteractionType:(NSInteger)type atIndex:(NSInteger)index {
+	[[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"mostTouchable", @"command", [[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
+		source = json;
+		if (![[json objectForKey:@"All"] objectForKey:@"error"]) {
+			displayArray = [NSMutableArray arrayWithArray:[[source objectForKey:@"All"] objectForKey:@"result"]];
+			[tableView reloadData];
+		} else {
+			[UIAlertView error:@"Database connection failed"];
+		}
+	}];
 }
 
 @end

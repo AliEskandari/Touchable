@@ -12,6 +12,6 @@
 #import "ProfileCell.h"
 #import "ProfileScreen.h"
 
-@interface RecentActivityScreen : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-
+@interface RecentActivityScreen : UITableViewController <UITableViewDataSource, UITableViewDelegate, InteractionDelegate>
+-(void)didInteractionType:(NSInteger)type atIndex:(NSInteger)index;
 @end

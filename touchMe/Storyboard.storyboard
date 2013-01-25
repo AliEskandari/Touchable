@@ -389,12 +389,8 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="96x-wj-7Mn">
-                                                    <rect key="frame" x="60" y="5" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2eZ-S3-64G">
-                                                    <rect key="frame" x="139" y="5" width="96" height="21"/>
+                                                    <rect key="frame" x="140" y="5" width="96" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -407,6 +403,10 @@
                                                     <color key="textColor" red="1" green="0.32752623180000001" blue="0.097371122259999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="OIA-OF-k8u" customClass="ProPicView">
+                                                    <rect key="frame" x="60" y="5" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -414,7 +414,7 @@
                                         <connections>
                                             <outlet property="numRankLabel" destination="Eb6-QF-HN5" id="oX3-PG-UHY"/>
                                             <outlet property="numTouchMeLabel" destination="kwR-Lg-wm6" id="bTK-9N-ShO"/>
-                                            <outlet property="thumbView" destination="96x-wj-7Mn" id="KyS-3A-CKG"/>
+                                            <outlet property="proPicView" destination="OIA-OF-k8u" id="ibC-Su-iSv"/>
                                             <outlet property="usernameLabel" destination="2eZ-S3-64G" id="jmg-wp-HpZ"/>
                                         </connections>
                                     </tableViewCell>
@@ -451,7 +451,8 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Flm-JS-yT2">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="60" id="VlB-Oo-6iB" customClass="ProfileCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="60"/>
@@ -460,7 +461,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="B98-yH-wTC">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="B98-yH-wTC" customClass="ProPicView">
                                             <rect key="frame" x="20" y="5" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -483,7 +484,7 @@
                                 </view>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
-                                    <outlet property="thumbView" destination="B98-yH-wTC" id="xb4-97-IEe"/>
+                                    <outlet property="proPicView" destination="B98-yH-wTC" id="AnJ-8P-EnK"/>
                                     <outlet property="timeStampLabel" destination="suq-Nj-tiP" id="aWT-kk-YVs"/>
                                     <outlet property="usernameLabel" destination="SG8-q5-WJh" id="hXd-ok-UEY"/>
                                 </connections>
@@ -1215,7 +1216,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1e4-3A-aq1"/>
-        <segue reference="xhj-Zp-1ey"/>
+        <segue reference="ME9-Ih-bZj"/>
+        <segue reference="nDL-ut-4gO"/>
     </inferredMetricsTieBreakers>
 </document>

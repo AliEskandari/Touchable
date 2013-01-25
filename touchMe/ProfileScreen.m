@@ -13,12 +13,14 @@
 @implementation ProfileScreen
 {
 	IBOutlet UIScrollView* profileView;
+	__block NSMutableDictionary *profData;
 	UIButton* touchMe;
 	UIButton* dontTouchMe;
-	UIImageView* proPic;
+	ProPicView* proPicView;
 	UISlider *likes;
     UILabel *ageLabel;
     UILabel *sexLabel;
+	UILabel *aboutMeLabel, *aboutMeTextLabel;
     UILabel *schoolLabel;
     UILabel *locationLabel;
     UILabel *profileAge;
@@ -29,29 +31,26 @@
 	float touchCnt;
 	float dontCnt;
 	float denominator, ratio;
+	
+	BOOL didChangeMind, firstInteraction;
 }
 
 @synthesize ProfileId;
 @synthesize interactionType;
-@synthesize profData;
-@synthesize aboutMeLabel;
-@synthesize aboutMeTextLabel;
-@synthesize photoView;
+@synthesize index;
+@synthesize interactionDelegate;
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
 	
-	if (photoView) {
-		ProfileId = photoView.ProfileId;
-		interactionType = photoView.interactionType;
-	}
-	
 	if ([interactionType isEqual:(id)[NSNull null]]) interactionType = 0;
+	didChangeMind = NO;
+	firstInteraction = YES;
 	
 	profileView = (UIScrollView *)self.view;
     profileView.contentSize=CGSizeMake(320,960);
 	
-	proPic = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+	proPicView = [[ProPicView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
 	likes = [[UISlider alloc] initWithFrame:CGRectMake(5, 275, 290, 10)];
 	touchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	dontTouchMe = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -124,32 +123,29 @@
 	[profileView addSubview:line];
 	
 	if (interactionType) {
+		firstInteraction = NO;
 		switch ([interactionType integerValue]) {
-			case 1:
-				touchMe.enabled = NO;
-				break;
-			case 2:
-				dontTouchMe.enabled = NO;
-			default:
-				break;
+			case 1: touchMe.enabled = NO; break;
+			case 2: dontTouchMe.enabled = NO;
 		}
+		[proPicView setProPicFilterType:interactionType];
 	}
-	
+
 	// load the big size photo and add to view
 	NSURL* imageURL = [[API sharedInstance] urlForImageWithId:ProfileId isThumb:NO];
 	AFImageRequestOperation* imageOperation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:imageURL] success:^(UIImage *image) {
 		//add it to the view
-		[proPic setImage:image];
+		[proPicView setImage:image];
 	}];
 	NSOperationQueue* queue = [[NSOperationQueue alloc] init];
 	[queue addOperation:imageOperation];
 	
-	proPic.layer.shadowColor = [UIColor blackColor].CGColor;
-	proPic.layer.shadowOpacity = 0.3;
-	proPic.layer.shadowRadius = 5;
-	proPic.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
+	proPicView.layer.shadowColor = [UIColor blackColor].CGColor;
+	proPicView.layer.shadowOpacity = 0.3;
+	proPicView.layer.shadowRadius = 5;
+	proPicView.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
 	
-	[profileView addSubview:proPic];
+	[profileView addSubview:proPicView];
 	
 	// load slider bar onto profile pic
 	likes.minimumValue = 0;
@@ -163,7 +159,7 @@
     [likes setThumbImage:thumb forState:0];
     [likes setMaximumTrackImage:maxCap forState:0];
 	
-	[proPic addSubview:likes];
+	[proPicView addSubview:likes];
 	
 	// load uibuttons and add under profile pic
 	touchMe.frame = CGRectMake(10, 320, 145, 45);
@@ -205,6 +201,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark My methods -
+
 -(void)viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
 	API* api = [API sharedInstance];
@@ -234,27 +232,31 @@
 	}];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 -(IBAction)btnTouchDontTouchTapped:(UIButton *)sender{
 	sender.enabled = FALSE;
 	if (sender.tag) {
 		dontTouchMe.enabled = TRUE;
+		[proPicView setProPicFilterType:[NSNumber numberWithInteger:1]];
 		[likes setValue:((touchCnt + 1) /(touchCnt + 1 + dontCnt)) animated:YES];
+		if ([interactionType integerValue] == 2) didChangeMind = 1;
+		else didChangeMind = 0;
 	} else {
 		touchMe.enabled = TRUE;
+		[proPicView setProPicFilterType:[NSNumber numberWithInteger:2]];
 		[likes setValue:(touchCnt/(touchCnt + 1 + dontCnt)) animated:YES];
+		if ([interactionType integerValue] == 1) didChangeMind = 1;
+		else didChangeMind = 0;
 	}
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-	if (!touchMe.enabled || !dontTouchMe.enabled){
-		NSInteger updateType = (!touchMe.enabled) ? 1 : 2; // 1 = "touch me" : 2 = "dont touch me"
+	if ((firstInteraction || didChangeMind) && (!touchMe.enabled || !dontTouchMe.enabled)){
+		NSNumber *updateType = [NSNumber numberWithInteger:(!touchMe.enabled) ? 1 : 2]; // 1 = "touch me" : 2 = "dont touch me"
 		API* api = [API sharedInstance];
-		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", [NSNumber numberWithInteger:updateType], @"interactionType", ProfileId, @"subjectId", [[api user] objectForKey:@"IdUser"], @"judgeId", nil] onCompletion:^(NSDictionary *json){
-			interactionType = [NSNumber numberWithInteger:updateType];
+		[api commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"interaction", @"command", updateType, @"interactionType", ProfileId, @"subjectId", [[api user] objectForKey:@"IdUser"], @"judgeId", [NSNumber numberWithBool:didChangeMind], @"didChangeMind", nil] onCompletion:^(NSDictionary *json){
+			if ([interactionDelegate respondsToSelector:@selector(didInteractionType:atIndex:)]) {
+				[interactionDelegate didInteractionType:updateType atIndex:index];
+			}
 			[super viewWillDisappear:animated];
 		}];
 	}

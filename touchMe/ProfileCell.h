@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProPicView.h"
 
 @interface ProfileCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *numRankLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *thumbView;
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *numTouchMeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeStampLabel;
+@property (strong, nonatomic) IBOutlet ProPicView *proPicView;
 
 @end

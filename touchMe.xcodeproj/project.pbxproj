@@ -14,6 +14,13 @@
 		3487C69B1696462A00242079 /* loginbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6981696462A00242079 /* loginbtn.png */; };
 		3487C69C1696462A00242079 /* registerbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3487C6991696462A00242079 /* registerbtn.png */; };
 		4107A6641692A07C00E973A3 /* AutoCompScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4107A6631692A07C00E973A3 /* AutoCompScreen.m */; };
+		4113370D16B0E2E30065BDAC /* touch filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4113370716B0E2E30065BDAC /* touch filter@2x.png */; };
+		4113370E16B0E2E30065BDAC /* touch filter thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4113370816B0E2E30065BDAC /* touch filter thumb.png */; };
+		4113370F16B0E2E30065BDAC /* touch filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4113370916B0E2E30065BDAC /* touch filter.png */; };
+		4113371016B0E2E30065BDAC /* don't touch filter thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4113370A16B0E2E30065BDAC /* don't touch filter thumb.png */; };
+		4113371116B0E2E30065BDAC /* don't touch filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4113370B16B0E2E30065BDAC /* don't touch filter.png */; };
+		4113371216B0E2E30065BDAC /* don't touch filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4113370C16B0E2E30065BDAC /* don't touch filter@2x.png */; };
+		4113371516B0EF9F0065BDAC /* ProPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4113371416B0EF9F0065BDAC /* ProPicView.m */; };
 		4127EAB416A61CA500624B6F /* SettingsScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4127EAB316A61CA500624B6F /* SettingsScreen.m */; };
 		412819C3169BBBB9006B795C /* thumb4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 412819C2169BBBB9006B795C /* thumb4@2x.png */; };
 		412819C6169BBE82006B795C /* thumb4.png in Resources */ = {isa = PBXBuildFile; fileRef = 412819C5169BBE82006B795C /* thumb4.png */; };
@@ -101,6 +108,14 @@
 		3487C6991696462A00242079 /* registerbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbtn.png; sourceTree = "<group>"; };
 		4107A6621692A07C00E973A3 /* AutoCompScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompScreen.h; sourceTree = "<group>"; };
 		4107A6631692A07C00E973A3 /* AutoCompScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompScreen.m; sourceTree = "<group>"; };
+		4113370716B0E2E30065BDAC /* touch filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch filter@2x.png"; sourceTree = "<group>"; };
+		4113370816B0E2E30065BDAC /* touch filter thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch filter thumb.png"; sourceTree = "<group>"; };
+		4113370916B0E2E30065BDAC /* touch filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch filter.png"; sourceTree = "<group>"; };
+		4113370A16B0E2E30065BDAC /* don't touch filter thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "don't touch filter thumb.png"; sourceTree = "<group>"; };
+		4113370B16B0E2E30065BDAC /* don't touch filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "don't touch filter.png"; sourceTree = "<group>"; };
+		4113370C16B0E2E30065BDAC /* don't touch filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "don't touch filter@2x.png"; sourceTree = "<group>"; };
+		4113371316B0EF9F0065BDAC /* ProPicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProPicView.h; sourceTree = "<group>"; };
+		4113371416B0EF9F0065BDAC /* ProPicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProPicView.m; sourceTree = "<group>"; };
 		4127EAB216A61CA500624B6F /* SettingsScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsScreen.h; sourceTree = "<group>"; };
 		4127EAB316A61CA500624B6F /* SettingsScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsScreen.m; sourceTree = "<group>"; };
 		412819C2169BBBB9006B795C /* thumb4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumb4@2x.png"; sourceTree = "<group>"; };
@@ -244,6 +259,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4113370616B0E2810065BDAC /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				4113370816B0E2E30065BDAC /* touch filter thumb.png */,
+				4113370916B0E2E30065BDAC /* touch filter.png */,
+				4113370716B0E2E30065BDAC /* touch filter@2x.png */,
+				4113370A16B0E2E30065BDAC /* don't touch filter thumb.png */,
+				4113370B16B0E2E30065BDAC /* don't touch filter.png */,
+				4113370C16B0E2E30065BDAC /* don't touch filter@2x.png */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
 		411441E4168CA5580061B5A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +295,7 @@
 		412E7E3C1688A2B200D69F86 /* App Images */ = {
 			isa = PBXGroup;
 			children = (
+				4113370616B0E2810065BDAC /* Filters */,
 				414E7D41168BD01B00EF1A72 /* Buttons */,
 				412E7E461688BFC900D69F86 /* Icons */,
 				41C19F61169B93CA00A4E7A5 /* Profile Slider Bar */,
@@ -438,6 +467,8 @@
 				41453C8316921BAD00EB7826 /* AutoCompleteTableView.m */,
 				41453C88169224CB00EB7826 /* MyPickerView.h */,
 				41453C89169224CB00EB7826 /* MyPickerView.m */,
+				4113371316B0EF9F0065BDAC /* ProPicView.h */,
+				4113371416B0EF9F0065BDAC /* ProPicView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -646,6 +677,12 @@
 				412819CC169BBFF5006B795C /* blueMinCap2.png in Resources */,
 				412819CD169BBFF5006B795C /* orangeMaxCap2.png in Resources */,
 				412819CE169BBFF5006B795C /* orangeMaxCap2@2x.png in Resources */,
+				4113370D16B0E2E30065BDAC /* touch filter@2x.png in Resources */,
+				4113370E16B0E2E30065BDAC /* touch filter thumb.png in Resources */,
+				4113370F16B0E2E30065BDAC /* touch filter.png in Resources */,
+				4113371016B0E2E30065BDAC /* don't touch filter thumb.png in Resources */,
+				4113371116B0E2E30065BDAC /* don't touch filter.png in Resources */,
+				4113371216B0E2E30065BDAC /* don't touch filter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +736,7 @@
 				4127EAB416A61CA500624B6F /* SettingsScreen.m in Sources */,
 				41B293D316AA1D9100066EC0 /* InfoSettingsScreen.m in Sources */,
 				41A2BFCF16ADFBE3008A39EC /* RecentActivityScreen.m in Sources */,
+				4113371516B0EF9F0065BDAC /* ProPicView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

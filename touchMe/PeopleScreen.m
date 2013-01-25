@@ -40,6 +40,9 @@
     //just call the "stream" command from the web API
     [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"stream", @"command",[[[API sharedInstance] user] objectForKey:@"IdUser"], @"IdUser", nil] onCompletion:^(NSDictionary *json) {
 		//got stream
+		if ([json objectForKey:@"error"]) {
+			[UIAlertView error:[json objectForKey:@"error"]];
+		}
 		streamData = [NSMutableArray arrayWithArray:[json objectForKey:@"result"]];
 		[self showStream:[json objectForKey:@"result"]];
 		filters = [json objectForKey:@"filters"];
@@ -79,7 +82,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(PhotoView *)sender {
     if ([@"ShowProfile" compare: segue.identifier]==NSOrderedSame) {
         ProfileScreen* profileScreen = segue.destinationViewController;
-		profileScreen.photoView = sender;
+		profileScreen.index = sender.index;
+		profileScreen.interactionType = sender.interactionType;
+		profileScreen.ProfileId = sender.ProfileId;
+		profileScreen.interactionDelegate = self;
 }
 	
 	if ([@"ShowFilter" compare: segue.identifier]==NSOrderedSame) {
@@ -95,6 +101,11 @@
 
 -(void)filterScreenDismissed {
 	[self refreshStream];
+}
+
+-(void) didInteractionType:(NSNumber*)type atIndex:(NSInteger)index {
+	((PhotoView*)listView.subviews[index]).interactionType = type;
+	[((PhotoView*)listView.subviews[index]).proPicView setProPicFilterType:type];
 }
 
 @end
